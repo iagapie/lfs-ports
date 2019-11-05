@@ -35,12 +35,13 @@ source=(bash_completion.sh
 build() {
 	mkdir -pv $PKG/{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
 	mkdir -pv $PKG/{media/{floppy,cdrom},sbin,srv,var}
+	mkdir -pv $PKG/var/lib/pkg/{pkg,src,work}
 	install -dv -m 0750 $PKG/root
 	install -dv -m 1777 $PKG/tmp $PKG/var/tmp
 	mkdir -pv $PKG/usr/{,local/}{bin,include,lib,sbin,src}
 	mkdir -pv $PKG/usr/{,local/}share/{color,dict,doc,info,locale,man}
 	mkdir -pv $PKG/usr/{,local/}share/{misc,terminfo,zoneinfo}
-	mkdir -pv $PKG/usr/libexec
+	mkdir -pv $PKG/usr/{libexec,ports}
 	mkdir -pv $PKG/usr/{,local/}share/man/man{1..8}
 	mkdir -pv $PKG/usr/lib/pkgconfig
 
