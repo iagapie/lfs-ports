@@ -1,0 +1,4 @@
+DISTRIB_ID="Linux From Scratch"
+DISTRIB_RELEASE="20191101-systemd"
+DISTRIB_CODENAME="iagapie"
+DISTRIB_DESCRIPTION="Linux From Scratch"

@@ -1,1 +1,3 @@
-# lfs-ports
+# LFS Ports
+
+* `core`: ports for core system

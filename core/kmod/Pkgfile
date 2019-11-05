@@ -1,0 +1,13 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=kmod
+version=
+release=1
+source=()
+
+build() {
+	cd $name-$version
+}

@@ -1,0 +1,5 @@
+NAME="Linux From Scratch"
+VERSION="20191101-systemd"
+ID=lfs
+PRETTY_NAME="Linux From Scratch 20191101-systemd"
+VERSION_CODENAME="iagapie"
