@@ -1,13 +1,14 @@
 # Begin /etc/fstab
 
-# file system  mount-point  type     options             dump  fsck
-#                                                              order
+# file system   mount-point                 type        options             dump  fsck
 
-#/dev/<xxx>     /            <fff>    defaults            1     1
-#/dev/<yyy>     swap         swap     pri=1               0     0
-#/dev/<zzz>     /boot/efi    vfat     defaults            0     1
-efivarfs       /sys/firmware/efi/efivars  efivarfs  defaults  0      1
-devpts         /dev/pts     devpts   gid=5,mode=620      0     0
-tmpfs          /run         tmpfs    defaults            0     0
+#/dev/<xxx>     /                           <fff>       defaults            1       1
+#/dev/<yyy>     swap                        swap        pri=1               0       0
+#/dev/<zzz>     /boot/efi                   vfat        defaults            0       1
+efivarfs        /sys/firmware/efi/efivars   efivarfs    defaults            0       1
+devpts          /dev/pts                    devpts      gid=5,mode=620      0       0
+tmpfs           /run                        tmpfs       defaults            0       0
+/sources        /var/lib/pkg/src            none        defaults,bind       0       0
+/packages       /var/lib/pkg/pkg            none        defaults,bind       0       0
 
 # End /etc/fstab
