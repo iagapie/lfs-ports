@@ -4,10 +4,13 @@
 # Depends on:
 
 name=iana-etc
-version=
+version=2.30
 release=1
-source=()
+source=(http://anduin.linuxfromscratch.org/LFS/$name-$version.tar.bz2)
 
 build() {
 	cd $name-$version
+
+	make
+    make DESTDIR=$PKG install
 }

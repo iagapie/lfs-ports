@@ -4,10 +4,16 @@
 # Depends on:
 
 name=gmp
-version=
+version=6.1.2
 release=1
-source=()
+source=(https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr    \
+            --enable-cxx     \
+            --disable-static
+    make
+    make DESTDIR=$PKG install
 }

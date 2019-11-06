@@ -29,8 +29,7 @@ build() {
 	mkdir -v build
     cd       build
 
-    CC="gcc -ffile-prefix-map=/tools=/usr" \
-    ../configure --prefix=/usr                          \
+    ../configure --prefix=/usr                         \
                 --disable-werror                       \
                 --enable-kernel=3.2                    \
                 --enable-stack-protector=strong        \
@@ -38,12 +37,6 @@ build() {
                 libc_cv_slibdir=/lib
     
     make
-
-    case $(uname -m) in
-        i?86)   ln -sfnv $PWD/elf/ld-linux.so.2        $PKG/lib ;;
-        x86_64) ln -sfnv $PWD/elf/ld-linux-x86-64.so.2 $PKG/lib ;;
-    esac
-
 	mkdir -p $PKG/etc
 	touch $PKG/etc/ld.so.conf
 

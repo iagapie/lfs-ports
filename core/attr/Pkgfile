@@ -4,10 +4,20 @@
 # Depends on:
 
 name=attr
-version=
+version=2.4.48
 release=1
-source=()
+source=(https://download.savannah.gnu.org/releases/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr     \
+            --disable-static  \
+            --sysconfdir=/etc
+    make
+    make DESTDIR=$PKG install
+
+	mkdir -p $PKG/lib
+    mv -v $PKG/usr/lib/libattr.so.* $PKG/lib
+    ln -sfv ../../lib/$(readlink $PKG/usr/lib/libattr.so) $PKG/usr/lib/libattr.so
 }

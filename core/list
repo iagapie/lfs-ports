@@ -1,5 +1,5 @@
 filesystem
-linux-api-headers
+linux-headers
 man-pages
 glibc
 tzdata
@@ -12,13 +12,13 @@ binutils
 gmp
 mpfr
 mpc
+attr
+acl
 shadow
 gcc
 bzip2
 pkg-config
 ncurses
-attr
-acl
 libcap
 sed
 psmisc

@@ -1,11 +1,14 @@
 if [ -d /usr/local/lib/pkgconfig ] ; then
-        pathappend /usr/local/lib/pkgconfig PKG_CONFIG_PATH
+    pathappend /usr/local/lib/pkgconfig PKG_CONFIG_PATH
 fi
 if [ -d /usr/local/bin ]; then
-        pathprepend /usr/local/bin
+    pathprepend /usr/local/bin
 fi
 if [ -d /usr/local/sbin -a $EUID -eq 0 ]; then
-        pathprepend /usr/local/sbin
+    pathprepend /usr/local/sbin
+fi
+if [ -d /tools/bin ]; then
+    pathappend /tools/bin
 fi
 
 # Set some defaults before other applications add to these paths.

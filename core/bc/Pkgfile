@@ -4,10 +4,14 @@
 # Depends on:
 
 name=bc
-version=
+version=2.2.0
 release=1
-source=()
+source=(https://github.com/gavinhoward/bc/archive/$version/bc-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3
+    make
+    make DESTDIR=$PKG install
 }

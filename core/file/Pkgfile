@@ -4,10 +4,14 @@
 # Depends on:
 
 name=file
-version=
+version=5.37
 release=1
-source=()
+source=(ftp://ftp.astron.com/pub/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
 }

@@ -4,10 +4,14 @@
 # Depends on:
 
 name=grep
-version=
+version=3.3
 release=1
-source=()
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr --bindir=/bin
+    make
+    make DESTDIR=$PKG install
 }
