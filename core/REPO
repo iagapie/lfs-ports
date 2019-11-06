@@ -13,7 +13,6 @@ d:python3
 d:linux-firmware
 d:nano
 d:inetutils
-d:linux-api-headers
 d:iana-etc
 d:dhcpcd
 d:filesystem
@@ -53,6 +52,7 @@ d:p11-kit
 d:mpc
 d:ports
 d:check
+d:linux-headers
 d:pciutils
 d:iproute2
 d:unifont
@@ -111,7 +111,6 @@ f:f73d95ef6538c4dcef68c6ea714232e8:python3/Pkgfile
 f:e65349ccea9eff0b0d763658df09629b:linux-firmware/Pkgfile
 f:c105961d8d41aa27d60d8251b82d608a:nano/Pkgfile
 f:06f70f8c552c2fa3cbb0b4f8f4b28f58:inetutils/Pkgfile
-f:e21fef1bb2b990e8a2ec31fb3cff60c3:linux-api-headers/Pkgfile
 f:ad2e50b2843f11109736dc40618f13bf:iana-etc/Pkgfile
 f:9dcb0bf361c1c9b0c59e640afed0bea5:dhcpcd/Pkgfile
 f:aa3b01968fe25e4b942a7ad3e3d47c51:filesystem/bashrc
@@ -176,6 +175,7 @@ f:4146ba0f45ba252094b14450fd440bcf:p11-kit/Pkgfile
 f:d540b1e9a0940f9df4b9539c85704df3:mpc/Pkgfile
 f:748d34e639472eb85fdd24576fbd4d47:ports/Pkgfile
 f:1d335643b838ee0e581424bcc2f6f857:check/Pkgfile
+f:b3b4a7f4609834f2a5025b361a5c7ebe:linux-headers/Pkgfile
 f:7e00772d74b1a57fa44c3d335005b40f:pciutils/Pkgfile
 f:786cb0c5feebd8e375c78b766dd5b14f:iproute2/Pkgfile
 f:9845fb027fda186284c3ab21467fa08e:unifont/Pkgfile

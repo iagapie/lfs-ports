@@ -3,7 +3,7 @@
 # Maintainer:
 # Depends on:
 
-name=linux-api-headers
+name=linux-headers
 version=5.3.8
 release=1
 source=(https://www.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz)
