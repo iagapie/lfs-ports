@@ -9,7 +9,7 @@ release=1
 source=(https://www.kernel.org/pub/linux/kernel/v5.x/linux-$version.tar.xz)
 
 build() {
-	cd $name-$version
+	cd linux-$version
 
 	make mrproper
 	make headers

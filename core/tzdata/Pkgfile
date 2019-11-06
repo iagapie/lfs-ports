@@ -9,8 +9,6 @@ release=1
 source=(https://www.iana.org/time-zones/repository/releases/${name}${version}.tar.gz)
 
 build() {
-	cd $name-$version
-
 	ZONEINFO=$PKG/usr/share/zoneinfo
     mkdir -pv $ZONEINFO/{posix,right}
 
