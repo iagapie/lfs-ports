@@ -4,10 +4,14 @@
 # Depends on:
 
 name=mkinitramfs
-version=
+version=20191103
 release=1
-source=()
+source=(mkinitramfs
+	init.in)
 
 build() {
-	cd $name-$version
+	mkdir -p $PKG/sbin $PKG/usr/share/mkinitramfs
+
+	install -m 0755 $SRC/mkinitramfs $PKG/sbin/mkinitramfs
+	cp $SRC/init.in $PKG/usr/share/mkinitramfs/init.in
 }

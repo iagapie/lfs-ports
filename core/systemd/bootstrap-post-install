@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [[ -d "/tools/lib" && ! -f "/usr/lib/mount.so.1" ]]; then
+    for file in /tools/lib/lib{blkid,mount,uuid}.so*; do
+        ln -sf $file /usr/lib/
+    done
+fi
+
+systemd-machine-id-setup
+systemctl preset-all
+systemctl disable systemd-time-wait-sync.service
+
+if [[ -d "/tools/lib" && -f "/usr/lib/mount.so.1" ]]; then
+    rm -fv $PKG/usr/lib/lib{blkid,uuid,mount}.so*
+fi

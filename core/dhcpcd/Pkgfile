@@ -4,10 +4,20 @@
 # Depends on:
 
 name=dhcpcd
-version=
+version=8.1.1
+systemdcriptsversion=20191026
 release=1
-source=()
+source=(https://roy.marples.name/downloads/dhcpcd/dhcpcd-$version.tar.xz
+        http://www.linuxfromscratch.org/blfs/downloads/systemd/blfs-systemd-units-$systemdcriptsversion.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --libexecdir=/lib/dhcpcd \
+            --dbdir=/var/lib/dhcpcd
+    make
+    make DESTDIR=$PKG install
+
+    cd ../blfs-systemd-units-$systemdcriptsversion
+    make DESTDIR=$PKG install-dhcpcd
 }

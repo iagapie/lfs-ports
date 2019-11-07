@@ -4,10 +4,14 @@
 # Depends on:
 
 name=diffutils
-version=
+version=3.7
 release=1
-source=()
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
 }

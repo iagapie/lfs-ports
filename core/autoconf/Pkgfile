@@ -4,10 +4,15 @@
 # Depends on:
 
 name=autoconf
-version=
+version=2.69
 release=1
-source=()
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	sed '361 s/{/\\{/' -i bin/autoscan.in
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
 }

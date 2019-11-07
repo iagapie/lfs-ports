@@ -4,10 +4,14 @@
 # Depends on:
 
 name=libtasn1
-version=
+version=4.14
 release=1
-source=()
+source=(ftp://ftp.gnu.org/gnu/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+    make
+    make DESTDIR=$PKG install
 }

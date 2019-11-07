@@ -4,10 +4,15 @@
 # Depends on:
 
 name=check
-version=
+version=0.13.0
 release=1
-source=()
+source=(https://github.com/libcheck/$name/releases/download/$version/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make docdir=/usr/share/doc/check-$version DESTDIR=$PKG install
+	sed -i '1 s/tools/usr/' $PKG/usr/bin/checkmk
 }

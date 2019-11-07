@@ -1,0 +1,15 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=remove-la-files
+version=20191105
+release=1
+source=(remove-la-files.sh)
+
+build() {
+	mkdir -p $PKG/usr/sbin
+	cp remove-la-files.sh $PKG/usr/sbin/remove-la-files.sh
+	chmod +x $PKG/usr/sbin/remove-la-files.sh
+}

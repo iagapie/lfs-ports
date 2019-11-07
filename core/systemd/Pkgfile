@@ -4,10 +4,65 @@
 # Depends on:
 
 name=systemd
-version=
+version=243
 release=1
-source=()
+source=(https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
+		http://anduin.linuxfromscratch.org/LFS/$name-man-pages-$version.tar.xz
+		$name-$version-consolidated_fixes-1.patch)
 
 build() {
 	cd $name-$version
+
+	patch -Np1 -i ../$name-$version-consolidated_fixes-1.patch
+
+	if [[ ! -x /usr/bin/xsltproc && -d /tools/bin ]]; then
+		ln -sf /tools/bin/true /usr/bin/xsltproc
+	fi
+
+	mv ../build ./
+
+	sed '177,$ d' -i src/resolve/meson.build
+	sed -i 's/GROUP="render", //' rules/50-udev-default.rules.in
+
+	mkdir -p build
+    cd       build
+
+	PKG_CONFIG_PATH="/usr/lib/pkgconfig"
+
+	if [ -d /tools/lib ]; then
+		PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/tools/lib/pkgconfig"
+	fi
+
+	export PKG_CONFIG_PATH
+
+	LANG=en_US.UTF-8                 \
+	meson --prefix=/usr              \
+		--sysconfdir=/etc            \
+		--localstatedir=/var         \
+		-Dblkid=true                 \
+		-Dbuildtype=release          \
+		-Ddefault-dnssec=no          \
+		-Dfirstboot=false            \
+		-Dinstall-tests=false        \
+		-Dkmod-path=/bin/kmod        \
+		-Dldconfig=false             \
+		-Dmount-path=/bin/mount      \
+		-Drootprefix=                \
+		-Drootlibdir=/lib            \
+		-Dsplit-usr=true             \
+		-Dsulogin-path=/sbin/sulogin \
+		-Dsysusers=false             \
+		-Dumount-path=/bin/umount    \
+		-Db_lto=false                \
+		-Drpmmacrosdir=no            \
+		..
+	LANG=en_US.UTF-8 ninja
+	LANG=en_US.UTF-8 DESTDIR=$PKG ninja install
+
+	if [[ -x /usr/bin/xsltproc && -d /tools/bin ]]; then
+		rm -f /usr/bin/xsltproc
+	fi
+
+	rm -f $PKG/etc/sysctl.d/50-pid-max.conf
+	rm -f $PKG/usr/lib/tmpfiles.d/systemd-nologin.conf
 }

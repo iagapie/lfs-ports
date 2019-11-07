@@ -4,10 +4,32 @@
 # Depends on:
 
 name=sudo
-version=
+version=1.8.29
 release=1
-source=()
+source=(ftp://ftp.sudo.ws/pub/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	sed -e '/^pre-install:/{N;s@;@ -a -r $(sudoersdir)/sudoers;@}' \
+        -i plugins/sudoers/Makefile.in
+    
+    ./configure --prefix=/usr              \
+            --libexecdir=/usr/lib      \
+            --with-secure-path         \
+            --with-all-insults         \
+            --with-env-editor          \
+            --with-passprompt="[sudo] password for %p: "
+
+    make
+    make DESTDIR=$PKG install
+
+	mkdir -p $PKG/usr/lib/sudo $PKG/etc/sudoers.d
+	
+    ln -sfv libsudo_util.so.0.0.0 $PKG/usr/lib/sudo/libsudo_util.so.0
+
+    cat > $PKG/etc/sudoers.d/sudo << "EOF"
+Defaults secure_path="/usr/bin:/bin:/usr/sbin:/sbin"
+%wheel ALL=(ALL) ALL
+EOF
 }

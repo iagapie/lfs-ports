@@ -4,10 +4,17 @@
 # Depends on:
 
 name=libpng
-version=
+version=1.6.37
 release=1
-source=()
+source=(https://downloads.sourceforge.net/$name/$name-$version.tar.xz
+		$name-$version-apng.patch)
 
 build() {
 	cd $name-$version
+
+	patch -Np1 -i ../$name-$version-apng.patch
+	
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
 }

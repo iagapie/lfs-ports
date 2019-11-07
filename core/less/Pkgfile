@@ -4,10 +4,14 @@
 # Depends on:
 
 name=less
-version=
+version=551
 release=1
-source=()
+source=(http://www.greenwoodsoftware.com/less/less-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc
+    make
+    make DESTDIR=$PKG install
 }

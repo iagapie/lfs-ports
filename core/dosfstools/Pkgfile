@@ -4,10 +4,16 @@
 # Depends on:
 
 name=dosfstools
-version=
+version=4.1
 release=1
-source=()
+source=(https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/               \
+            --enable-compat-symlinks \
+            --mandir=/usr/share/man
+    make
+    make DESTDIR=$PKG install
 }

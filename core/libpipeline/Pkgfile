@@ -4,10 +4,14 @@
 # Depends on:
 
 name=libpipeline
-version=
+version=1.5.1
 release=1
-source=()
+source=(http://download.savannah.gnu.org/releases/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
 }

@@ -4,10 +4,14 @@
 # Depends on:
 
 name=perl-xml-parser
-version=
+version=2.46
 release=1
-source=()
+source=(https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz)
 
 build() {
-	cd $name-$version
+	cd XML-Parser-$version
+
+	perl Makefile.PL
+    make
+    make DESTDIR=$PKG install
 }

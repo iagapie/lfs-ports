@@ -4,10 +4,26 @@
 # Depends on:
 
 name=pkgutils
-version=
+version=5.40.7
 release=1
-source=()
+source=(http://crux.nu/files/$name-$version.tar.xz
+        ignore-conflict.patch
+        remove-libtool.patch
+        add-compress-infopages.patch
+        fix-build-needed-trigger.patch
+		pkgmk.conf)
 
 build() {
 	cd $name-$version
+
+	for p in ../*.patch; do
+		patch -Np1 -i $p
+	done
+
+    sed -i -e 's/ --static//' \
+	       -e 's/ -static//' Makefile
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/etc
+	install -m644 $SRC/pkgmk.conf $PKG/etc/pkgmk.conf
 }

@@ -4,10 +4,17 @@
 # Depends on:
 
 name=cpio
-version=
+version=2.12
 release=1
-source=()
+source=(ftp://ftp.gnu.org/gnu/$name/$name-$version.tar.bz2)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr \
+            --bindir=/bin \
+            --enable-mt   \
+            --with-rmt=/usr/libexec/rmt
+    make
+    make DESTDIR=$PKG install
 }

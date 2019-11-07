@@ -94,5 +94,5 @@ httpup
 ports
 linux-firmware
 cpio
-linux
+lz4
 mkinitramfs

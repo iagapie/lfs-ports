@@ -33,7 +33,7 @@ source=(bash_completion.sh
 	resolv.conf)
 
 build() {
-	mkdir -pv $PKG/{bin,boot,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
+	mkdir -pv $PKG/{bin,boot/efi,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
 	mkdir -pv $PKG/{media/{floppy,cdrom},sbin,srv,var}
 	mkdir -pv $PKG/var/lib/pkg/{pkg,src,work}
 	install -dv -m 0750 $PKG/root

@@ -4,10 +4,21 @@
 # Depends on:
 
 name=man-db
-version=
+version=2.9.0
 release=1
-source=()
+source=(http://download.savannah.gnu.org/releases/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	sed -i '/find/s@/usr@@' init/systemd/man-db.service.in
+	./configure --prefix=/usr                    \
+            --sysconfdir=/etc                    \
+            --disable-setuid                     \
+            --enable-cache-owner=bin             \
+            --with-browser=/usr/bin/lynx         \
+            --with-vgrind=/usr/bin/vgrind        \
+            --with-grap=/usr/bin/grap
+	make
+	make DESTDIR=$PKG install
 }

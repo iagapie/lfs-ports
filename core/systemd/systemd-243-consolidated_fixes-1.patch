@@ -1,0 +1,1277 @@
+Submitted By:            Douglas R. Reno <renodr at linuxfromscratch dot org>
+Date:                    2019-10-02
+Initial Package Version: 243
+Origin:                  Self / Upstream Stable Repository
+Description:             In addition to the udev fixes in the last patch,
+                         this patch contains fixes for hwdb, some typo corrections,
+                         a fix for the bug that causes systemd-timesyncd to fail to 
+                         initialize and halt the boot process on systems that don't
+                         use networkd, a fix for a bug that originates when running
+                         Samba-4.11.0's new SMB3 filesystem with mounts in
+                         /etc/fstab, and various other upstream fixes since 243's
+                         release.
+
+diff -Naurp systemd-243.orig/docs/BOOT_LOADER_INTERFACE.md systemd-243/docs/BOOT_LOADER_INTERFACE.md
+--- systemd-243.orig/docs/BOOT_LOADER_INTERFACE.md	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/docs/BOOT_LOADER_INTERFACE.md	2019-10-01 21:54:12.930511233 -0500
+@@ -71,7 +71,7 @@ variables. All EFI variables use the ven
+   * `1 << 3` → The boot loader honours `LoaderEntryOneShot` when set.
+   * `1 << 4` → The boot loader supports boot counting as described in [Automatic Boot Assessment](https://systemd.io/AUTOMATIC_BOOT_ASSESSMENT).
+   * `1 << 5` → The boot loader supports looking for boot menu entries in the Extended Boot Loader Partition.
+-  * `1 << 6` → The boot loader spports passing a random seed to the OS.
++  * `1 << 6` → The boot loader supports passing a random seed to the OS.
+ 
+ * The EFI variable `LoaderRandomSeed` contains a binary random seed if set. It
+   is set by the boot loader to pass an entropy seed read from the ESP partition
+diff -Naurp systemd-243.orig/docs/RELEASE.md systemd-243/docs/RELEASE.md
+--- systemd-243.orig/docs/RELEASE.md	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/docs/RELEASE.md	2019-10-01 21:55:15.264846271 -0500
+@@ -16,4 +16,4 @@ title: Steps to a Successful Release
+ 10. "Draft" a new release on github (https://github.com/systemd/systemd/releases/new), mark "This is a pre-release" if appropriate.
+ 11. Check that announcement to systemd-devel, with a copy&paste from NEWS, was sent. This should happen automatically.
+ 12. Update IRC topic (`/msg chanserv TOPIC #systemd Version NNN released`)
+-13. [After final release] Also push commits to stable, create an empty -stable branch: `git push systemd-stable origin/master:master origin/master:v${version}-stable`, and change the default branch to latest release (https://github.com/systemd/systemd-stable/settings/branches).
++13. [After final release] Also push commits to stable, create an empty -stable branch: `git push systemd-stable origin/master:master origin/master:refs/heads/${version}-stable`, and change the default branch to latest release (https://github.com/systemd/systemd-stable/settings/branches).
+diff -Naurp systemd-243.orig/hwdb/60-evdev.hwdb systemd-243/hwdb/60-evdev.hwdb
+--- systemd-243.orig/hwdb/60-evdev.hwdb	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/hwdb/60-evdev.hwdb	2019-10-01 22:27:15.612615919 -0500
+@@ -267,6 +267,13 @@ evdev:name:AlpsPS/2 ALPS DualPoint Touch
+  EVDEV_ABS_35=0:1960:24
+  EVDEV_ABS_36=113:1436:30
+ 
++# Dell XPS13 9360
++evdev:name:SynPS/2 Synaptics TouchPad:dmi:*svnDellInc.:pnXPS139360:cvr:*
++ EVDEV_ABS_00=::42
++ EVDEV_ABS_01=::60
++ EVDEV_ABS_35=::42
++ EVDEV_ABS_36=::60
++
+ # Dell XPS15 9550
+ evdev:name:SynPS/2 Synaptics TouchPad:dmi:bvn*:bvr*:bd*:svnDellInc.:pnXPS159550*
+  EVDEV_ABS_00=::41
+diff -Naurp systemd-243.orig/hwdb/60-sensor.hwdb systemd-243/hwdb/60-sensor.hwdb
+--- systemd-243.orig/hwdb/60-sensor.hwdb	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/hwdb/60-sensor.hwdb	2019-10-01 22:32:18.677214179 -0500
+@@ -282,22 +282,10 @@ sensor:modalias:acpi:KIOX000A*:dmi:bvnAm
+ # HP
+ #########################################
+ 
+-# Laptops using the lis3lv02d device should have a first quirk applied
+-# to them in the drivers/platform/x86/hp_accel.c in the kernel. The
+-# quirk from "can play neverball" to "matches Windows 8 orientation"
+-# is then applied below.
++# Most HP laptops using the lis3lv02d device have it in the base,
++# mark these sensors as such.
+ sensor:modalias:platform:lis3lv02d:dmi:*svn*Hewlett-Packard*:*
+- ACCEL_MOUNT_MATRIX=1, 0, 0; 0, 0, -1; 0, 1, 0
+-
+-# HP laptops which have the lis3lv02d device in the base, tell iio-sensor-proxy
+-# about this so that the sensor is not used for display orientation
+-sensor:modalias:platform:lis3lv02d:dmi:*svn*Hewlett-Packard*:*pnHPProBook4535s*
+- ACCEL_LOCATION=base
+-
+-sensor:modalias:platform:lis3lv02d:dmi:*:svnHewlett-Packard:pnHPENVY17NotebookPC:*
+- ACCEL_LOCATION=base
+-
+-sensor:modalias:platform:lis3lv02d:dmi:*svnHP:pnHPEliteBook850G3*
++sensor:modalias:platform:lis3lv02d:dmi:*svn*HP*:*
+  ACCEL_LOCATION=base
+ 
+ sensor:modalias:acpi:SMO8500*:dmi:*:svnHewlett-Packard:pnHPStream7Tablet:*
+@@ -429,6 +417,10 @@ sensor:modalias:acpi:KIOX010A*:dmi:*:svn
+ sensor:modalias:acpi:KIOX010A*:dmi:*:svnMEDION*:pnE3222*:*
+  ACCEL_MOUNT_MATRIX=0, -1, 0; -1, 0, 0; 0, 0, 1
+ 
++# Medion Akoya E2292 MD63390
++sensor:modalias:scpi:KIOX010A*:dmi:*:svnMEDION:pnE2292MD63390:*
++ ACCEL_MOUNT_MATRIX=0, -1, 0; -1, 0, 0; 0, 0, 1
++
+ # Medion Akoya E2293 MD61130
+ sensor:modalias:acpi:KIOX010A*:dmi:*:svnMEDION:pnE2293MD61130:*
+  ACCEL_MOUNT_MATRIX=0, -1, 0; -1, 0, 0; 0, 0, 1
+diff -Naurp systemd-243.orig/man/systemctl.xml systemd-243/man/systemctl.xml
+--- systemd-243.orig/man/systemctl.xml	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/man/systemctl.xml	2019-10-01 21:54:31.634311949 -0500
+@@ -818,7 +818,7 @@ Sun 2017-02-26 20:57:49 EST  2h 3min lef
+           <listitem>
+             <para>Stop (deactivate) one or more units specified on the command line.</para>
+ 
+-            <para>This command will fail if the unit does exist or if stopping of the unit is prohibited (see
++            <para>This command will fail if the unit does not exist or if stopping of the unit is prohibited (see
+             <varname>RefuseManualStop=</varname> in
+             <citerefentry><refentrytitle>systemd.unit</refentrytitle><manvolnum>5</manvolnum></citerefentry>).
+             It will <emphasis>not</emphasis> fail if any of the commands configured to stop the unit
+diff -Naurp systemd-243.orig/man/systemd.exec.xml systemd-243/man/systemd.exec.xml
+--- systemd-243.orig/man/systemd.exec.xml	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/man/systemd.exec.xml	2019-10-01 22:17:12.896421271 -0500
+@@ -1036,6 +1036,16 @@ StateDirectory=aaa/bbb ccc</programlisti
+       </varlistentry>
+ 
+       <varlistentry>
++        <term><varname>TimeoutCleanSec=</varname></term>
++        <listitem><para>Configures a timeout on the clean-up operation requested through <command>systemctl
++        clean …</command>, see
++        <citerefentry><refentrytitle>systemctl</refentrytitle><manvolnum>1</manvolnum></citerefentry> for
++        details. Takes the usual time values and defaults to <constant>infinity</constant>, i.e. by default
++        no time-out is applied. If a time-out is configured the clean operation will be aborted forcibly when
++        the time-out is reached, potentially leaving resources on disk.</para></listitem>
++      </varlistentry>
++
++      <varlistentry>
+         <term><varname>ReadWritePaths=</varname></term>
+         <term><varname>ReadOnlyPaths=</varname></term>
+         <term><varname>InaccessiblePaths=</varname></term>
+diff -Naurp systemd-243.orig/man/systemd.netdev.xml systemd-243/man/systemd.netdev.xml
+--- systemd-243.orig/man/systemd.netdev.xml	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/man/systemd.netdev.xml	2019-10-01 22:27:54.076183720 -0500
+@@ -1742,8 +1742,8 @@
+       <varlistentry>
+         <term><varname>ARPIntervalSec=</varname></term>
+         <listitem>
+-          <para>Specifies the ARP link monitoring frequency in milliseconds.
+-          A value of 0 disables ARP monitoring. The default value is 0.
++          <para>Specifies the ARP link monitoring frequency. A value of 0 disables ARP monitoring. The
++          default value is 0, and the default unit seconds.
+           </para>
+         </listitem>
+       </varlistentry>
+diff -Naurp systemd-243.orig/man/systemd.service.xml systemd-243/man/systemd.service.xml
+--- systemd-243.orig/man/systemd.service.xml	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/man/systemd.service.xml	2019-10-01 22:16:39.680799081 -0500
+@@ -637,16 +637,6 @@
+       </varlistentry>
+ 
+       <varlistentry>
+-        <term><varname>TimeoutCleanSec=</varname></term>
+-        <listitem><para>Configures a timeout on the clean-up operation requested through <command>systemctl
+-        clean …</command>, see
+-        <citerefentry><refentrytitle>systemctl</refentrytitle><manvolnum>1</manvolnum></citerefentry> for
+-        details. Takes the usual time values and defaults to <constant>infinity</constant>, i.e. by default
+-        no time-out is applied. If a time-out is configured the clean operation will be aborted forcibly when
+-        the time-out is reached, potentially leaving resources on disk.</para></listitem>
+-      </varlistentry>
+-
+-      <varlistentry>
+         <term><varname>RuntimeMaxSec=</varname></term>
+ 
+         <listitem><para>Configures a maximum time for the service to run. If this is used and the service has been
+diff -Naurp systemd-243.orig/man/systemd.unit.xml systemd-243/man/systemd.unit.xml
+--- systemd-243.orig/man/systemd.unit.xml	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/man/systemd.unit.xml	2019-10-01 22:09:50.787496111 -0500
+@@ -163,7 +163,7 @@
+     <varname>Wants=</varname>, see below. The preferred way to create symlinks in the
+     <filename>.wants/</filename> or <filename>.requires/</filename> directory of a unit file is by embedding
+     the dependency in [Install] section of the target unit, and creating the symlink in the file system with
+-    the with the <command>enable</command> or <command>preset</command> commands of
++    the <command>enable</command> or <command>preset</command> commands of
+     <citerefentry><refentrytitle>systemctl</refentrytitle><manvolnum>1</manvolnum></citerefentry>.</para>
+ 
+     <para>Along with a unit file <filename>foo.service</filename>, a "drop-in" directory
+diff -Naurp systemd-243.orig/po/pl.po systemd-243/po/pl.po
+--- systemd-243.orig/po/pl.po	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/po/pl.po	2019-10-01 22:31:00.793087692 -0500
+@@ -682,7 +682,7 @@ msgid "Revert NTP settings"
+ msgstr "Przywrócenie ustawień NTP"
+ 
+ #: src/network/org.freedesktop.network1.policy:122
+-msgid "Authentication is required to revert NTP settings."
++msgid "Authentication is required to reset NTP settings."
+ msgstr "Wymagane jest uwierzytelnienie, aby przywrócić ustawienia NTP."
+ 
+ #: src/network/org.freedesktop.network1.policy:132
+@@ -690,7 +690,7 @@ msgid "Revert DNS settings"
+ msgstr "Przywrócenie ustawień DNS"
+ 
+ #: src/network/org.freedesktop.network1.policy:133
+-msgid "Authentication is required to revert DNS settings."
++msgid "Authentication is required to reset DNS settings."
+ msgstr "Wymagane jest uwierzytelnienie, aby przywrócić ustawienia DNS."
+ 
+ #: src/portable/org.freedesktop.portable1.policy:13
+diff -Naurp systemd-243.orig/shell-completion/zsh/_bootctl systemd-243/shell-completion/zsh/_bootctl
+--- systemd-243.orig/shell-completion/zsh/_bootctl	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/shell-completion/zsh/_bootctl	2019-10-01 22:15:42.497450545 -0500
+@@ -1,6 +1,29 @@
+ #compdef bootctl                    -*- shell-script -*-
+ # SPDX-License-Identifier: LGPL-2.1+
+ 
++__bootctl() {
++   bootctl --no-pager $@ 2>/dev/null
++}
++
++_bootctl_comp_ids() {
++   local expl
++   local -a ids
++   __bootctl list | while read a b; do
++      if [[ "$a" == "id:" ]]; then
++         ids+="$b"
++      fi
++   done
++   _wanted id expl 'boot id' compadd "$@" -a ids
++}
++
++_bootctl_set_default() {
++   _bootctl_comp_ids
++}
++
++_bootctl_set_oneshot() {
++   _bootctl_comp_ids
++}
++
+ (( $+functions[_bootctl_commands] )) || _bootctl_commands()
+ {
+     local -a _bootctl_cmds
+@@ -9,6 +32,10 @@
+         "install:Install systemd-boot to the ESP and EFI variables"
+         "update:Update systemd-boot in the ESP and EFI variables"
+         "remove:Remove systemd-boot from the ESP and EFI variables"
++        "random-seed:Initialize random seed in ESP and EFI variables"
++        "is-installed:Test whether systemd-boot is installed in the ESP"
++        "set-default:Set the default boot loader entry"
++        "set-oneshot:Set the default boot loader entry only for the next boot"
+     )
+     if (( CURRENT == 1 )); then
+         _describe -t commands 'bootctl command' _bootctl_cmds || compadd "$@"
+@@ -26,6 +53,10 @@
+ _arguments \
+     {-h,--help}'[Prints a short help text and exits.]' \
+     '--version[Prints a short version string and exits.]' \
+-    '--path=[Path to the EFI System Partition (ESP)]:path:_directories' \
++    '--esp-path=[Path to the EFI System Partition (ESP)]:path:_directories' \
++    '--boot-path=[Path to the $BOOT partition]:path:_directories' \
++    {-p,--print-esp-path}'[Print path to the EFI system partition]' \
++    {-x,--print-boot-path}'[Print path to the $BOOT partition]' \
+     '--no-variables[Do not touch EFI variables]' \
++    '--no-pager[Do not pipe output into a pager]' \
+     '*::bootctl command:_bootctl_commands'
+diff -Naurp systemd-243.orig/src/basic/fileio.c systemd-243/src/basic/fileio.c
+--- systemd-243.orig/src/basic/fileio.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/basic/fileio.c	2019-10-01 22:04:41.821139345 -0500
+@@ -930,10 +930,10 @@ int warn_file_is_world_accessible(const
+ 
+         if (unit)
+                 log_syntax(unit, LOG_WARNING, filename, line, 0,
+-                           "%s has %04o mode that is too permissive, please adjust the access mode.",
++                           "%s has %04o mode that is too permissive, please adjust the ownership and access mode.",
+                            filename, st->st_mode & 07777);
+         else
+-                log_warning("%s has %04o mode that is too permissive, please adjust the access mode.",
++                log_warning("%s has %04o mode that is too permissive, please adjust the ownership and access mode.",
+                             filename, st->st_mode & 07777);
+         return 0;
+ }
+diff -Naurp systemd-243.orig/src/basic/mountpoint-util.c systemd-243/src/basic/mountpoint-util.c
+--- systemd-243.orig/src/basic/mountpoint-util.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/basic/mountpoint-util.c	2019-10-01 22:47:11.592172976 -0500
+@@ -299,6 +299,7 @@ bool fstype_is_network(const char *fstyp
+                           "afs",
+                           "cifs",
+                           "smbfs",
++                          "smb3",
+                           "sshfs",
+                           "ncpfs",
+                           "ncp",
+diff -Naurp systemd-243.orig/src/basic/user-util.c systemd-243/src/basic/user-util.c
+--- systemd-243.orig/src/basic/user-util.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/basic/user-util.c	2019-10-01 22:18:37.631459206 -0500
+@@ -410,9 +410,8 @@ char* gid_to_name(gid_t gid) {
+ }
+ 
+ int in_gid(gid_t gid) {
+-        long ngroups_max;
+         gid_t *gids;
+-        int r, i;
++        int ngroups, r, i;
+ 
+         if (getgid() == gid)
+                 return 1;
+@@ -423,12 +422,15 @@ int in_gid(gid_t gid) {
+         if (!gid_is_valid(gid))
+                 return -EINVAL;
+ 
+-        ngroups_max = sysconf(_SC_NGROUPS_MAX);
+-        assert(ngroups_max > 0);
++        ngroups = getgroups(0, NULL);
++        if (ngroups < 0)
++           return -errno;
++        if (ngroups == 0)
++           return 0;
+ 
+-        gids = newa(gid_t, ngroups_max);
++        gids = newa(gid_t, ngroups);
+ 
+-        r = getgroups(ngroups_max, gids);
++        r = getgroups(ngroups, gids);
+         if (r < 0)
+                 return -errno;
+ 
+diff -Naurp systemd-243.orig/src/core/load-fragment.c systemd-243/src/core/load-fragment.c
+--- systemd-243.orig/src/core/load-fragment.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/load-fragment.c	2019-10-01 22:21:21.153608609 -0500
+@@ -133,6 +133,7 @@ DEFINE_CONFIG_PARSE_PTR(config_parse_cg_
+ DEFINE_CONFIG_PARSE_PTR(config_parse_cpu_shares, cg_cpu_shares_parse, uint64_t, "Invalid CPU shares");
+ DEFINE_CONFIG_PARSE_PTR(config_parse_exec_mount_flags, mount_propagation_flags_from_string, unsigned long, "Failed to parse mount flag");
+ DEFINE_CONFIG_PARSE_ENUM_WITH_DEFAULT(config_parse_numa_policy, mpol, int, -1, "Invalid NUMA policy type");
++DEFINE_CONFIG_PARSE_ENUM(config_parse_status_unit_format, status_unit_format, StatusUnitFormat, "Failed to parse status unit format");
+ 
+ int config_parse_unit_deps(
+                 const char *unit,
+diff -Naurp systemd-243.orig/src/core/load-fragment.h systemd-243/src/core/load-fragment.h
+--- systemd-243.orig/src/core/load-fragment.h	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/load-fragment.h	2019-10-01 22:21:39.756398503 -0500
+@@ -117,6 +117,7 @@ CONFIG_PARSER_PROTOTYPE(config_parse_num
+ CONFIG_PARSER_PROTOTYPE(config_parse_ip_filter_bpf_progs);
+ CONFIG_PARSER_PROTOTYPE(config_parse_cpu_affinity2);
+ CONFIG_PARSER_PROTOTYPE(config_parse_show_status);
++CONFIG_PARSER_PROTOTYPE(config_parse_status_unit_format);
+ CONFIG_PARSER_PROTOTYPE(config_parse_output_restricted);
+ CONFIG_PARSER_PROTOTYPE(config_parse_crash_chvt);
+ CONFIG_PARSER_PROTOTYPE(config_parse_timeout_abort);
+diff -Naurp systemd-243.orig/src/core/main.c systemd-243/src/core/main.c
+--- systemd-243.orig/src/core/main.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/main.c	2019-10-01 22:21:54.276234565 -0500
+@@ -538,7 +538,6 @@ DEFINE_SETTER(config_parse_level2, log_s
+ DEFINE_SETTER(config_parse_target, log_set_target_from_string, "target");
+ DEFINE_SETTER(config_parse_color, log_show_color_from_string, "color" );
+ DEFINE_SETTER(config_parse_location, log_show_location_from_string, "location");
+-DEFINE_SETTER(config_parse_status_unit_format, status_unit_format_from_string, "value");
+ 
+ static int parse_config_file(void) {
+ 
+diff -Naurp systemd-243.orig/src/core/mount-setup.c systemd-243/src/core/mount-setup.c
+--- systemd-243.orig/src/core/mount-setup.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/mount-setup.c	2019-10-01 22:19:10.803083210 -0500
+@@ -486,6 +486,7 @@ static int relabel_extra(void) {
+                         }
+ 
+                         log_debug("Relabelling additional file/directory '%s'.", line);
++                        (void) label_fix(line, 0);
+                         (void) nftw(line, nftw_cb, 64, FTW_MOUNT|FTW_PHYS|FTW_ACTIONRETVAL);
+                         c++;
+                 }
+diff -Naurp systemd-243.orig/src/core/path.c systemd-243/src/core/path.c
+--- systemd-243.orig/src/core/path.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/path.c	2019-10-01 22:32:54.415957515 -0500
+@@ -480,11 +480,9 @@ static void path_enter_running(Path *p)
+ 
+         p->inotify_triggered = false;
+ 
+-        r = path_watch(p);
+-        if (r < 0)
+-                goto fail;
+-
+         path_set_state(p, PATH_RUNNING);
++        path_unwatch(p);
++
+         return;
+ 
+ fail:
+diff -Naurp systemd-243.orig/src/core/smack-setup.c systemd-243/src/core/smack-setup.c
+--- systemd-243.orig/src/core/smack-setup.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/smack-setup.c	2019-10-01 22:45:15.448261632 -0500
+@@ -84,6 +84,7 @@ static int write_access2_rules(const cha
+         FOREACH_DIRENT(entry, dir, return 0) {
+                 _cleanup_fclose_ FILE *policy = NULL;
+ 
++                dirent_ensure_type(dir, entry);
+                 if (!dirent_is_file(entry))
+                         continue;
+ 
+@@ -150,6 +151,7 @@ static int write_cipso2_rules(const char
+         FOREACH_DIRENT(entry, dir, return 0) {
+                 _cleanup_fclose_ FILE *policy = NULL;
+ 
++                dirent_ensure_type(dir, entry);
+                 if (!dirent_is_file(entry))
+                         continue;
+ 
+diff -Naurp systemd-243.orig/src/core/unit.c systemd-243/src/core/unit.c
+--- systemd-243.orig/src/core/unit.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/core/unit.c	2019-10-01 22:23:09.236388893 -0500
+@@ -3900,6 +3900,7 @@ int unit_add_node_dependency(Unit *u, co
+ int unit_coldplug(Unit *u) {
+         int r = 0, q;
+         char **i;
++        Job *uj;
+ 
+         assert(u);
+ 
+@@ -3922,8 +3923,9 @@ int unit_coldplug(Unit *u) {
+                         r = q;
+         }
+ 
+-        if (u->job) {
+-                q = job_coldplug(u->job);
++        uj = u->job ?: u->nop_job;
++        if (uj) {
++                q = job_coldplug(uj);
+                 if (q < 0 && r >= 0)
+                         r = q;
+         }
+diff -Naurp systemd-243.orig/src/fuzz/fuzz-catalog.c systemd-243/src/fuzz/fuzz-catalog.c
+--- systemd-243.orig/src/fuzz/fuzz-catalog.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/fuzz/fuzz-catalog.c	2019-10-01 21:58:22.005842280 -0500
+@@ -9,12 +9,12 @@
+ int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size) {
+         _cleanup_(unlink_tempfilep) char name[] = "/tmp/fuzz-catalog.XXXXXX";
+         _cleanup_close_ int fd = -1;
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+ 
+         if (!getenv("SYSTEMD_LOG_LEVEL"))
+                 log_set_max_level(LOG_CRIT);
+ 
+-        assert_se(h = hashmap_new(&catalog_hash_ops));
++        assert_se(h = ordered_hashmap_new(&catalog_hash_ops));
+ 
+         fd = mkostemp_safe(name);
+         assert_se(fd >= 0);
+diff -Naurp systemd-243.orig/src/journal/catalog.c systemd-243/src/journal/catalog.c
+--- systemd-243.orig/src/journal/catalog.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/journal/catalog.c	2019-10-01 22:56:29.463659322 -0500
+@@ -143,7 +143,7 @@ static char *combine_entries(const char
+ }
+ 
+ static int finish_item(
+-                Hashmap *h,
++                OrderedHashmap *h,
+                 sd_id128_t id,
+                 const char *language,
+                 char *payload, size_t payload_size) {
+@@ -165,14 +165,14 @@ static int finish_item(
+                 strcpy(i->language, language);
+         }
+ 
+-        prev = hashmap_get(h, i);
++        prev = ordered_hashmap_get(h, i);
+         if (prev) {
+                 /* Already have such an item, combine them */
+                 combined = combine_entries(payload, prev);
+                 if (!combined)
+                         return log_oom();
+ 
+-                if (hashmap_update(h, i, combined) < 0)
++                if (ordered_hashmap_update(h, i, combined) < 0)
+                         return log_oom();
+                 combined = NULL;
+         } else {
+@@ -181,7 +181,7 @@ static int finish_item(
+                 if (!combined)
+                         return log_oom();
+ 
+-                if (hashmap_put(h, i, combined) < 0)
++                if (ordered_hashmap_put(h, i, combined) < 0)
+                         return log_oom();
+                 i = NULL;
+                 combined = NULL;
+@@ -247,7 +247,7 @@ static int catalog_entry_lang(
+         return 0;
+ }
+ 
+-int catalog_import_file(Hashmap *h, const char *path) {
++int catalog_import_file(OrderedHashmap *h, const char *path) {
+         _cleanup_fclose_ FILE *f = NULL;
+         _cleanup_free_ char *payload = NULL;
+         size_t payload_size = 0, payload_allocated = 0;
+@@ -446,7 +446,7 @@ int catalog_update(const char* database,
+         _cleanup_strv_free_ char **files = NULL;
+         char **f;
+         _cleanup_(strbuf_cleanupp) struct strbuf *sb = NULL;
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+         _cleanup_free_ CatalogItem *items = NULL;
+         ssize_t offset;
+         char *payload;
+@@ -456,7 +456,7 @@ int catalog_update(const char* database,
+         int r;
+         int64_t sz;
+ 
+-        h = hashmap_new(&catalog_hash_ops);
++        h = ordered_hashmap_new(&catalog_hash_ops);
+         sb = strbuf_new();
+         if (!h || !sb)
+                 return log_oom();
+@@ -472,18 +472,18 @@ int catalog_update(const char* database,
+                         return log_error_errno(r, "Failed to import file '%s': %m", *f);
+         }
+ 
+-        if (hashmap_size(h) <= 0) {
++        if (ordered_hashmap_size(h) <= 0) {
+                 log_info("No items in catalog.");
+                 return 0;
+         } else
+-                log_debug("Found %u items in catalog.", hashmap_size(h));
++                log_debug("Found %u items in catalog.", ordered_hashmap_size(h));
+ 
+-        items = new(CatalogItem, hashmap_size(h));
++        items = new(CatalogItem, ordered_hashmap_size(h));
+         if (!items)
+                 return log_oom();
+ 
+         n = 0;
+-        HASHMAP_FOREACH_KEY(payload, i, h, j) {
++        ORDERED_HASHMAP_FOREACH_KEY(payload, i, h, j) {
+                 log_debug("Found " SD_ID128_FORMAT_STR ", language %s",
+                           SD_ID128_FORMAT_VAL(i->id),
+                           isempty(i->language) ? "C" : i->language);
+@@ -496,7 +496,7 @@ int catalog_update(const char* database,
+                 items[n++] = *i;
+         }
+ 
+-        assert(n == hashmap_size(h));
++        assert(n == ordered_hashmap_size(h));
+         typesafe_qsort(items, n, catalog_compare_func);
+ 
+         strbuf_complete(sb);
+diff -Naurp systemd-243.orig/src/journal/catalog.h systemd-243/src/journal/catalog.h
+--- systemd-243.orig/src/journal/catalog.h	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/journal/catalog.h	2019-10-01 22:01:03.750798820 -0500
+@@ -9,7 +9,7 @@
+ #include "hashmap.h"
+ #include "strbuf.h"
+ 
+-int catalog_import_file(Hashmap *h, const char *path);
++int catalog_import_file(OrderedHashmap *h, const char *path);
+ int catalog_update(const char* database, const char* root, const char* const* dirs);
+ int catalog_get(const char* database, sd_id128_t id, char **data);
+ int catalog_list(FILE *f, const char* database, bool oneline);
+diff -Naurp systemd-243.orig/src/journal/test-catalog.c systemd-243/src/journal/test-catalog.c
+--- systemd-243.orig/src/journal/test-catalog.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/journal/test-catalog.c	2019-10-01 22:03:38.569901331 -0500
+@@ -26,15 +26,15 @@ static const char *no_catalog_dirs[] = {
+         NULL
+ };
+ 
+-static Hashmap* test_import(const char* contents, ssize_t size, int code) {
++static OrderedHashmap* test_import(const char* contents, ssize_t size, int code) {
+         _cleanup_(unlink_tempfilep) char name[] = "/tmp/test-catalog.XXXXXX";
+         _cleanup_close_ int fd;
+-        Hashmap *h;
++        OrderedHashmap *h;
+ 
+         if (size < 0)
+                 size = strlen(contents);
+ 
+-        assert_se(h = hashmap_new(&catalog_hash_ops));
++        assert_se(h = ordered_hashmap_new(&catalog_hash_ops));
+ 
+         fd = mkostemp_safe(name);
+         assert_se(fd >= 0);
+@@ -46,14 +46,14 @@ static Hashmap* test_import(const char*
+ }
+ 
+ static void test_catalog_import_invalid(void) {
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+ 
+         h = test_import("xxx", -1, -EINVAL);
+-        assert_se(hashmap_isempty(h));
++        assert_se(ordered_hashmap_isempty(h));
+ }
+ 
+ static void test_catalog_import_badid(void) {
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+         const char *input =
+ "-- 0027229ca0644181a76c4e92458afaff dededededededededededededededede\n" \
+ "Subject: message\n" \
+@@ -63,7 +63,7 @@ static void test_catalog_import_badid(vo
+ }
+ 
+ static void test_catalog_import_one(void) {
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+         char *payload;
+         Iterator j;
+ 
+@@ -78,9 +78,9 @@ static void test_catalog_import_one(void
+ "payload\n";
+ 
+         h = test_import(input, -1, 0);
+-        assert_se(hashmap_size(h) == 1);
++        assert_se(ordered_hashmap_size(h) == 1);
+ 
+-        HASHMAP_FOREACH(payload, h, j) {
++        ORDERED_HASHMAP_FOREACH(payload, h, j) {
+                 printf("expect: %s\n", expect);
+                 printf("actual: %s\n", payload);
+                 assert_se(streq(expect, payload));
+@@ -88,7 +88,7 @@ static void test_catalog_import_one(void
+ }
+ 
+ static void test_catalog_import_merge(void) {
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+         char *payload;
+         Iterator j;
+ 
+@@ -114,15 +114,15 @@ static void test_catalog_import_merge(vo
+ "override payload\n";
+ 
+         h = test_import(input, -1, 0);
+-        assert_se(hashmap_size(h) == 1);
++        assert_se(ordered_hashmap_size(h) == 1);
+ 
+-        HASHMAP_FOREACH(payload, h, j) {
++        ORDERED_HASHMAP_FOREACH(payload, h, j) {
+                 assert_se(streq(combined, payload));
+         }
+ }
+ 
+ static void test_catalog_import_merge_no_body(void) {
+-        _cleanup_hashmap_free_free_free_ Hashmap *h = NULL;
++        _cleanup_ordered_hashmap_free_free_free_ OrderedHashmap *h = NULL;
+         char *payload;
+         Iterator j;
+ 
+@@ -147,9 +147,9 @@ static void test_catalog_import_merge_no
+ "payload\n";
+ 
+         h = test_import(input, -1, 0);
+-        assert_se(hashmap_size(h) == 1);
++        assert_se(ordered_hashmap_size(h) == 1);
+ 
+-        HASHMAP_FOREACH(payload, h, j) {
++        ORDERED_HASHMAP_FOREACH(payload, h, j) {
+                 assert_se(streq(combined, payload));
+         }
+ }
+diff -Naurp systemd-243.orig/src/libsystemd/sd-netlink/netlink-message.c systemd-243/src/libsystemd/sd-netlink/netlink-message.c
+--- systemd-243.orig/src/libsystemd/sd-netlink/netlink-message.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/libsystemd/sd-netlink/netlink-message.c	2019-10-01 22:35:09.553170138 -0500
+@@ -577,7 +577,9 @@ static int netlink_message_read_internal
+ 
+         assert(m->n_containers < RTNL_CONTAINER_DEPTH);
+         assert(m->containers[m->n_containers].attributes);
+-        assert(type < m->containers[m->n_containers].n_attributes);
++        
++        if (type >= m->containers[m->n_containers].n_attributes)
++           return -ENODATA;
+ 
+         attribute = &m->containers[m->n_containers].attributes[type];
+ 
+diff -Naurp systemd-243.orig/src/libsystemd-network/sd-dhcp6-client.c systemd-243/src/libsystemd-network/sd-dhcp6-client.c
+--- systemd-243.orig/src/libsystemd-network/sd-dhcp6-client.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/libsystemd-network/sd-dhcp6-client.c	2019-10-01 22:43:17.317335014 -0500
+@@ -29,6 +29,9 @@
+ 
+ #define MAX_MAC_ADDR_LEN INFINIBAND_ALEN
+ 
++#define IRT_DEFAULT (1 * USEC_PER_DAY)
++#define IRT_MINIMUM (600 * USEC_PER_SEC)
++
+ /* what to request from the server, addresses (IA_NA) and/or prefixes (IA_PD) */
+ enum {
+         DHCP6_REQUEST_IA_NA                     = 1,
+@@ -71,6 +74,8 @@ struct sd_dhcp6_client {
+         void *userdata;
+         struct duid duid;
+         size_t duid_len;
++        usec_t information_request_time_usec;
++        usec_t information_refresh_time_usec;
+ };
+ 
+ static const uint16_t default_req_opts[] = {
+@@ -820,6 +825,7 @@ static int client_parse_message(
+         uint32_t lt_t1 = ~0, lt_t2 = ~0;
+         bool clientid = false;
+         size_t pos = 0;
++        usec_t irt = IRT_DEFAULT;
+         int r;
+ 
+         assert(client);
+@@ -994,6 +1000,13 @@ static int client_parse_message(
+                                 return r;
+ 
+                         break;
++
++                case SD_DHCP6_OPTION_INFORMATION_REFRESH_TIME:
++                        if (optlen != 4)
++                           return -EINVAL;
++
++                        irt = unaligned_read_be32((be32_t *) optval) * USEC_PER_SEC;
++                        break;
+                 }
+ 
+                 pos += offsetof(DHCP6Option, data) + optlen;
+@@ -1025,6 +1038,8 @@ static int client_parse_message(
+                 }
+         }
+ 
++        client->information_refresh_time_usec = MAX(irt, IRT_MINIMUM);
++
+         return 0;
+ }
+ 
+@@ -1425,8 +1440,15 @@ int sd_dhcp6_client_start(sd_dhcp6_clien
+                 client->fd = r;
+         }
+ 
+-        if (client->information_request)
++        if (client->information_request) {
++                usec_t t = now(CLOCK_MONOTONIC);
++
++                if (t < usec_add(client->information_request_time_usec, client->information_refresh_time_usec))
++                   return 0;
++
++                client->information_request_time_usec = t;
+                 state = DHCP6_STATE_INFORMATION_REQUEST;
++        }
+ 
+         log_dhcp6_client(client, "Started in %s mode",
+                          client->information_request? "Information request":
+diff -Naurp systemd-243.orig/src/libsystemd-network/sd-ndisc.c systemd-243/src/libsystemd-network/sd-ndisc.c
+--- systemd-243.orig/src/libsystemd-network/sd-ndisc.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/libsystemd-network/sd-ndisc.c	2019-10-01 22:41:47.438123435 -0500
+@@ -365,7 +365,7 @@ _public_ int sd_ndisc_start(sd_ndisc *nd
+ 
+         r = event_reset_time(nd->event, &nd->timeout_event_source,
+                              clock_boottime_or_monotonic(),
+-                             0, 0,
++                             time_now + USEC_PER_SEC / 2, 1 * USEC_PER_SEC, /* See RFC 8415 sec. 18.2.1 */
+                              ndisc_timeout, nd,
+                              nd->event_priority, "ndisc-timeout", true);
+         if (r < 0)
+diff -Naurp systemd-243.orig/src/libsystemd-network/sd-radv.c systemd-243/src/libsystemd-network/sd-radv.c
+--- systemd-243.orig/src/libsystemd-network/sd-radv.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/libsystemd-network/sd-radv.c	2019-10-01 22:37:09.776345614 -0500
+@@ -269,6 +269,10 @@ static int radv_recv(sd_event_source *s,
+ static usec_t radv_compute_timeout(usec_t min, usec_t max) {
+         assert_return(min <= max, SD_RADV_DEFAULT_MIN_TIMEOUT_USEC);
+ 
++        /* RFC 4861: min must be no less than 3s, max must be no less than 4s */
++        min = MAX(min, 3*USEC_PER_SEC);
++        max = MAX(max, 4*USEC_PER_SEC);
++
+         return min + (random_u32() % (max - min));
+ }
+ 
+@@ -298,6 +302,13 @@ static int radv_timeout(sd_event_source
+                 min_timeout = SD_RADV_MAX_INITIAL_RTR_ADVERT_INTERVAL_USEC / 3;
+         }
+ 
++        /* RFC 4861, Section 6.2.1, lifetime must be at least MaxRtrAdvInterval,
++         * so lower the interval here. */
++        if (ra->lifetime > 0 && (ra->lifetime * USEC_PER_SEC) < max_timeout) {
++           max_timeout = ra->lifetime * USEC_PER_SEC;
++           min_timeout = max_timeout / 3;
++        }
++
+         timeout = radv_compute_timeout(min_timeout, max_timeout);
+ 
+         log_radv("Next Router Advertisement in %s",
+diff -Naurp systemd-243.orig/src/login/logind-brightness.c systemd-243/src/login/logind-brightness.c
+--- systemd-243.orig/src/login/logind-brightness.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/login/logind-brightness.c	2019-10-01 21:52:23.550672020 -0500
+@@ -213,7 +213,7 @@ int manager_write_brightness(
+                 if (r < 0)
+                         return log_error_errno(r, "Failed to add message to set: %m");
+ 
+-                /* We overide any previously requested brightness here: we coalesce writes, and the newest
++                /* We override any previously requested brightness here: we coalesce writes, and the newest
+                  * requested brightness is the one we'll put into effect. */
+                 existing->brightness = brightness;
+                 existing->again = true; /* request another iteration of the writer when the current one is
+diff -Naurp systemd-243.orig/src/login/logind.c systemd-243/src/login/logind.c
+--- systemd-243.orig/src/login/logind.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/login/logind.c	2019-10-01 22:45:33.319096088 -0500
+@@ -291,6 +291,7 @@ static int manager_enumerate_linger_user
+         FOREACH_DIRENT(de, d, return -errno) {
+                 int k;
+ 
++                dirent_ensure_type(d, de);
+                 if (!dirent_is_file(de))
+                         continue;
+ 
+diff -Naurp systemd-243.orig/src/network/netdev/netdev.c systemd-243/src/network/netdev/netdev.c
+--- systemd-243.orig/src/network/netdev/netdev.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/netdev/netdev.c	2019-10-01 23:01:36.879512311 -0500
+@@ -844,7 +844,7 @@ int netdev_load(Manager *manager) {
+         STRV_FOREACH(f, files) {
+                 r = netdev_load_one(manager, *f);
+                 if (r < 0)
+-                        return r;
++                        log_error_errno(r, "Failed to load %s, ignoring: %m", *f);
+         }
+ 
+         return 0;
+diff -Naurp systemd-243.orig/src/network/networkd-dhcp4.c systemd-243/src/network/networkd-dhcp4.c
+--- systemd-243.orig/src/network/networkd-dhcp4.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/networkd-dhcp4.c	2019-10-01 22:20:22.238274559 -0500
+@@ -198,7 +198,7 @@ static int link_set_dhcp_routes(Link *li
+         if (n == -ENODATA)
+                 log_link_debug_errno(link, n, "DHCP: No routes received from DHCP server: %m");
+         else if (n < 0)
+-                log_link_debug_errno(link, n, "DHCP error: could not get routes: %m");
++                log_link_debug_errno(link, n, "DHCP: could not get routes: %m");
+ 
+         for (i = 0; i < n; i++) {
+                 switch (sd_dhcp_route_get_option(static_routes[i])) {
+diff -Naurp systemd-243.orig/src/network/networkd-link.c systemd-243/src/network/networkd-link.c
+--- systemd-243.orig/src/network/networkd-link.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/networkd-link.c	2019-10-01 22:34:21.629468144 -0500
+@@ -2393,9 +2393,9 @@ static int link_drop_foreign_config(Link
+                         continue;
+ 
+                 if (link_address_is_dynamic(link, address)) {
+-                        if (FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_DHCP))
++                        if (link->network && FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_DHCP))
+                                 continue;
+-                } else if (FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_STATIC))
++                } else if (link->network && FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_STATIC))
+                         continue;
+ 
+                 if (link_is_static_address_configured(link, address)) {
+@@ -2435,11 +2435,11 @@ static int link_drop_foreign_config(Link
+                     in_addr_equal(AF_INET6, &route->dst, &(union in_addr_union) { .in6 = {{{ 0xff,0,0,0, 0,0,0,0, 0,0,0,0, 0,0,0,0 }}} }))
+                         continue;
+ 
+-                if (route->protocol == RTPROT_STATIC &&
++                if (route->protocol == RTPROT_STATIC && link->network &&
+                     FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_STATIC))
+                         continue;
+ 
+-                if (route->protocol == RTPROT_DHCP &&
++                if (route->protocol == RTPROT_DHCP && link->network &&
+                     FLAGS_SET(link->network->keep_configuration, KEEP_CONFIGURATION_DHCP))
+                         continue;
+ 
+@@ -3116,8 +3116,8 @@ int link_add(Manager *m, sd_netlink_mess
+                 sprintf(ifindex_str, "n%d", link->ifindex);
+                 r = sd_device_new_from_device_id(&device, ifindex_str);
+                 if (r < 0) {
+-                        log_link_warning_errno(link, r, "Could not find device: %m");
+-                        goto failed;
++                        log_link_warning_errno(link, r, "Could not find device, waiting for device initialization: %m");
++                        return 0;
+                 }
+ 
+                 r = sd_device_get_is_initialized(device);
+diff -Naurp systemd-243.orig/src/network/networkd-network.c systemd-243/src/network/networkd-network.c
+--- systemd-243.orig/src/network/networkd-network.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/networkd-network.c	2019-10-01 22:05:57.448236566 -0500
+@@ -506,7 +506,7 @@ int network_load(Manager *manager) {
+         STRV_FOREACH(f, files) {
+                 r = network_load_one(manager, *f);
+                 if (r < 0)
+-                        return r;
++                        log_error_errno(r, "Failed to load %s, ignoring: %m", *f);
+         }
+ 
+         return 0;
+diff -Naurp systemd-243.orig/src/network/networkd-routing-policy-rule.c systemd-243/src/network/networkd-routing-policy-rule.c
+--- systemd-243.orig/src/network/networkd-routing-policy-rule.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/networkd-routing-policy-rule.c	2019-10-01 22:23:41.366026741 -0500
+@@ -180,11 +180,11 @@ static int routing_policy_rule_compare_f
+                         return r;
+ 
+                 r = strcmp_ptr(a->iif, b->iif);
+-                if (!r)
++                if (r != 0)
+                         return r;
+ 
+                 r = strcmp_ptr(a->oif, b->oif);
+-                if (!r)
++                if (r != 0)
+                         return r;
+ 
+                 r = CMP(a->protocol, b->protocol);
+diff -Naurp systemd-243.orig/src/network/org.freedesktop.network1.policy systemd-243/src/network/org.freedesktop.network1.policy
+--- systemd-243.orig/src/network/org.freedesktop.network1.policy	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/network/org.freedesktop.network1.policy	2019-10-01 22:29:45.535932148 -0500
+@@ -119,7 +119,7 @@
+ 
+         <action id="org.freedesktop.network1.revert-ntp">
+                 <description gettext-domain="systemd">Revert NTP settings</description>
+-                <message gettext-domain="systemd">Authentication is required to revert NTP settings.</message>
++                <message gettext-domain="systemd">Authentication is required to reset NTP settings.</message>
+                 <defaults>
+                         <allow_any>auth_admin</allow_any>
+                         <allow_inactive>auth_admin</allow_inactive>
+@@ -130,7 +130,7 @@
+ 
+         <action id="org.freedesktop.network1.revert-dns">
+                 <description gettext-domain="systemd">Revert DNS settings</description>
+-                <message gettext-domain="systemd">Authentication is required to revert DNS settings.</message>
++                <message gettext-domain="systemd">Authentication is required to reset DNS settings.</message>
+                 <defaults>
+                         <allow_any>auth_admin</allow_any>
+                         <allow_inactive>auth_admin</allow_inactive>
+diff -Naurp systemd-243.orig/src/pstore/pstore.c systemd-243/src/pstore/pstore.c
+--- systemd-243.orig/src/pstore/pstore.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/pstore/pstore.c	2019-10-01 22:04:18.392420804 -0500
+@@ -117,6 +117,7 @@ static int compare_pstore_entries(const
+ 
+ static int move_file(PStoreEntry *pe, const char *subdir) {
+         _cleanup_free_ char *ifd_path = NULL, *ofd_path = NULL;
++        _cleanup_free_ void *field = NULL;
+         const char *suffix, *message;
+         struct iovec iovec[2];
+         int n_iovec = 0, r;
+@@ -138,7 +139,6 @@ static int move_file(PStoreEntry *pe, co
+         iovec[n_iovec++] = IOVEC_MAKE_STRING(message);
+ 
+         if (pe->content_size > 0) {
+-                _cleanup_free_ void *field = NULL;
+                 size_t field_size;
+ 
+                 field_size = strlen("FILE=") + pe->content_size;
+@@ -157,7 +157,7 @@ static int move_file(PStoreEntry *pe, co
+                 /* Move file from pstore to external storage */
+                 r = mkdir_parents(ofd_path, 0755);
+                 if (r < 0)
+-                        return log_error_errno(r, "Failed to create directoy %s: %m", ofd_path);
++                        return log_error_errno(r, "Failed to create directory %s: %m", ofd_path);
+                 r = copy_file_atomic(ifd_path, ofd_path, 0600, 0, 0, COPY_REPLACE);
+                 if (r < 0)
+                         return log_error_errno(r, "Failed to copy_file_atomic: %s to %s", ifd_path, ofd_path);
+diff -Naurp systemd-243.orig/src/resolve/org.freedesktop.resolve1.policy systemd-243/src/resolve/org.freedesktop.resolve1.policy
+--- systemd-243.orig/src/resolve/org.freedesktop.resolve1.policy	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/resolve/org.freedesktop.resolve1.policy	2019-10-01 22:30:01.875748763 -0500
+@@ -130,7 +130,7 @@
+ 
+         <action id="org.freedesktop.resolve1.revert">
+                 <description gettext-domain="systemd">Revert name resolution settings</description>
+-                <message gettext-domain="systemd">Authentication is required to revert name resolution settings.</message>
++                <message gettext-domain="systemd">Authentication is required to reset name resolution settings.</message>
+                 <defaults>
+                         <allow_any>auth_admin</allow_any>
+                         <allow_inactive>auth_admin</allow_inactive>
+diff -Naurp systemd-243.orig/src/resolve/resolved-dns-transaction.c systemd-243/src/resolve/resolved-dns-transaction.c
+--- systemd-243.orig/src/resolve/resolved-dns-transaction.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/resolve/resolved-dns-transaction.c	2019-10-01 22:10:53.678766616 -0500
+@@ -1183,8 +1183,8 @@ static int on_dns_packet(sd_event_source
+         if (ERRNO_IS_DISCONNECT(-r)) {
+                 usec_t usec;
+ 
+-                /* UDP connection failure get reported via ICMP and then are possible delivered to us on the next
+-                 * recvmsg(). Treat this like a lost packet. */
++                /* UDP connection failures get reported via ICMP and then are possibly delivered to us on the
++                 * next recvmsg(). Treat this like a lost packet. */
+ 
+                 log_debug_errno(r, "Connection failure for DNS UDP packet: %m");
+                 assert_se(sd_event_now(t->scope->manager->event, clock_boottime_or_monotonic(), &usec) >= 0);
+@@ -1199,6 +1199,10 @@ static int on_dns_packet(sd_event_source
+                 return 0;
+         }
+ 
++        if (r == 0)
++           /* Spurious wakeup without any data */
++           return 0;
++
+         r = dns_packet_validate_reply(p);
+         if (r < 0) {
+                 log_debug_errno(r, "Received invalid DNS packet as response, ignoring: %m");
+diff -Naurp systemd-243.orig/src/shared/bootspec.c systemd-243/src/shared/bootspec.c
+--- systemd-243.orig/src/shared/bootspec.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/shared/bootspec.c	2019-10-01 22:45:44.678990467 -0500
+@@ -475,6 +475,7 @@ static int boot_entries_find_unified(
+                 _cleanup_free_ char *j = NULL, *osrelease = NULL, *cmdline = NULL;
+                 _cleanup_close_ int fd = -1;
+ 
++                dirent_ensure_type(d, de);
+                 if (!dirent_is_file(de))
+                         continue;
+ 
+diff -Naurp systemd-243.orig/src/shared/unit-file.c systemd-243/src/shared/unit-file.c
+--- systemd-243.orig/src/shared/unit-file.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/shared/unit-file.c	2019-10-01 22:59:07.440047857 -0500
+@@ -279,6 +279,7 @@ int unit_file_build_name_map(
+                         if (hashmap_contains(ids, de->d_name))
+                                 continue;
+ 
++                        dirent_ensure_type(d, de);
+                         if (de->d_type == DT_LNK) {
+                                 /* We don't explicitly check for alias loops here. unit_ids_map_get() which
+                                  * limits the number of hops should be used to access the map. */
+diff -Naurp systemd-243.orig/src/systemd/sd-dhcp6-client.h systemd-243/src/systemd/sd-dhcp6-client.h
+--- systemd-243.orig/src/systemd/sd-dhcp6-client.h	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/systemd/sd-dhcp6-client.h	2019-10-01 22:41:11.624429633 -0500
+@@ -66,6 +66,7 @@ enum {
+         SD_DHCP6_OPTION_IA_PD_PREFIX               = 26,  /* RFC 3633, prefix delegation */
+ 
+         SD_DHCP6_OPTION_SNTP_SERVERS               = 31,  /* RFC 4075, deprecated */
++        SD_DHCP6_OPTION_INFORMATION_REFRESH_TIME   = 32,  /* RFC 8415, sec. 21.23 */
+ 
+         /* option code 35 is unassigned */
+ 
+diff -Naurp systemd-243.orig/src/tty-ask-password-agent/tty-ask-password-agent.c systemd-243/src/tty-ask-password-agent/tty-ask-password-agent.c
+--- systemd-243.orig/src/tty-ask-password-agent/tty-ask-password-agent.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/tty-ask-password-agent/tty-ask-password-agent.c	2019-10-01 22:22:15.204998341 -0500
+@@ -322,7 +322,7 @@ static int parse_password(const char *fi
+ 
+                 if (asprintf(&_wall,
+                              "%s%sPassword entry required for \'%s\' (PID %u).\r\n"
+-                             "Please enter password with the systemd-tty-ask-password-agent tool:",
++                             "Please enter password with the systemd-tty-ask-password-agent tool.",
+                              strempty(*wall),
+                              *wall ? "\r\n\r\n" : "",
+                              message,
+diff -Naurp systemd-243.orig/src/udev/udev-ctrl.c systemd-243/src/udev/udev-ctrl.c
+--- systemd-243.orig/src/udev/udev-ctrl.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/udev/udev-ctrl.c	2019-10-01 22:25:31.447787245 -0500
+@@ -76,6 +76,7 @@ int udev_ctrl_new_from_fd(struct udev_ct
+         *uctrl = (struct udev_ctrl) {
+                 .n_ref = 1,
+                 .sock = fd >= 0 ? fd : TAKE_FD(sock),
++                .sock_connect = -1,
+                 .bound = fd >= 0,
+         };
+ 
+@@ -394,14 +395,13 @@ int udev_ctrl_wait(struct udev_ctrl *uct
+         (void) sd_event_source_set_description(source_io, "udev-ctrl-wait-io");
+ 
+         if (timeout != USEC_INFINITY) {
+-                usec_t usec;
+-
+-                usec = now(clock_boottime_or_monotonic()) + timeout;
+-                r = sd_event_add_time(uctrl->event, &source_timeout, clock_boottime_or_monotonic(), usec, 0, NULL, INT_TO_PTR(-ETIMEDOUT));
++                r = sd_event_add_time(uctrl->event, &source_timeout, clock_boottime_or_monotonic(),
++                                      usec_add(now(clock_boottime_or_monotonic()), timeout),
++                                      0, NULL, INT_TO_PTR(-ETIMEDOUT));
+                 if (r < 0)
+                         return r;
+ 
+-                (void) sd_event_source_set_description(source_timeout, "udev-ctrl-wait-io");
++                (void) sd_event_source_set_description(source_timeout, "udev-ctrl-wait-timeout");
+         }
+ 
+         return sd_event_loop(uctrl->event);
+diff -Naurp systemd-243.orig/src/udev/udev-rules.c systemd-243/src/udev/udev-rules.c
+--- systemd-243.orig/src/udev/udev-rules.c	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/src/udev/udev-rules.c	2019-10-01 22:08:29.225447382 -0500
+@@ -43,10 +43,12 @@ typedef enum {
+ } UdevRuleOperatorType;
+ 
+ typedef enum {
+-        MATCH_TYPE_EMPTY,     /* empty string */
+-        MATCH_TYPE_PLAIN,     /* no special characters */
+-        MATCH_TYPE_GLOB,      /* shell globs ?,*,[] */
+-        MATCH_TYPE_SUBSYSTEM, /* "subsystem", "bus", or "class" */
++        MATCH_TYPE_EMPTY,            /* empty string */
++        MATCH_TYPE_PLAIN,            /* no special characters */
++        MATCH_TYPE_PLAIN_WITH_EMPTY, /* no special characters with empty string, e.g., "|foo" */
++        MATCH_TYPE_GLOB,             /* shell globs ?,*,[] */
++        MATCH_TYPE_GLOB_WITH_EMPTY,  /* shell globs ?,*,[] with empty string, e.g., "|foo*" */
++        MATCH_TYPE_SUBSYSTEM,        /* "subsystem", "bus", or "class" */
+         _MATCH_TYPE_MAX,
+         _MATCH_TYPE_INVALID = -1
+ } UdevRuleMatchType;
+@@ -431,35 +433,30 @@ static int rule_line_add_token(UdevRuleL
+ 
+                 if (type < TK_M_TEST || type == TK_M_RESULT) {
+                         /* Convert value string to nulstr. */
+-                        len = strlen(value);
+-                        if (len > 1 && (value[len - 1] == '|' || strstr(value, "||"))) {
+-                                /* In this case, just replacing '|' -> '\0' does not work... */
+-                                _cleanup_free_ char *tmp = NULL;
+-                                char *i, *j;
+-                                bool v = true;
++                        bool bar = true, empty = false;
++                        char *a, *b;
+ 
+-                                tmp = strdup(value);
+-                                if (!tmp)
+-                                        return log_oom();
+-
+-                                for (i = tmp, j = value; *i != '\0'; i++)
+-                                        if (*i == '|')
+-                                                v = true;
+-                                        else {
+-                                                if (v) {
+-                                                        *j++ = '\0';
+-                                                        v = false;
+-                                                }
+-                                                *j++ = *i;
+-                                        }
+-                                j[0] = j[1] = '\0';
+-                        } else {
+-                                /* Simple conversion. */
+-                                char *i;
+-
+-                                for (i = value; *i != '\0'; i++)
+-                                        if (*i == '|')
+-                                                *i = '\0';
++                        for (a = b = value; *a != '\0'; a++) {
++                           if (*a != '|') {
++                              *b++ = *a;
++                              bar = false;
++                           } else {
++                              if (bar)
++                                 empty = true;
++                              else
++                                 *b++ = '\0';
++                              bar = true;
++                           }
++                        }
++                        *b = '\0';
++                        if (bar)
++                           empty = true;
++
++                        if (empty) {
++                           if (match_type == MATCH_TYPE_GLOB)
++                              match_type = MATCH_TYPE_GLOB_WITH_EMPTY;
++                           if (match_type == MATCH_TYPE_PLAIN)
++                              match_type = MATCH_TYPE_PLAIN_WITH_EMPTY;
+                         }
+                 }
+         }
+@@ -499,6 +496,9 @@ static int rule_line_add_token(UdevRuleL
+                         TK_A_OWNER_ID, TK_A_GROUP_ID, TK_A_MODE_ID))
+                 SET_FLAG(rule_line->type, LINE_HAS_DEVLINK, true);
+ 
++        else if (token->type == TK_A_OPTIONS_STATIC_NODE)
++                 SET_FLAG(rule_line->type, LINE_HAS_STATIC_NODE, true);
++
+         else if (token->type >= _TK_A_MIN ||
+                  IN_SET(token->type, TK_M_PROGRAM,
+                         TK_M_IMPORT_FILE, TK_M_IMPORT_PROGRAM, TK_M_IMPORT_BUILTIN,
+@@ -1325,7 +1325,17 @@ static bool token_match_string(UdevRuleT
+                 match = isempty(str);
+                 break;
+         case MATCH_TYPE_SUBSYSTEM:
+-                value = "subsystem\0class\0bus\0";
++                NULSTR_FOREACH(i, "subsystem\0class\0bus\0")
++                   if (streq(i, str)) {
++                      match = true;
++                      break;
++                   }
++                break;
++        case MATCH_TYPE_PLAIN_WITH_EMPTY:
++                if (isempty(str)) {
++                   match = true;
++                   break;
++                }
+                 _fallthrough_;
+         case MATCH_TYPE_PLAIN:
+                 NULSTR_FOREACH(i, value)
+@@ -1334,6 +1344,12 @@ static bool token_match_string(UdevRuleT
+                                 break;
+                         }
+                 break;
++        case MATCH_TYPE_GLOB_WITH_EMPTY:
++                if (isempty(str)) {
++                   match = true;
++                   break;
++                }
++                _fallthrough_;
+         case MATCH_TYPE_GLOB:
+                 NULSTR_FOREACH(i, value)
+                         if ((fnmatch(i, str, 0) == 0)) {
+@@ -2301,7 +2317,7 @@ static int apply_static_dev_perms(const
+                 return log_error_errno(errno, "Failed to chown '%s' %u %u: %m",
+                                                device_node, uid, gid);
+         else
+-                log_debug("chown '%s' %u:%u", device_node, uid, gid);
++                log_debug("chown '%s' %u:%u with mode %#o", device_node, uid, gid, mode);
+ 
+         (void) utimensat(AT_FDCWD, device_node, NULL, 0);
+         return 0;
+diff -Naurp systemd-243.orig/test/TEST-36-NUMAPOLICY/test.sh systemd-243/test/TEST-36-NUMAPOLICY/test.sh
+--- systemd-243.orig/test/TEST-36-NUMAPOLICY/test.sh	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/test/TEST-36-NUMAPOLICY/test.sh	2019-10-01 22:25:58.126487116 -0500
+@@ -1,5 +1,6 @@
+ #!/bin/bash
+ set -e
++
+ TEST_DESCRIPTION="test MUMAPolicy= and NUMAMask= options"
+ TEST_NO_NSPAWN=1
+ QEMU_OPTIONS="-numa node,nodeid=0"
+@@ -39,7 +40,7 @@ EOF
+         cp testsuite.sh $initdir/
+ 
+         setup_testsuite
+-    ) || return 1
++    )
+     setup_nspawn_root
+ }
+ 
+diff -Naurp systemd-243.orig/test/udev-test.pl systemd-243/test/udev-test.pl
+--- systemd-243.orig/test/udev-test.pl	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/test/udev-test.pl	2019-10-01 22:06:18.490986814 -0500
+@@ -1259,6 +1259,72 @@ KERNEL=="ttyACM0a|nothing", SYMLINK+="wr
+ EOF
+         },
+         {
++                desc            => "test multi matches 5",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG="foo"
++TAGS=="|foo", SYMLINK+="found"
++TAGS=="|aaa", SYMLINK+="bad"
++EOF
++        },
++        {
++                desc            => "test multi matches 6",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG=""
++TAGS=="|foo", SYMLINK+="found"
++TAGS=="aaa|bbb", SYMLINK+="bad"
++EOF
++        },
++        {
++                desc            => "test multi matches 7",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG="foo"
++TAGS=="foo||bar", SYMLINK+="found"
++TAGS=="aaa||bbb", SYMLINK+="bad"
++EOF
++        },
++        {
++                desc            => "test multi matches 8",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG=""
++TAGS=="foo||bar", SYMLINK+="found"
++TAGS=="aaa|bbb", SYMLINK+="bad"
++EOF
++        },
++        {
++                desc            => "test multi matches 9",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG=""
++TAGS=="foo|", SYMLINK+="found"
++TAGS=="aaa|", SYMLINK+="bad"
++EOF
++        },
++        {
++                desc            => "test multi matches 10",
++                devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
++                exp_name        => "found",
++                not_exp_name    => "bad",
++                rules           => <<EOF
++KERNEL=="sda", TAG=""
++TAGS=="foo|", SYMLINK+="found"
++TAGS=="aaa|bbb", SYMLINK+="bad"
++EOF
++        },
++        {
+                 desc            => "IMPORT parent test sequence 1/2 (keep)",
+                 devpath         => "/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda",
+                 exp_name        => "parent",
+diff -Naurp systemd-243.orig/tmpfiles.d/systemd.conf.m4 systemd-243/tmpfiles.d/systemd.conf.m4
+--- systemd-243.orig/tmpfiles.d/systemd.conf.m4	2019-09-03 04:27:19.000000000 -0500
++++ systemd-243/tmpfiles.d/systemd.conf.m4	2019-10-01 22:19:52.574610185 -0500
+@@ -8,7 +8,9 @@
+ # See tmpfiles.d(5) for details
+ 
+ d /run/user 0755 root root -
++m4_ifdef(`ENABLE_UTMP',
+ F! /run/utmp 0664 root utmp -
++)m4_dnl
+ 
+ d /run/systemd/ask-password 0755 root root -
+ d /run/systemd/seats 0755 root root -

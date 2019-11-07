@@ -4,10 +4,14 @@
 # Depends on:
 
 name=efivar
-version=
+version=37
 release=1
-source=()
+source=(https://github.com/rhinstaller/$name/releases/download/$version/$name-$version.tar.bz2)
 
 build() {
 	cd $name-$version
+
+	sed -i 's/-Werror //' gcc.specs
+    make libdir=/usr/lib
+    make libdir=/usr/lib DESTDIR=$PKG install
 }

@@ -1,0 +1,8 @@
+#
+# /etc/ports/xorg.httpup: xorg's port collection
+#
+
+ROOT_DIR=/usr/ports/xorg
+URL=https://raw.githubusercontent.com/iagapie/lfs-ports/master/xorg/
+
+# End of file

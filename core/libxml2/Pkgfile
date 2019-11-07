@@ -4,10 +4,19 @@
 # Depends on:
 
 name=libxml2
-version=
+version=2.9.10
 release=1
-source=()
+source=(ftp://xmlsoft.org/$name/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	sed -i 's/test.test/#&/' python/tests/tstLastError.py
+
+    ./configure --prefix=/usr    \
+            --disable-static \
+            --with-history   \
+            --with-python=/usr/bin/python3
+    make
+    make DESTDIR=$PKG install
 }

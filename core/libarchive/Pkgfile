@@ -4,10 +4,14 @@
 # Depends on:
 
 name=libarchive
-version=
+version=3.4.0
 release=1
-source=()
+source=(https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+    make
+    make DESTDIR=$PKG install
 }

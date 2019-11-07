@@ -1,0 +1,8 @@
+#
+# /etc/ports/gnome.httpup: gnome's port collection
+#
+
+ROOT_DIR=/usr/ports/gnome
+URL=https://raw.githubusercontent.com/iagapie/lfs-ports/master/gnome/
+
+# End of file

@@ -4,10 +4,15 @@
 # Depends on:
 
 name=gawk
-version=
+version=5.0.1
 release=1
-source=()
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	sed -i 's/extras//' Makefile.in
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
 }

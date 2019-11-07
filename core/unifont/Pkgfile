@@ -4,10 +4,11 @@
 # Depends on:
 
 name=unifont
-version=
+version=12.1.03
 release=1
-source=()
+source=($name-$version.pcf)
 
 build() {
-	cd $name-$version
+	mkdir -p $PKG/usr/share/fonts/unifont
+    cp $name-$version.pcf $PKG/usr/share/fonts/unifont/unifont.pcf
 }

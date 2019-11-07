@@ -4,10 +4,18 @@
 # Depends on:
 
 name=findutils
-version=
+version=4.7.0
 release=1
-source=()
+source=(http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
+
+	./configure --prefix=/usr --localstatedir=/var/lib/locate
+	make
+	make DESTDIR=$PKG install
+	
+	mkdir -p $PKG/bin
+	mv -v $PKG/usr/bin/find $PKG/bin
+	sed -i 's|find:=${BINDIR}|find:=/bin|' $PKG/usr/bin/updatedb
 }
