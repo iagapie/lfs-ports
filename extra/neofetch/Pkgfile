@@ -1,0 +1,15 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=neofetch
+version=6.1.0
+release=1
+source=($name-$version.tar.gz::https://github.com/dylanaraps/$name/archive/$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	make DESTDIR=$PKG install
+}

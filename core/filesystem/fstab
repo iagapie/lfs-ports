@@ -5,7 +5,7 @@
 UUID=<xxx>      /                           ext4        errors=remount-ro   0       1
 UUID=<yyy>      none                        swap        pri=1               0       0
 UUID=<zzz>      /boot/efi                   vfat        umask=0077          0       1
-efivarfs        /sys/firmware/efi/efivars   efivarfs    defaults            0       1
+# efivarfs        /sys/firmware/efi/efivars   efivarfs    defaults            0       1
 devpts          /dev/pts                    devpts      gid=5,mode=620      0       0
 tmpfs           /run                        tmpfs       defaults            0       0
 /sources        /var/lib/pkg/src            none        defaults,bind       0       0

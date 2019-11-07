@@ -157,6 +157,11 @@ sort $unsorted | uniq | while read library ; do
     continue
   fi
 
+  if [ "$library" == "libsystemd-shared-243.so" ]; then
+    cp /lib/systemd/$library $WDIR/lib
+    continue
+  fi
+
   copy $library lib
 done
 

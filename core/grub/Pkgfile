@@ -6,7 +6,8 @@
 name=grub
 version=2.04
 release=1
-source=(https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz)
+source=(https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz
+        grub)
 
 build() {
 	cd $name-$version
@@ -23,4 +24,8 @@ build() {
 
 	mkdir -p $PKG/usr/share/bash-completion/completions
     mv -v $PKG/etc/bash_completion.d/grub $PKG/usr/share/bash-completion/completions
+
+    mkdir -p $PKG/etc/default $PKG/etc/grub.d
+    install -m0644 grub $PKG/etc/default
+    install -m0755 30_uefi-firmware $PKG/etc/grub.d
 }

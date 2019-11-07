@@ -16,6 +16,7 @@ source=(bash_completion.sh
 	bash_profile.skel
 	bashrc.skel
 	profile.skel
+	grub
 	usb.conf
 	noclear.conf
 	profile
