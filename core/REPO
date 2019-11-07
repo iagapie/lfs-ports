@@ -206,11 +206,12 @@ f:7c4b0af01b4bab8a3eddb112868174ef:util-linux/Pkgfile
 f:a599f6fbdf5aa6b06bc8e6527a00e8f3:pkg-config/Pkgfile
 f:55506321c8d8936f7d4e6401cb974063:libpipeline/Pkgfile
 f:d1541197ada5166990162e51a92467d4:libxml2/Pkgfile
-f:a468e42706b62c012df658407679fc27:pkgutils/Pkgfile
+f:bd910417ba63c3b0e5f22ae3a93a60ad:pkgutils/Pkgfile
 f:820eda549b3f309bdf5d5b1d7fa0866c:pkgutils/pkgmk.conf
 f:7769542e43a4108de16b45133f28eaea:pkgutils/fix-build-needed-trigger.patch
 f:35020b00b942b9353ad9f9cc7cd18d89:pkgutils/ignore-conflict.patch
 f:7fc6f3be2076ff63f51b9ad7681ad2b3:pkgutils/remove-libtool.patch
+f:cc01f1869159bc349d1dff300445e1a8:pkgutils/pkgin
 f:99bbe0ecb6bb0db1bcbf26f37f888602:pkgutils/add-compress-infopages.patch
 f:69849d4b7bd38268e8e554a04a27f93a:autoconf/Pkgfile
 f:0f19d1302e37f1f3fd24cc91c6f0fa44:acl/Pkgfile

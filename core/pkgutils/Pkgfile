@@ -11,7 +11,8 @@ source=(http://crux.nu/files/$name-$version.tar.xz
         remove-libtool.patch
         add-compress-infopages.patch
         fix-build-needed-trigger.patch
-		pkgmk.conf)
+		pkgmk.conf
+		pkgin)
 
 build() {
 	cd $name-$version
@@ -24,6 +25,7 @@ build() {
 	       -e 's/ -static//' Makefile
 	make DESTDIR=$PKG install
 
-	mkdir -p $PKG/etc
+	mkdir -p $PKG/etc $PKG/usr/bin
 	install -m644 $SRC/pkgmk.conf $PKG/etc/pkgmk.conf
+	install -m755 $SRC/pkgin $PKG/usr/bin/pkgin
 }
