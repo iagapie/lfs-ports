@@ -1,0 +1,23 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libuv curl libarchive
+
+name=cmake
+version=3.15.5
+release=1
+source=(https://cmake.org/files/v3.15/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+
+  	./bootstrap --prefix=/usr       \
+	            --system-libs       \
+	            --mandir=/share/man \
+	            --no-system-jsoncpp \
+            	--no-system-librhash
+	make
+	make DESTDIR=$PKG install
+}

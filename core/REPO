@@ -41,7 +41,6 @@ d:ninja
 d:efivar
 d:openssl
 d:popt
-d:p11-kit
 d:mpc
 d:check
 d:linux-headers
@@ -51,7 +50,6 @@ d:intltool
 d:gdbm
 d:man-pages
 d:bash
-d:libtasn1
 d:flex
 d:kbd
 d:util-linux
@@ -152,7 +150,6 @@ f:efada81bf76ee62312ae770da26924a2:ninja/Pkgfile
 f:1ffc73eeb808aef2aec908ab3dc4600a:efivar/Pkgfile
 f:df2465fc31b194590626d763831677eb:openssl/Pkgfile
 f:fb79365df43730e299ddd598949c301d:popt/Pkgfile
-f:7ad7f6b40676b87d8e197d50df3b23be:p11-kit/Pkgfile
 f:a7c948c05400f553c760a64433a9f49b:mpc/Pkgfile
 f:8ff4ab6865bedd39ed9fb70606bb42d9:check/Pkgfile
 f:b3b4a7f4609834f2a5025b361a5c7ebe:linux-headers/Pkgfile
@@ -163,7 +160,6 @@ f:7a2753d1c3fde19f56e29032ede3d4d2:intltool/Pkgfile
 f:95e1417bc1358d913704f59ded034f18:gdbm/Pkgfile
 f:d63748d1ece2a8491f6e4951c4abbaaa:man-pages/Pkgfile
 f:df8803f179ef9a6fcaf62e6ffc3f5a7b:bash/Pkgfile
-f:7d619ead6d0f4139771afba74e06d8b0:libtasn1/Pkgfile
 f:c8d6da0b28c0c6c258279b97d6b9ccb9:flex/Pkgfile
 f:ab90a5453f60551c68c868f940e36fb2:kbd/Pkgfile
 f:f75cca16a38da6caa7d52151f7136895:kbd/kbd-2.2.0-backspace-1.patch

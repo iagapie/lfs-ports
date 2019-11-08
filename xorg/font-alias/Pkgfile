@@ -6,7 +6,7 @@
 name=font-alias
 version=1.0.3
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/font-alias-$version.tar.bz2)
+source=(https://www.x.org/pub/individual/font/font-alias-$version.tar.bz2)
 
 build() {
 	cd font-alias-$version

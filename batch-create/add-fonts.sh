@@ -28,7 +28,7 @@ for p in $(grep -v '^#' $CURDIR/fonts | awk '{print $2}'); do
 name=$nl
 version=$v
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/$n-\$version.$ar)
+source=(https://www.x.org/pub/individual/font/$n-\$version.$ar)
 
 build() {
 	cd $n-\$version

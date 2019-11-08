@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libdrm python3-mako libva-intel libvdpau-va-gl llvm wayland-protocols
+# Depends on: libdrm python3-mako libva-intel libvdpau-va-gl llvm wayland-protocols libglvnd
 
 name=mesa
 version=19.2.3

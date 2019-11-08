@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: cmake mesa glu
+
+name=freeglut
+version=3.2.1
+release=1
+source=(https://downloads.sourceforge.net/$name/$name-$version.tar.gz)
+
+build() {
+	mkdir build
+	cd build
+	cmake ../$name-$version -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=lib -DCMAKE_BUILD_TYPE=Release -DFREEGLUT_BUILD_DEMOS=OFF -DFREEGLUT_BUILD_STATIC_LIBS=OFF
+	make
+	make DESTDIR=$PKG install
+}

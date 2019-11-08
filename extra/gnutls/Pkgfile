@@ -1,0 +1,19 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: nettle make-ca libunistring libtasn1 p11-kit
+
+name=gnutls
+version=3.6.10
+release=1
+source=(ftp://ftp.gnupg.org/gcrypt/gnutls/v3.6/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --with-default-trust-store-pkcs11="pkcs11:" \
+		    --disable-guile
+	make
+	make DESTDIR=$PKG install
+}

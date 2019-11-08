@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: mesa
+# Depends on: mesa glew
 
 name=mesa-demos
 version=8.4.0

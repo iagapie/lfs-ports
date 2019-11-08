@@ -1,29 +1,36 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: pixman font-xfree86-type1 xkeyboard-config libepoxy wayland-protocols systemd
+# Depends on: pixman font-xfree86-type1 xkeyboard-config libepoxy wayland-protocols systemd libtirpc
 
 name=xorg-server
 version=1.20.5
 release=1
-source=(ftp://ftp.x.org/pub/individual/xserver/$name-$version.tar.bz2)
+source=(ftp://ftp.x.org/pub/individual/xserver/$name-$version.tar.bz2
+		glvnd.patch)
 
 build() {
 	cd $name-$version
 
-	./configure \
+	patch -Np1 -i $SRC/glvnd.patch
+
+	mkdir build
+	cd build
+
+	meson \
 		--prefix=/usr \
-		--sysconfdir=/etc \
-	    --libexecdir=/usr/lib/$name \
+        --sysconfdir=/etc \
+		--libexecdir=/usr/lib/$name \
 		--localstatedir=/var \
-		--disable-static \
-		--enable-glamor \
-		--enable-install-setuid \
-		--enable-suid-wrapper \
-		--disable-systemd-logind \
-		--with-xkb-output=/var/lib/xkb
-	make
-	make DESTDIR=$PKG install
+	 	-Dglamor=true \
+		-Dinstall_setuid=true \
+		-Dsuid_wrapper=true \
+		-Dsystemd_logind=false \
+		-Dxkb_output_dir=/var/lib/xkb
+	ninja
+	DESTDIR=$PKG ninja install
 
 	install -d $PKG/etc/X11/xorg.conf.d
+
+	ln -s /usr/bin/Xorg $PKG/usr/bin/X
 }

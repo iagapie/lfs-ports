@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: mesa
+
+name=glew
+version=2.1.0
+release=1
+source=(https://downloads.sourceforge.net/$name/$name-$version.tgz)
+
+build() {
+	cd $name-$version
+
+	sed -i 's%lib64%lib%g' config/Makefile.linux
+	sed -i -e '/glew.lib.static:/d' \
+       	-e '/0644 .*STATIC/d'    \
+       	-e 's/glew.lib.static//' Makefile
+	make
+	make GLEW_DEST=$PKG/usr install.all
+}

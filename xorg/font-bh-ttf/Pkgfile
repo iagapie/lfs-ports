@@ -6,7 +6,7 @@
 name=font-bh-ttf
 version=1.0.3
 release=1
-source=(ftp://ftp.x.org/pub/individual/lib/font-bh-ttf-$version.tar.bz2)
+source=(https://www.x.org/pub/individual/font/font-bh-ttf-$version.tar.bz2)
 
 build() {
 	cd font-bh-ttf-$version
