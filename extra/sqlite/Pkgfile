@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=sqlite
+version=3.30.1
+release=1
+source=(https://sqlite.org/2019/sqlite-autoconf-3300100.tar.gz)
+
+build() {
+	cd sqlite-autoconf-3300100
+
+  	./configure --prefix=/usr --disable-static        \
+	            --enable-fts5 CFLAGS="$CFLAGS -g      \
+		    -DSQLITE_ENABLE_FTS3=1                \
+			-DSQLITE_ENABLE_FTS4=1                \
+			-DSQLITE_ENABLE_COLUMN_METADATA=1     \
+			-DSQLITE_ENABLE_UNLOCK_NOTIFY=1       \
+			-DSQLITE_SECURE_DELETE=1              \
+			-DSQLITE_ENABLE_DBSTAT_VTAB=1	  \
+		    -DSQLITE_ENABLE_FTS3_TOKENIZER=1"
+	make
+	make DESTDIR=$PKG install
+}

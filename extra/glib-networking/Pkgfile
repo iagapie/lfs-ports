@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: glib gnutls gsettings-desktop-schemas make-ca
+
+name=glib-networking
+version=2.62.1
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/$name/2.62/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd    build
+
+	meson --prefix=/usr -Dlibproxy=disabled -Dman=false ..
+	ninja
+	DESTDIR=$PKG ninja install
+}

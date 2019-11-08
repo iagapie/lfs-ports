@@ -1,0 +1,27 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: glib
+
+name=avahi
+version=0.7
+release=1
+source=(https://github.com/lathiat/avahi/releases/download/v$version/avahi-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr        \
+            --sysconfdir=/etc    \
+            --localstatedir=/var \
+            --disable-static     \
+            --disable-mono       \
+            --disable-monodoc    \
+            --disable-python     \
+            --disable-qt3        \
+            --disable-qt4        \
+            --with-distro=none   \
+            --with-systemdsystemunitdir=/lib/systemd/system
+	make
+	make DESTDIR=$PKG install
+}

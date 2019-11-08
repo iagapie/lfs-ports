@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: clutter gnome-desktop libcanberra libwacom libxkbcommon pipewire upower zenity gobject-introspection startup-notification libinput wayland wayland-protocols xorg-server gtk3
+
+name=mutter
+version=3.34.1
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/$name/3.34/$name-$version.tar.xz
+		mutter-$version-upstream_fixes-1.patch
+		wayland.patch)
+
+build() {
+	cd $name-$version
+
+	patch -Np1 -i ../mutter-$version-upstream_fixes-1.patch
+	patch -Np1 -i ../wayland.patch
+
+	mkdir build
+	cd    build
+
+	meson --prefix=/usr -Dprofiler=false -Dman=false ..
+	ninja
+	DESTDIR=$PKG ninja install
+}

@@ -138,8 +138,7 @@ xf86-input-evdev
 libinput
 xf86-input-libinput
 xf86-input-synaptics
-xf86-video-intel
-xf86-video-nouveau
+xf86-video-fbdev
 twm
 xterm
 xclock

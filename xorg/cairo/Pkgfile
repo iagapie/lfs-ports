@@ -1,0 +1,19 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng pixman
+
+name=cairo
+version=1.16.0
+release=1
+source=(https://www.cairographics.org/releases/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr    \
+        	    --disable-static \
+	            --enable-tee
+	make
+	make DESTDIR=$PKG install
+}

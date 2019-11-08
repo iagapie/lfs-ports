@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=libgweather
+version=3.34.0
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/$name/3.34/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd    build
+
+	meson --prefix=/usr -Dman=false ..
+	ninja
+	DESTDIR=$PKG ninja install
+}

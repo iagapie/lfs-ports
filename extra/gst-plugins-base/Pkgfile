@@ -1,0 +1,19 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: gstreamer
+
+name=gst-plugins-base
+version=1.16.1
+release=1
+source=(http://gstreamer.freedesktop.org/src/$name/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --with-package-name="GStreamer Base Plugins $version LFS" \
+		    --disable-examples
+	make
+	make DESTDIR=$PKG install
+}

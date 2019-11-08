@@ -1,0 +1,23 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xorg-server
+
+name=xf86-input-wacom
+version=0.37.0
+release=1
+source=(https://github.com/linuxwacom/$name/releases/download/$name-$version/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static \
+		--with-udev-rules-dir=/lib/udev/rules.d \
+        --with-systemd-unit-dir=/lib/systemd/system
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,6 @@
+#!/bin/sh
+
+getent group netdev >/dev/null || groupadd -fg 86 netdev
+
+systemctl enable NetworkManager
+systemctl disable NetworkManager-wait-online

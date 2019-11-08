@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=bubblewrap
+version=0.3.3
+release=1
+source=(https://github.com/projectatomic/$name/releases/download/v$version/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-man
+	make
+	make DESTDIR=$PKG install
+}

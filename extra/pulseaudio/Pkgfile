@@ -1,0 +1,23 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libsndfile
+
+name=pulseaudio
+version=13.0
+release=1
+source=(https://www.freedesktop.org/software/pulseaudio/releases/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+            --sysconfdir=/etc \
+		    --libexecdir=/usr/lib \
+			--localstatedir=/var \
+			--disable-bluez4 \
+			--disable-bluez5 \
+			--disable-rpath
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,19 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: gdk-pixbuf libcroco cairo pango rustc gobject-introspection vala
+
+name=librsvg
+version=2.46.3
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/librsvg/2.46/librsvg-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr    \
+            --enable-vala    \
+            --disable-static
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: glib libjpeg-turbo libpng shared-mime-info docbook
+
+name=gdk-pixbuf
+version=2.40.0
+release=1
+source=(https://ftp.gnome.org/pub/gnome/sources/$name/${version::4}/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd build
+	
+	meson --prefix=/usr --libexecdir=/usr/lib/$name -Djasper=true -Dman=false ..
+	ninja
+	DESTDIR=$PKG ninja install
+}

@@ -1,0 +1,32 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: adwaita-icon-theme at-spi2-atk gdk-pixbuf fribidi libepoxy pango wayland wayland-protocols libxkbcommon gobject-introspection
+
+name=gtk3
+version=3.24.12
+release=1
+source=(https://ftp.gnome.org/pub/gnome/sources/gtk+/${version::4}/gtk+-$version.tar.xz)
+
+build() {
+	cd gtk+-$version
+
+	./configure --prefix=/usr             \
+	            --sysconfdir=/etc         \
+	            --enable-broadway-backend \
+	            --enable-x11-backend      \
+	            --enable-wayland-backend
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/{locale,gtk-doc,gtk-3.0}
+
+	rm $PKG/usr/bin/gtk-update-icon-cache
+
+	cat > $PKG/etc/gtk-3.0/settings.ini << "EOF"
+[Settings]
+gtk-icon-theme-name = Adwaita
+gtk-theme-name = Adwaita
+gtk-font-name = Cantarell 10
+EOF
+}
