@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig libxcb libfs 
+
+name=libice
+version=1.0.10
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/libICE-$version.tar.bz2)
+
+build() {
+	cd libICE-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static ICE_LIBS=-lpthread
+    make
+	make DESTDIR=$PKG install
+}

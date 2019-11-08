@@ -1,0 +1,29 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: pixman font-xfree86-type1 xkeyboard-config libepoxy wayland-protocols systemd
+
+name=xorg-server
+version=1.20.5
+release=1
+source=(ftp://ftp.x.org/pub/individual/xserver/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+	    --libexecdir=/usr/lib/$name \
+		--localstatedir=/var \
+		--disable-static \
+		--enable-glamor \
+		--enable-install-setuid \
+		--enable-suid-wrapper \
+		--disable-systemd-logind \
+		--with-xkb-output=/var/lib/xkb
+	make
+	make DESTDIR=$PKG install
+
+	install -d $PKG/etc/X11/xorg.conf.d
+}

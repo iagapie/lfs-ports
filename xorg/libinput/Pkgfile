@@ -1,0 +1,27 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libevdev mtdev
+
+name=libinput
+version=1.14.3
+release=1
+source=(https://www.freedesktop.org/software/$name/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir -p build
+	cd build
+
+	meson --prefix=/usr \
+	      --libexecdir=/usr/lib \
+	      -Dudev-dir=/lib/udev \
+	      -Ddebug-gui=false \
+	      -Dtests=false \
+	      -Ddocumentation=false \
+	      -Dlibwacom=false \
+	      ..
+	ninja
+	DESTDIR=$PKG ninja install
+}

@@ -1,0 +1,22 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libxshmfence
+
+name=xinit
+version=1.4.1
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static \
+		--with-xinitdir=/etc/X11/app-defaults
+	make
+	make DESTDIR=$PKG install
+}

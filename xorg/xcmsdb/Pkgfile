@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng mesa xbitmaps xcb-util xbacklight 
+
+name=xcmsdb
+version=1.0.5
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/xcmsdb-$version.tar.bz2)
+
+build() {
+	cd xcmsdb-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

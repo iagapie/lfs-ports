@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: freetype
+
+name=fontconfig
+version=2.13.1
+release=1
+source=(https://www.freedesktop.org/software/$name/release/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	rm -f src/fcobjshash.h
+
+	./configure --prefix=/usr \
+            --sysconfdir=/etc \
+            --localstatedir=/var \
+            --disable-docs \
+            --docdir=/usr/share/doc/fontconfig
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+}

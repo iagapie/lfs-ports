@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xcursor-themes 
+
+name=font-util
+version=1.3.2
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/font-util-$version.tar.bz2)
+
+build() {
+	cd font-util-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng mesa xbitmaps xcb-util 
+
+name=iceauth
+version=1.0.8
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/iceauth-$version.tar.bz2)
+
+build() {
+	cd iceauth-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

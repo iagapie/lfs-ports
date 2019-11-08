@@ -1,0 +1,27 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xcb-util xorg-server
+
+name=xf86-video-intel
+version=20190723
+release=1
+source=(ftp://anduin.linuxfromscratch.org/BLFS/$name/$name-$version.tar.xz
+		20-intel.conf)
+
+build() {
+	cd $name-$version
+
+	./autogen.sh \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--libexecdir=/usr/lib/$name \
+		--localstatedir=/var \
+		--disable-static \
+		--enable-kms-only \
+		--enable-uxa
+	make
+	make DESTDIR=$PKG install
+
+	install -Dm 644 $SRC/20-intel.conf $PKG/etc/X11/xorg.conf.d/20-intel.conf
+}

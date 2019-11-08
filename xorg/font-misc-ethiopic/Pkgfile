@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xcursor-themes font-ibm-type1 
+
+name=font-misc-ethiopic
+version=1.0.3
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/font-misc-ethiopic-$version.tar.bz2)
+
+build() {
+	cd font-misc-ethiopic-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

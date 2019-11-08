@@ -1,0 +1,21 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libxcb
+
+name=xcb-util-wm
+version=0.4.1
+release=1
+source=(https://xcb.freedesktop.org/dist/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

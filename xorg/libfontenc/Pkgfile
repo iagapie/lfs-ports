@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig libxcb libxdamage 
+
+name=libfontenc
+version=1.1.4
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/libfontenc-$version.tar.bz2)
+
+build() {
+	cd libfontenc-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

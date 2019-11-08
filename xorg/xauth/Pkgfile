@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng mesa xbitmaps xcb-util x11perf 
+
+name=xauth
+version=1.1
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/xauth-$version.tar.bz2)
+
+build() {
+	cd xauth-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

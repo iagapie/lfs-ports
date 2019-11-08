@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xcursor-themes encodings 
+
+name=font-alias
+version=1.0.3
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/font-alias-$version.tar.bz2)
+
+build() {
+	cd font-alias-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

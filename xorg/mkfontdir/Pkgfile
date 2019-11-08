@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng mesa xbitmaps xcb-util luit 
+
+name=mkfontdir
+version=1.0.7
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/mkfontdir-$version.tar.bz2)
+
+build() {
+	cd mkfontdir-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,21 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libva
+
+name=libva-intel
+version=2.3.0
+release=1
+source=(https://github.com/intel/intel-vaapi-driver/releases/download/$version/intel-vaapi-driver-$version.tar.bz2)
+
+build() {
+	cd intel-vaapi-driver-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,22 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libxshmfence
+
+name=xkeyboard-config
+version=2.28
+release=1
+source=(ftp://ftp.x.org/pub/individual/data/$name/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static \
+		--with-xkb-rules-symlink=xorg
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libpng mesa xbitmaps xcb-util xhost 
+
+name=xinput
+version=1.6.3
+release=1
+source=(ftp://ftp.x.org/pub/individual/app/xinput-$version.tar.bz2)
+
+build() {
+	cd xinput-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

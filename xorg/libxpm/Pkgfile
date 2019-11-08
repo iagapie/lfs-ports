@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig libxcb libxmu 
+
+name=libxpm
+version=3.5.12
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/libXpm-$version.tar.bz2)
+
+build() {
+	cd libXpm-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=xcb-proto
+version=1.13
+release=1
+source=(https://xcb.freedesktop.org/dist/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make DESTDIR=$PKG install
+}

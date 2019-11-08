@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig libxcb 
+
+name=xtrans
+version=1.4.0
+release=1
+source=(ftp://ftp.x.org/pub/individual/lib/xtrans-$version.tar.bz2)
+
+build() {
+	cd xtrans-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

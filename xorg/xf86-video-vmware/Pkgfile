@@ -1,0 +1,21 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: xorg-server
+
+name=xf86-video-vmware
+version=13.3.0
+release=1
+source=(ftp://ftp.x.org/pub/individual/driver/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
