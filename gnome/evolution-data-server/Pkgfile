@@ -1,0 +1,29 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: bdb gcr libical libsecret nss sqlite gnome-online-accounts gobject-introspection gtk3 icu libcanberra libgdata libgweather vala 
+
+name=evolution-data-server
+version=3.34.1
+release=1
+source=(http://ftp.gnome.org/pub/gnome/sources/$name/3.34/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd    build
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr   \
+		-DSYSCONF_INSTALL_DIR=/etc    \
+		-DENABLE_VALA_BINDINGS=ON     \
+		-DENABLE_INSTALLED_TESTS=ON   \
+		-DENABLE_GOOGLE=ON            \
+		-DWITH_OPENLDAP=OFF           \
+		-DWITH_KRB5=OFF               \
+		-DENABLE_INTROSPECTION=ON     \
+		-DENABLE_GTK_DOC=OFF          \
+		..
+	make
+	make DESTDIR=$PKG install
+}

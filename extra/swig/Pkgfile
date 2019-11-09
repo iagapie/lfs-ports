@@ -1,0 +1,18 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: pcre
+
+name=swig
+version=4.0.1
+release=1
+source=(https://downloads.sourceforge.net/swig/swig-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+            --without-maximum-compile-warnings
+	make
+	make DESTDIR=$PKG install
+}

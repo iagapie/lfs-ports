@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libgpg-error
+
+name=libassuan
+version=2.5.3
+release=1
+source=(https://www.gnupg.org/ftp/gcrypt/libassuan/libassuan-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

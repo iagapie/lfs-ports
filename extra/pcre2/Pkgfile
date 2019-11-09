@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=pcre2
+version=10.33
+release=1
+source=(https://downloads.sourceforge.net/pcre/pcre2-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr                       \
+            --enable-unicode                    \
+            --enable-jit                        \
+            --enable-pcre2-16                   \
+            --enable-pcre2-32                   \
+            --enable-pcre2grep-libz             \
+            --enable-pcre2grep-libbz2           \
+            --enable-pcre2test-libreadline      \
+            --disable-static
+	make
+	make DESTDIR=$PKG install
+}

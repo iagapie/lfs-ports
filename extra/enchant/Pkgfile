@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: glib
+
+name=enchant
+version=2.2.7
+release=1
+source=(https://github.com/AbiWord/enchant/releases/download/v$version/enchant-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/usr/{bin,lib/pkgconfig}
+
+	rm -rf $PKG/usr/include/enchant
+	ln -sfv enchant-2       $PKG/usr/include/enchant   &&
+	ln -sfv enchant-2       $PKG/usr/bin/enchant       &&
+	ln -sfv libenchant-2.so $PKG/usr/lib/libenchant.so &&
+	ln -sfv enchant-2.pc    $PKG/usr/lib/pkgconfig/enchant.pc
+}

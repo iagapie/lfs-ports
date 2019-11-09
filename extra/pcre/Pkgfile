@@ -1,0 +1,28 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=pcre
+version=8.43
+release=1
+source=(https://ftp.pcre.org/pub/pcre/pcre-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr                     \
+            --enable-unicode-properties       \
+            --enable-pcre16                   \
+            --enable-pcre32                   \
+            --enable-pcregrep-libz            \
+            --enable-pcregrep-libbz2          \
+            --enable-pcretest-libreadline     \
+            --disable-static
+	make
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG
+	mv -v $PKG/usr/lib/libpcre.so.* $PKG/lib
+	ln -sfv ../../lib/$(readlink $PKG/usr/lib/libpcre.so) $PKG/usr/lib/libpcre.so
+}

@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=ruby
+version=2.6.5
+release=1
+source=(http://cache.ruby-lang.org/pub/ruby/2.6/ruby-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --enable-shared
+	make
+	make DESTDIR=$PKG install
+}

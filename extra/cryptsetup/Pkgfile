@@ -1,0 +1,18 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: json-c libgcrypt lvm2 popt
+
+name=cryptsetup
+version=2.0.6
+release=1
+source=(https://www.kernel.org/pub/linux/utils/cryptsetup/v2.0/cryptsetup-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+            --with-crypto_backend=openssl
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libsoup vala gobject-introspection
+
+name=uhttpmock
+version=0.5.1
+release=1
+source=(http://tecnocode.co.uk/downloads/$name/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

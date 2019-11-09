@@ -5,12 +5,12 @@
 # This script creates a direcotry and Pkgfile in directory with
 # all necessary header information fields and an empty build() function.
 
-if [[ -z "$1" ]]; then
+if [ -z "$1" ]; then
     echo "Port directory is empty!"
     exit 1
 fi
 
-if [[ -f "$1/Pkgfile" ]]; then
+if [ -f "$1/Pkgfile" ]; then
     echo "Port exists!"
     exit 1
 fi
