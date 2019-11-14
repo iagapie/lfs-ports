@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxaw 
+# Depends on: xorgproto libx11 util-macros
 
 name=libxfixes
 version=5.0.3

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util iceauth 
+# Depends on: libfontenc util-macros
 
 name=luit
 version=1.1.1

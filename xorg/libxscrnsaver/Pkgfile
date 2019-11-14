@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libsm 
+# Depends on: fontconfig libxcb libxext
 
 name=libxscrnsaver
 version=1.2.3

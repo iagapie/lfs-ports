@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxcomposite 
+# Depends on: libx11 xorgproto pkg-config
 
 name=libxrender
 version=0.9.10
@@ -14,4 +14,6 @@ build() {
     ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
     make
 	make DESTDIR=$PKG install
+
+    rm -r $PKG/usr/share
 }

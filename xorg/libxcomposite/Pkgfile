@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxfixes 
+# Depends on: xorgproto libxfixes util-macros
 
 name=libxcomposite
 version=0.4.5

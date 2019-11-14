@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libpciaccess 
+# Depends on: libx11 util-macros
 
 name=libxkbfile
 version=1.1.0

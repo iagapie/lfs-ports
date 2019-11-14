@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=mpg123
+version=1.25.13
+release=1
+source=(https://downloads.sourceforge.net/$name/$name-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,12 +1,12 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libxshmfence
+# Depends on: intltool xkbcomp
 
 name=xkeyboard-config
 version=2.28
 release=1
-source=(ftp://ftp.x.org/pub/individual/data/$name/$name-$version.tar.bz2)
+source=(http://xorg.freedesktop.org/archive/individual/data/xkeyboard-config/xkeyboard-config-$version.tar.bz2)
 
 build() {
 	cd $name-$version
@@ -16,7 +16,8 @@ build() {
 		--sysconfdir=/etc \
 		--localstatedir=/var \
 		--disable-static \
-		--with-xkb-rules-symlink=xorg
+		--with-xkb-rules-symlink=xorg \
+		--disable-nls
 	make
 	make DESTDIR=$PKG install
 }

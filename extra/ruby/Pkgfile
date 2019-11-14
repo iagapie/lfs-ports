@@ -6,12 +6,15 @@
 name=ruby
 version=2.6.5
 release=1
-source=(http://cache.ruby-lang.org/pub/ruby/2.6/ruby-$version.tar.xz)
+source=(https://cache.ruby-lang.org/pub/$name/${version::3}/$name-$version.tar.xz)
 
 build() {
 	cd $name-$version
 
-	./configure --prefix=/usr --enable-shared
+	./configure --prefix=/usr   \
+        	    --enable-shared
 	make
 	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
 }

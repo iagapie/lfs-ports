@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xwd 
+# Depends on: libxcb libx11 util-macros
 
 name=xwininfo
 version=1.1.5

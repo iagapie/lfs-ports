@@ -1,14 +1,16 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on:
+# Depends on: linux-pam
 
 name=systemd
 version=243
 release=1
 source=(https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 		http://anduin.linuxfromscratch.org/LFS/$name-man-pages-$version.tar.xz
-		$name-$version-consolidated_fixes-1.patch)
+		systemd-$version-consolidated_fixes-1.patch
+		systemd-user
+		system-session)
 
 build() {
 	cd $name-$version
@@ -65,4 +67,8 @@ build() {
 
 	rm -f $PKG/etc/sysctl.d/50-pid-max.conf
 	rm -f $PKG/usr/lib/tmpfiles.d/systemd-nologin.conf
+
+	mkdir -p $PKG/etc/pam.d
+	install -D -m 644 -o root -g root $SRC/systemd-user $PKG/etc/pam.d/systemd-user
+	install -D -m 644 -o root -g root $SRC/system-session $PKG/etc/pam.d/system-session
 }

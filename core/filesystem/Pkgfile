@@ -16,7 +16,6 @@ source=(bash_completion.sh
 	bash_profile.skel
 	bashrc.skel
 	profile.skel
-	grub
 	usb.conf
 	noclear.conf
 	profile
@@ -31,7 +30,8 @@ source=(bash_completion.sh
 	lsb-release
 	os-release
 	locale.conf
-	resolv.conf)
+	resolv.conf
+	locale)
 
 build() {
 	mkdir -pv $PKG/{bin,boot/efi,etc/{opt,sysconfig},home,lib/firmware,mnt,opt}
@@ -60,9 +60,11 @@ build() {
 	install --directory --mode=0755 --owner=root --group=root $PKG/etc/profile.d
 	install --directory --mode=0755 --owner=root --group=root $PKG/etc/bash_completion.d
 	install --directory --mode=0755 --owner=root --group=root $PKG/etc/skel
+	install --directory --mode=0755 --owner=root --group=root $PKG/etc/default
 	install --directory --mode=0755 --owner=root --group=root $PKG/etc/modprobe.d
 	install --directory --mode=0755 --owner=root --group=root $PKG/etc/systemd/system/getty@tty1.service.d
 
+	install -m0644 locale $PKG/etc/default
 	install -m0644 usb.conf $PKG/etc/modprobe.d
 	install -m0644 noclear.conf $PKG/etc/systemd/system/getty@tty1.service.d
 

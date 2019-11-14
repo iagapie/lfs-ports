@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xgamma 
+# Depends on: libx11 libxmu util-macros
 
 name=xhost
 version=1.0.8

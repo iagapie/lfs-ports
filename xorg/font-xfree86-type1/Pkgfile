@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xcursor-themes font-misc-ethiopic 
+# Depends on: encodings font-alias fontconfig
 
 name=font-xfree86-type1
 version=1.0.4

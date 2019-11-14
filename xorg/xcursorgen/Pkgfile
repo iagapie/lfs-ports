@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xcmsdb 
+# Depends on: libpng libx11 libxcursor util-macros
 
 name=xcursorgen
 version=1.0.7

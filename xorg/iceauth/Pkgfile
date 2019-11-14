@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util 
+# Depends on: libice xorgproto util-macros
 
 name=iceauth
 version=1.0.8

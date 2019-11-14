@@ -1,0 +1,12 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: extra-cmake-modules phonon-backend-gstreamer polkit-qt libdbusmenu-qt kf5-frameworks plasma
+
+name=kde
+version=1.0
+release=1
+
+build() {
+	mkdir -pv $PKG/etc
+}

@@ -34,7 +34,7 @@ build() {
 }
 EOF
 
-echo "$name" >> "${1%$name}list"
+#echo "$name" >> "${1%$name}list"
 echo "Port '$name' successfully created."
 
 exit 0

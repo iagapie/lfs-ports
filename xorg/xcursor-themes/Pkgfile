@@ -1,12 +1,12 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xwud
+# Depends on: pkg-config util-macros xcursorgen
 
 name=xcursor-themes
 version=1.0.6
 release=1
-source=(ftp://ftp.x.org/pub/individual/data/$name-$version.tar.bz2)
+source=(http://ftp.x.org/pub/individual/data/xcursor-themes-$version.tar.bz2)
 
 build() {
 	cd $name-$version

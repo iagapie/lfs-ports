@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xcursor-themes 
+# Depends on: util-macros
 
 name=font-util
 version=1.3.2

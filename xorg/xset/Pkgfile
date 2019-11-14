@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xrefresh 
+# Depends on: libxmu util-macros
 
 name=xset
 version=1.2.4

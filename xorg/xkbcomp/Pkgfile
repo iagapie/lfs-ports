@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xinput 
+# Depends on: libxkbfile util-macros
 
 name=xkbcomp
 version=1.4.2

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util mkfontscale 
+# Depends on: xorgproto util-macros
 
 name=sessreg
 version=1.1.2

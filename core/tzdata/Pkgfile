@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on:
+# Depends on: glibc
 
 name=tzdata
 version=2019c

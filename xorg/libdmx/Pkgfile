@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxxf86vm 
+# Depends on: xorgproto libxext util-macros
 
 name=libdmx
 version=1.1.4

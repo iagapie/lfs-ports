@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libfontenc 
+# Depends on: xorgproto freetype libfontenc util-macros xtrans
 
 name=libxfont2
 version=2.0.4

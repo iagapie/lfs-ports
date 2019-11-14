@@ -1,0 +1,22 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on:
+
+name=valgrind
+version=3.15.0
+release=1
+source=(ftp://sourceware.org/pub/valgrind/valgrind-$version.tar.bz2)
+
+build() {
+	cd $name-$version
+
+	sed -i 's|/doc/valgrind||' docs/Makefile.in
+
+	./configure --prefix=/usr \
+				--datadir=/usr/share/doc/valgrind-$version
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+}

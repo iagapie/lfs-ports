@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util mkfontdir 
+# Depends on: freetype libfontenc xorgproto util-macros
 
 name=mkfontscale
 version=1.2.1

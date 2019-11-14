@@ -1,0 +1,31 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: wget libarchive
+
+name=pkgutils
+version=5.40.7
+release=1
+source=(http://crux.nu/files/$name-$version.tar.xz
+        ignore-conflict.patch
+        remove-libtool.patch
+        add-compress-infopages.patch
+        fix-build-needed-trigger.patch
+		pkgmk.conf
+		pkgin)
+
+build() {
+	cd $name-$version
+
+	for p in ../*.patch; do
+		patch -Np1 -i $p
+	done
+
+    sed -i -e 's/ --static//' \
+	       -e 's/ -static//' Makefile
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/etc $PKG/usr/bin
+	install -m644 $SRC/pkgmk.conf $PKG/etc/pkgmk.conf
+	install -m755 $SRC/pkgin $PKG/usr/bin/pkgin
+}

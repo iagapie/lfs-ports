@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: util-macros
+# Depends on: meson util-macros
 
 name=xorgproto
 version=2019.2
@@ -12,9 +12,9 @@ build() {
 	cd $name-$version
 
 	mkdir build
-	cd    build
-
-	meson --prefix=/usr ..
+	cd build
+	
+	meson --prefix=/usr
 	ninja
 	DESTDIR=$PKG ninja install
 }

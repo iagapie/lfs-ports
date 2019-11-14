@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# TODO
+version=1.79.2
+
+if [ -f "/usr/share/xml/docbook/xsl-stylesheets-$version" ]; then
+    xmlcatalog --noout --del "/usr/share/xml/docbook/xsl-stylesheets-$version" /etc/xml/catalog
+fi

@@ -1,15 +1,18 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libxshmfence
+# Depends on: libx11 xauth xmodmap xrdb util-macros
 
 name=xinit
 version=1.4.1
 release=1
-source=(ftp://ftp.x.org/pub/individual/app/$name-$version.tar.bz2)
+source=(http://ftp.x.org/pub/individual/app/xinit-$version.tar.bz2)
 
 build() {
 	cd $name-$version
+
+	sed -e '/$serverargs $vtarg/ s/serverargs/: #&/' \
+	    -i startx.cpp
 
 	./configure \
 		--prefix=/usr \

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xlsclients 
+# Depends on: libxaw util-macros
 
 name=xmessage
 version=1.0.5

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on:
+# Depends on: systemd
 
 name=dbus
 version=1.12.16

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xhost 
+# Depends on: libx11 libxi libxinerama xorgproto libxfixes util-macros
 
 name=xinput
 version=1.6.3

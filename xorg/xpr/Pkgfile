@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xmodmap 
+# Depends on: libx11 libxmu bash util-macros
 
 name=xpr
 version=1.0.5

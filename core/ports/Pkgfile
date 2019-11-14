@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: httpup
+
+name=ports
+version=1.6
+release=1
+source=(https://crux.nu/files/tools/$name/$name-$version.tar.gz
+		httpup
+		core.httpup
+		extra.httpup
+		xorg.httpup
+		gnome.httpup
+		kde.httpup)
+
+build() {
+	cd $name-$version
+
+	make
+	make DESTDIR=$PKG MANDIR=/usr/share/man install
+
+	install -m 755 $SRC/httpup $PKG/etc/ports/drivers
+	install -m 0644 $SRC/{core,extra,xorg,gnome,kde}.httpup $PKG/etc/ports
+}

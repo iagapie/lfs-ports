@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libdmx 
+# Depends on: util-macros
 
 name=libpciaccess
 version=0.16

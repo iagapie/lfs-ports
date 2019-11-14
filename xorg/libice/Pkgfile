@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libfs 
+# Depends on: xorgproto util-macros xtrans
 
 name=libice
 version=1.0.10

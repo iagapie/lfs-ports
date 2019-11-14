@@ -6,14 +6,15 @@
 name=util-macros
 version=1.19.2
 release=1
-source=(ftp://ftp.x.org/pub/individual/util/$name-$version.tar.bz2)
+source=(http://ftp.x.org/pub/individual/util/util-macros-$version.tar.bz2)
 
 build() {
 	cd $name-$version
 
-	./configure --prefix=/usr \
-				--sysconfdir=/etc \
-    			--localstatedir=/var \
-				--disable-static
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
 	make DESTDIR=$PKG install
 }

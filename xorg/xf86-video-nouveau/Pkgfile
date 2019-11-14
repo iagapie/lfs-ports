@@ -1,13 +1,12 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xorg-server
+# Depends on: xorg-server libdrm
 
 name=xf86-video-nouveau
 version=1.0.16
 release=1
-source=(ftp://ftp.x.org/pub/individual/driver/$name-$version.tar.bz2
-		20-nvidia.conf)
+source=(https://www.x.org/pub/individual/driver/$name-$version.tar.bz2)
 
 build() {
 	cd $name-$version
@@ -19,6 +18,4 @@ build() {
 		--disable-static
 	make
 	make DESTDIR=$PKG install
-
-	install -Dm 644 $SRC/20-nvidia.conf $PKG/etc/X11/xorg.conf.d/20-nvidia.conf
 }

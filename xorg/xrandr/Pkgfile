@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xprop 
+# Depends on: libx11 libxrandr util-macros
 
 name=xrandr
 version=1.5.1

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xcursorgen 
+# Depends on: libdmx libx11 libxcomposite libxext libxinerama libxrender libxtst libxxf86dga libxxf86vm util-macros
 
 name=xdpyinfo
 version=1.3.2

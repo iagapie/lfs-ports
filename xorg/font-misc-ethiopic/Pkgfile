@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xcursor-themes font-ibm-type1 
+# Depends on: encodings font-alias fontconfig
 
 name=font-misc-ethiopic
 version=1.0.3

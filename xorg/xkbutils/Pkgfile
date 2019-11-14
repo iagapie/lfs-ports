@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xkbevd 
+# Depends on: libx11 libxaw libxt xorgproto util-macros
 
 name=xkbutils
 version=1.0.4

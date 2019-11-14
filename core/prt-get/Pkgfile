@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: pkgutils httpup ports
+
+name=prt-get
+version=5.19.3
+release=1
+source=(https://crux.nu/files/$name-$version.tar.xz
+	prt-get.conf)
+
+build() {
+	cd $name-$version
+
+	./configure
+	make
+	make DESTDIR=$PKG install
+
+	install -m0644 $SRC/prt-get.conf $PKG/etc
+}

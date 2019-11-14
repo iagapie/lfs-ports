@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util smproxy 
+# Depends on: libx11 libxext libxft libxmu libxrender util-macros
 
 name=x11perf
 version=1.6.1

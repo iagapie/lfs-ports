@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xdpyinfo 
+# Depends on: mesa libx11 xorgproto util-macros
 
 name=xdriinfo
 version=1.0.6

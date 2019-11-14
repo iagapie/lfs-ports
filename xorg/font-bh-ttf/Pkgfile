@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xcursor-themes font-adobe-utopia-type1 
+# Depends on: fontconfig font-alias encodings
 
 name=font-bh-ttf
 version=1.0.3
@@ -14,4 +14,7 @@ build() {
     ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
     make
 	make DESTDIR=$PKG install
+
+    find $PKG -name 'fonts.dir' -delete
+	find $PKG -name 'fonts.scale' -delete
 }

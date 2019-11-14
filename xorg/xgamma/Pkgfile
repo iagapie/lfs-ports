@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xev 
+# Depends on: libx11 libxxf86vm util-macros
 
 name=xgamma
 version=1.0.6

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxfont2 
+# Depends on: fontconfig libxrender pkg-config
 
 name=libxft
 version=2.3.3

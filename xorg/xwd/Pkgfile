@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xvinfo 
+# Depends on: libxkbfile libxt util-macros
 
 name=xwd
 version=1.0.7

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util x11perf 
+# Depends on: libxmu util-macros
 
 name=xauth
 version=1.1

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xwininfo 
+# Depends on: libx11 util-macros
 
 name=xwud
 version=1.0.5

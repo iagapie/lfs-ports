@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xpr 
+# Depends on: libx11 util-macros
 
 name=xprop
 version=1.2.4

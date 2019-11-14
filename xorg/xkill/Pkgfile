@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xkbutils 
+# Depends on: libx11 libxmu util-macros
 
 name=xkill
 version=1.0.5

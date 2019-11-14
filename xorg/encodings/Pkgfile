@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: xcursor-themes font-util 
+# Depends on: font-util mkfontscale util-macros
 
 name=encodings
 version=1.0.5

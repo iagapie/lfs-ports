@@ -1,0 +1,8 @@
+#
+# /etc/ports/kde.httpup: kde's port collection
+#
+
+ROOT_DIR=/usr/ports/kde
+URL=https://raw.githubusercontent.com/iagapie/lfs-ports/master/kde/
+
+# End of file

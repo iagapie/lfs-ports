@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxcursor 
+# Depends on: xorgproto libxfixes pkg-config
 
 name=libxdamage
 version=1.1.5

@@ -6,8 +6,7 @@
 name=xf86-video-intel
 version=20190723
 release=1
-source=(ftp://anduin.linuxfromscratch.org/BLFS/$name/$name-$version.tar.xz
-		20-intel.conf)
+source=(http://anduin.linuxfromscratch.org/BLFS/xf86-video-intel/xf86-video-intel-$version.tar.xz)
 
 build() {
 	cd $name-$version
@@ -23,5 +22,9 @@ build() {
 	make
 	make DESTDIR=$PKG install
 
-	install -Dm 644 $SRC/20-intel.conf $PKG/etc/X11/xorg.conf.d/20-intel.conf
+	mkdir -p $PKG/usr/share/man/man1
+	mv -v $PKG/usr/share/man/man4/intel-virtual-output.4 \
+	      $PKG/usr/share/man/man1/intel-virtual-output.1
+
+	sed -i '/\.TH/s/4/1/' $PKG/usr/share/man/man1/intel-virtual-output.1
 }

@@ -1,0 +1,12 @@
+# Description: LFS Core
+# URL:
+# Maintainer:
+# Depends on: filesystem linux-headers man-pages tzdata zlib file readline m4 bc binutils gmp mpfr mpc attr acl shadow gcc bzip2 pkg-config ncurses libcap sed psmisc iana-etc bison flex grep bash libtool gdbm gperf expat inetutils perl perl-xml-parser intltool autoconf automake xz kmod gettext elfutils libffi openssl python3 ninja meson coreutils check diffutils gawk findutils groff less gzip iproute2 kbd libpipeline make patch man-db tar texinfo vim nano dbus procps-ng util-linux e2fsprogs popt pciutils grub sudo prt-get dhcpcd wpa_supplicant linux-firmware cpio lz4 mkinitramfs git neofetch
+
+name=core
+version=1.0
+release=1
+
+build() {
+	mkdir -pv $PKG/etc
+}

@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xrandr 
+# Depends on: libx11 libxmu util-macros
 
 name=xrdb
 version=1.2.0

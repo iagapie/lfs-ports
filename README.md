@@ -4,3 +4,4 @@
 * `extra`
 * `xorg`
 * `gnome`
+* `kde`

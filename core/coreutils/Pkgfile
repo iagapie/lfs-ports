@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on:
+# Depends on: autoconf automake
 
 name=coreutils
 version=8.31

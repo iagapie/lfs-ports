@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxft 
+# Depends on: xorgproto libxext automake libxfixes pkg-config util-macros
 
 name=libxi
 version=1.7.10

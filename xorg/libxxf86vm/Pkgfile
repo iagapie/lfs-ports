@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: fontconfig libxcb libxxf86dga 
+# Depends on: libxext xorgproto util-macros
 
 name=libxxf86vm
 version=1.1.4

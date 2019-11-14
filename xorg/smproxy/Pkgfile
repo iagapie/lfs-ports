@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util setxkbmap 
+# Depends on: libsm libxmu libxt util-macros
 
 name=smproxy
 version=1.0.6

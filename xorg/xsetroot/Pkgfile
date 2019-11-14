@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: libpng mesa xbitmaps xcb-util xset 
+# Depends on: libx11 libxcursor libxmu xbitmaps util-macros
 
 name=xsetroot
 version=1.1.2
