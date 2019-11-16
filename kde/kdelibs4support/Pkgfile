@@ -1,12 +1,12 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri
+# Depends on: boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri kunitconversion kitemmodels kemoticons kded kparts kdoctools qt5 networkmanager python3 kdesignerplugin
 
 name=kdelibs4support
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/kdelibs4support-$version.tar.xz)
+source=(https://download.kde.org/stable/frameworks/${version::4}/portingAids/$name-$version.tar.xz)
 
 build() {
 	cd kdelibs4support-$version

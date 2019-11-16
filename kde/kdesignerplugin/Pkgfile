@@ -1,20 +1,27 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri
+# Depends on: kplotting kio extra-cmake-modules qt5 kdoctools python3
 
 name=kdesignerplugin
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/kdesignerplugin-$version.tar.xz)
+source=(https://download.kde.org/stable/frameworks/${version::4}/portingAids/$name-$version.tar.xz)
 
 build() {
-	cd kdesignerplugin-$version
+	cd $name-$version
 
-    mkdir build
-    cd    build
+	mkdir build
+	cd    build
 
-    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -Wno-dev ..
-    make
+	cmake -DCMAKE_INSTALL_PREFIX=/usr	\
+	      -DCMAKE_PREFIX_PATH=/usr		\
+	      -DCMAKE_BUILD_TYPE=Release	\
+	      -DBUILD_TESTING=OFF		\
+	      -Wno-dev ..
+	make
 	make DESTDIR=$PKG install
+	
+	rm -r $PKG/usr/share/locale
+	rm -r $PKG/usr/share/man/{ca,uk,nl,pt_BR,de,it,pt,sv}
 }

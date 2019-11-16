@@ -6,7 +6,7 @@
 name=kjsembed
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/kjsembed-$version.tar.xz)
+source=(https://download.kde.org/stable/frameworks/${version::4}/portingAids/$name-$version.tar.xz)
 
 build() {
 	cd kjsembed-$version

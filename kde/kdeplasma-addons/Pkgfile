@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor plasma-workspace extra-cmake-modules kdoctools kross python3 kdesignerplugin kholidays
 
 name=kdeplasma-addons
 version=5.17.3

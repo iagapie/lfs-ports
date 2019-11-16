@@ -11,20 +11,6 @@ source=(http://download.kde.org/stable/plasma/5.17.3/plasma-browser-integration-
 build() {
 	cd plasma-browser-integration-$version
 
-    case plasma-browser-integration in
-        plasma-workspace)
-        sed -i '/set.HAVE_X11/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        khotkeys)
-        sed -i '/X11Extras/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        plasma-desktop)
-        sed -i '/X11.h)/i set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    esac
-
     mkdir build
     cd    build
 

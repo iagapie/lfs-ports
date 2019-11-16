@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor plasma-workspace pulseaudio libcanberra extra-cmake-modules kdoctools python3
 
 name=plasma-pa
 version=5.17.3
@@ -10,20 +10,6 @@ source=(http://download.kde.org/stable/plasma/5.17.3/plasma-pa-$version.tar.xz)
 
 build() {
 	cd plasma-pa-$version
-
-    case plasma-pa in
-        plasma-workspace)
-        sed -i '/set.HAVE_X11/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        khotkeys)
-        sed -i '/X11Extras/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        plasma-desktop)
-        sed -i '/X11.h)/i set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    esac
 
     mkdir build
     cd    build

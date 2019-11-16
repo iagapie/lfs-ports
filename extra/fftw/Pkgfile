@@ -1,0 +1,18 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: bash gcc
+
+name=fftw
+version=3.3.8
+release=1
+source=(http://www.fftw.org/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --enable-shared --enable-threads
+	make
+	make DESTDIR=$PKG install
+	rm -r $PKG/usr/share/info
+}

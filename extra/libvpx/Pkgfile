@@ -1,0 +1,24 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: yasm which
+
+name=libvpx
+version=1.8.1
+release=1
+source=(https://github.com/webmproject/libvpx/archive/v$version/libvpx-v$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	sed -i 's/cp -p/cp/' build/make/Makefile
+
+	mkdir libvpx-build
+	cd    libvpx-build
+
+	../configure --prefix=/usr    \
+ 	            --enable-shared  \
+ 	            --disable-static
+	make
+	make DESTDIR=$PKG install
+}

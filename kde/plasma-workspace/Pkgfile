@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+# Depends on: kdesu gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor kjsembed knotifyconfig libxdamage libksysguard ktexteditor qt5 xrdb xsetroot xmessage xprop kwin kdelibs4support kxmlrpcclient kidletime kxmlgui phonon-backend-gstreamer extra-cmake-modules kdoctools baloo krunner kxmlrpcclient networkmanager-qt kdesignerplugin
 
 name=plasma-workspace
 version=5.17.3
@@ -11,19 +11,7 @@ source=(http://download.kde.org/stable/plasma/5.17.3/plasma-workspace-$version.t
 build() {
 	cd plasma-workspace-$version
 
-    case plasma-workspace in
-        plasma-workspace)
-        sed -i '/set.HAVE_X11/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        khotkeys)
-        sed -i '/X11Extras/a set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    
-        plasma-desktop)
-        sed -i '/X11.h)/i set(X11_FOUND 1)' CMakeLists.txt
-        ;;
-    esac
+    sed -i '/set.HAVE_X11/a set(X11_FOUND 1)' CMakeLists.txt
 
     mkdir build
     cd    build

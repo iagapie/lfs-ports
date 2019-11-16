@@ -1,0 +1,21 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig
+
+name=noto-fonts
+version=20171025
+_commit=8ef14e6c606a7a0ef3943b9ca01fd49445620d79
+release=1
+source=(https://github.com/googlei18n/noto-fonts/archive/$_commit.tar.gz
+	66-noto-sans.conf 66-noto-serif.conf 66-noto-mono.conf)
+
+build() {
+	cd noto-fonts-*
+	install -Dm644 unhinted/Noto*.tt[fc] -t $PKG/usr/share/fonts/noto
+	install -Dm644 hinted/Noto*.tt[fc] -t $PKG/usr/share/fonts/noto
+
+	rm -f $PKG/usr/share/fonts/noto/Noto*{Condensed,SemiBold,Extra}*.ttf
+
+	install -Dm644 $SRC/*.conf -t $PKG/etc/fonts/conf.avail/
+}

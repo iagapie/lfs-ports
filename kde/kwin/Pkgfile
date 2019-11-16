@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor kscreenlocker xcb-util-cursor hicolor-icon-theme plasma-framework kcmutils breeze kinit extra-cmake-modules qt5 kdoctools python3
 
 name=kwin
 version=5.17.3

@@ -1,0 +1,26 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libjpeg-turbo cmake
+
+name=jasper
+version=2.0.14
+release=1
+source=(https://www.ece.uvic.ca/~frodo/jasper/software/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	mkdir BUILD
+	cd    BUILD
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr    \
+	      -DCMAKE_BUILD_TYPE=Release     \
+	      -DCMAKE_SKIP_INSTALL_RPATH=YES \
+	      -DJAS_ENABLE_DOC=NO            \
+	      ..
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+}

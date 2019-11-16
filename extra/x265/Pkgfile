@@ -1,0 +1,23 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: cmake nasm
+
+name=x265
+version=3.2.1
+release=1
+source=(https://bitbucket.org/multicoreware/$name/downloads/${name}_${version}.tar.gz)
+
+build() {
+	cd ${name}_${version}
+
+	mkdir bld
+	cd    bld
+
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	      ../source
+	make
+	make DESTDIR=$PKG install
+
+	rm $PKG/usr/lib/libx265.a
+}

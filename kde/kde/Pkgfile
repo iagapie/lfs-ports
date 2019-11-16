@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: extra-cmake-modules phonon-backend-gstreamer polkit-qt libdbusmenu-qt kf5-frameworks plasma
+# Depends on: extra-cmake-modules phonon-backend-gstreamer polkit-qt libdbusmenu-qt kf5-frameworks plasma google-chrome
 
 name=kde
 version=1.0

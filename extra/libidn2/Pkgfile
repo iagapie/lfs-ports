@@ -1,0 +1,17 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libunistring
+
+name=libidn2
+version=2.2.0
+release=1
+source=(ftp://ftp.gnu.org/gnu/libidn/$name-$version.tar.gz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

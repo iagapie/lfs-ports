@@ -1,0 +1,20 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: libusb usbutils gobject-introspection vala meson
+
+name=libgusb
+version=0.3.0
+release=1
+source=(https://people.freedesktop.org/~hughsient/releases/$name-$version.tar.xz)
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd    build
+	
+	meson --prefix=/usr -Ddocs=false
+	ninja
+	DESTDIR=$PKG ninja install
+}

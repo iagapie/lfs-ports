@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+# Depends on: gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor qt5 extra-cmake-modules breeze
 
 name=breeze-gtk
 version=5.17.3

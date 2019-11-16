@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri
+# Depends on: plasma-framework boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri
 
 name=krunner
 version=5.64.0

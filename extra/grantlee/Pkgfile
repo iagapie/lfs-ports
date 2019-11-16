@@ -1,0 +1,25 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: qt5 cmake
+
+name=grantlee
+version=5.1.0
+release=1
+source=(http://downloads.grantlee.org/$name-$version.tar.gz
+	grantlee-$version-upstream_fixes-2.patch)
+
+build() {
+	cd $name-$version
+
+	patch -Np1 -i ../grantlee-$version-upstream_fixes-2.patch
+	
+	mkdir build
+	cd    build
+	
+	cmake -DCMAKE_INSTALL_PREFIX=/usr \
+	      -DCMAKE_BUILD_TYPE=Release  \
+	      ..
+	make
+	make DESTDIR=$PKG install
+}

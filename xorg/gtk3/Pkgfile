@@ -1,7 +1,7 @@
 # Description:
 # URL:
 # Maintainer:
-# Depends on: colord cups docbook-utils gtk-doc json-glib
+# Depends on: at-spi2-atk colord cups docbook-utils gtk-doc json-glib
 
 name=gtk3
 version=3.24.12
@@ -16,7 +16,6 @@ build() {
 	            --enable-broadway-backend \
 	            --enable-x11-backend      \
 	            --enable-wayland-backend
-
 	make
 	make DESTDIR=$PKG install
 

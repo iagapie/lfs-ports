@@ -7,7 +7,7 @@ To start Plasma 5 using xinit-1.4.1, run the following commands:
 
 ```bash
 cat > ~/.xinitrc << "EOF"
-dbus-launch --exit-with-session $KF5_PREFIX/bin/startkde
+dbus-launch --exit-with-session /usr/bin/startplasma-x11
 EOF
 
 startx
