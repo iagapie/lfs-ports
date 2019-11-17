@@ -21,7 +21,7 @@ fi
 
 for REPO in $URL; do
     PORT=`echo $REPO | sed -n '/#.*$/s|^.*#||p'`
-    httpup sync $REPO $ROOT_DIR/$PORT
+    /usr/local/bin/httpup sync $REPO $ROOT_DIR/$PORT
 done
 
 # End of file.
