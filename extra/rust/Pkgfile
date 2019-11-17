@@ -15,7 +15,7 @@ source=(https://static.rust-lang.org/dist/rustc-$version-src.tar.gz
 	https://static.rust-lang.org/dist/$_date/cargo-$_cargo-x86_64-unknown-linux-gnu.tar.gz)
 
 build() {
-	cd rust-$version-src
+	cd rustc-$version-src
 
 	mkdir -p build/cache/$_date
 	cp /var/lib/pkg/src/rust-std-$_rust-x86_64-unknown-linux-gnu.tar.gz build/cache/$_date/

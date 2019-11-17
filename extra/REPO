@@ -198,7 +198,7 @@ f:41bd1abb7b6bdfbfbba803fadc5e3da8:libmbim/Pkgfile
 f:fd985595738e5095623b38e6f896bd7b:python-gobject3-common/Pkgfile
 f:fc09f36eb8f0f1ca38400f68e64dbb23:docbook-utils/Pkgfile
 f:9acefe856adfb13f0efabb68c8c6c745:docbook-utils/docbook-utils-0.6.14-grep_fix-1.patch
-f:6c9b7a786ab1559aa47dd89b91a25d7b:rust/Pkgfile
+f:69f2214cf42b848d0eaee5e0ea382b73:rust/Pkgfile
 f:afbb6a744bed6ecb3e534e195e700c5b:icu/Pkgfile
 f:82dba4f19285c900dc1c3adfcfadfb23:alsa-plugins/Pkgfile
 f:a8031a31e83b8d8b2459c1ea6be4af89:alsa-lib/Pkgfile
