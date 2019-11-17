@@ -1,0 +1,39 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: openssl xauth
+
+name=openssh
+version=8.1p1
+systemdcriptsversion=20191026
+release=1
+source=(https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/$name-$version.tar.gz
+	http://www.linuxfromscratch.org/blfs/downloads/systemd/blfs-systemd-units-$systemdcriptsversion.tar.xz)
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr                     \
+	            --sysconfdir=/etc/ssh             \
+		    	--libexecdir=/usr/lib/$name       \
+	            --with-md5-passwords              \
+	            --with-privsep-path=/var/lib/sshd
+	make
+	make DESTDIR=$PKG install
+
+	install -v -m755    contrib/ssh-copy-id $PKG/usr/bin
+	install -v -m644    contrib/ssh-copy-id.1 \
+	                    $PKG/usr/share/man/man1
+
+	sed '/^#ChallengeResponseAuthentication yes$/c ChallengeResponseAuthentication no' \
+	    -i $PKG/etc/ssh/sshd_config
+
+	mkdir -p $PKG/etc/pam.d
+	sed 's@d/login@d/sshd@g' /etc/pam.d/login > $PKG/etc/pam.d/sshd
+	chmod 644 $PKG/etc/pam.d/sshd
+	
+	echo "UsePAM yes" >> $PKG/etc/ssh/sshd_config
+
+	cd ../blfs-systemd-units-$systemdcriptsversion
+    make DESTDIR=$PKG install-sshd
+}
