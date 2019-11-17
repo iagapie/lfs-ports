@@ -16,6 +16,7 @@ d:autoconf2.13
 d:exiv2
 d:python3-cairo
 d:libpng
+d:docker
 d:docbook-dsssl
 d:networkmanager
 d:libsoup
@@ -148,6 +149,8 @@ f:06394e64ec5d4feff65eec166dfc95ba:exiv2/Pkgfile
 f:70142cd034509a435483f01ff67d53ba:python3-cairo/Pkgfile
 f:63bcff2476916c65839c69391bf310a0:libpng/Pkgfile
 f:8bcbbfd0bb8b23cfaa5d6ea8e47c94cf:libpng/libpng-1.6.37-apng.patch
+f:09be7b9c0677e6654531dff68de0d416:docker/Pkgfile
+f:fcc5db23b89e34b4087af763b53a6db4:docker/post-install
 f:af2c1569fbebd1aed2d0e36c7165c0c1:docbook-dsssl/Pkgfile
 f:a55d8cdcd948a2aee07d6de2c3fabbdd:docbook-dsssl/post-install
 f:9f0a4de5c88f381d18bfba82bef04167:networkmanager/Pkgfile
