@@ -1,0 +1,26 @@
+# Description:
+# URL:
+# Maintainer:
+# Depends on: fontconfig lcms2 libtool libxext libxt perl libxml2 librsvg
+
+name=imagemagick7
+version=7.0.9.2
+release=1
+source=(https://www.imagemagick.org/download/ImageMagick-${version%.*}-${version##*.}.tar.xz)
+
+build() {
+	cd ImageMagick-${version%.*}-${version##*.}
+	
+	./configure --prefix=/usr     \
+	            --sysconfdir=/etc \
+	            --enable-hdri     \
+	            --with-modules    \
+	            --with-perl       \
+	            --disable-static
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+
+	find $PKG -name perllocal.pod -exec rm {} \;
+}
