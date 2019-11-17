@@ -91,6 +91,7 @@ d:lame
 d:docbook3
 d:python3-mako
 d:libgudev
+d:libcroco
 d:nasm
 d:libunistring
 d:noto-fonts
@@ -166,6 +167,7 @@ f:f5ca32904bbc87a3488745a0be4eb251:python3-markupsafe/Pkgfile
 f:94eec086b547af962884a7c20ce3b9d2:poppler-data/Pkgfile
 f:40b0f1a3e0e58ec02bb56c49adbbae4f:libssh2/Pkgfile
 f:bb4c274cd7c7e9330e3e71f6bb7e0362:openssh/Pkgfile
+f:5b1c5ab7f8b4841c1fcf1304fd8fbd7e:openssh/post-install
 f:42bdcca2c02cdb14f8982c4add0651fc:x264/Pkgfile
 f:ee4c9f6f4c6237f3e9ef075b0442ce77:python2-gobject3/Pkgfile
 f:98d2fa0e60da907c3a75aa9939261d05:libidn2/Pkgfile
@@ -231,6 +233,7 @@ f:0a63e5c2d58a250c19d49e9805bc2bf0:docbook3/Pkgfile
 f:05c8c46428a9534cbb0577c5f73267d8:docbook3/post-install
 f:74e98228f553c5670bb0ce64178b741c:python3-mako/Pkgfile
 f:760b582ce121fe5e08fdc0f77fcf056c:libgudev/Pkgfile
+f:acd67f33f2a677c73157c25de40f09cb:libcroco/Pkgfile
 f:d9787f27db68646e78ad1e33e0774085:nasm/Pkgfile
 f:ccaa7bbb2e471e5be1c5306fb8a50340:libunistring/Pkgfile
 f:fec478b6c9e4fc3a2f799bf09be07207:noto-fonts/66-noto-serif.conf
