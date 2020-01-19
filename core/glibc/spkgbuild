@@ -9,6 +9,8 @@ source="https://ftp.gnu.org/gnu/$name/$name-$version.tar.xz
 		$name-$version-fhs-1.patch"
 
 build() {
+    cd $name-$version
+    
 	patch -Np1 -i ../$name-$version-fhs-1.patch
 
 	sed -i '/asm.socket.h/a# include <linux/sockios.h>' \
