@@ -1,3 +1,4 @@
+# description	: -
 # maintainer	: iagapie, igoragapie at gmail.com
 
 name=intltool
@@ -8,7 +9,7 @@ source="https://launchpad.net/$name/trunk/$version/+download/$name-$version.tar.
 build() {
 	cd $name-$version
 
-	sed -i 's:\\\${:\\\$\\{:' intltool-update.in
+	sed -i 's:\\${:\\$\{:' intltool-update.in
     ./configure --prefix=/usr
     make
     make DESTDIR=$PKG install
