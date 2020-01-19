@@ -16,7 +16,7 @@ build() {
 
 	mv ../build ./
 
-	patch -Np1 -i ../systemd-244-seccomp_and_cpuaffinity_fix-1.patch
+	patch -Np1 -i $SRC/systemd-244-seccomp_and_cpuaffinity_fix-1.patch
 
 	sed '177,$ d' -i src/resolve/meson.build
 	sed -i 's/GROUP="render", //' rules.d/50-udev-default.rules.in
