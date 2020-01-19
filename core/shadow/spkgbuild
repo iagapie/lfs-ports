@@ -31,7 +31,6 @@ build() {
 	./configure --sysconfdir=/etc --with-group-name-max-length=32 --with-libcrack
 	make
 	make DESTDIR=$PKG install
-    mv -v $PKG/usr/bin/passwd $PKG/bin
 	sed -i 's/yes/no/' $PKG/etc/default/useradd
 
 	install -v -m644 $PKG/etc/login.defs $PKG/etc/login.defs.orig
