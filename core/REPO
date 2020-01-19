@@ -253,7 +253,7 @@ f:b58a1eb4889eabb717d80bac2ef7ce58:sed/spkgbuild
 f:50cea5511c529ea47f03645d833c77cb:groff/spkgbuild
 f:83f85a5f96d273b6d2009586485801dc:libcap/spkgbuild
 f:45411d761ec732c75cd12efad1f4d8cf:tzdata/spkgbuild
-f:9eb44c2ae8b471f536b0b1fdc2e2a61e:grub/spkgbuild
+f:74e2c595c1c1d752627554d04bcd240c:grub/spkgbuild
 f:65ce4c1125d4aa98f4c425fbb9487893:grub/30_uefi-firmware
 f:00943a5502844edf7ceac44060817808:grub/grub
 f:5608144f7329f0cfe571b760702b5e0c:expat/spkgbuild
