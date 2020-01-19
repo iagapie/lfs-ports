@@ -199,7 +199,7 @@ f:ec6531493f0ff838c1a28d9608fbafa1:git/spkgbuild
 f:383e7b115e2304b06ed3de10dccc9840:mpc/spkgbuild
 f:82e21f009bf85c2e9e73bc7fe8affa6b:check/spkgbuild
 f:83ff09af77ea5c3210558db5af8ca590:linux-headers/spkgbuild
-f:45490b639e5172d58fe2502f228c9fab:pciutils/spkgbuild
+f:07e82a61e100ee92d1688f97a39ac235:pciutils/spkgbuild
 f:67130577ebc7b21ae0f35b6c4c08e373:pciutils/install
 f:2e77dd6532972e2d5d151e2428e51673:iproute2/spkgbuild
 f:d7cf4e427705fd5b197decd14b9fd5b2:unifont/spkgbuild
