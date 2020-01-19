@@ -117,7 +117,7 @@ f:62c9f84dfd6df5d771b1d139ce65d916:less/spkgbuild
 f:1498622275bff9f1760348e8bff7d0aa:gawk/spkgbuild
 f:0762031d356d8b1e8d6915101f2cd372:curl/spkgbuild
 f:8de9429eb4a535432f075d9c26d8e867:readline/spkgbuild
-f:adf1a7bc4a49a751b930442116f242b7:core/spkgbuild
+f:0c466831fbf5208fa87b88c31cb3be9c:core/spkgbuild
 f:8fe4ddab8e0abdef49d11736261ea0ea:cpio/spkgbuild
 f:8bcbbfd0bb8b23cfaa5d6ea8e47c94cf:libpng/libpng-1.6.37-apng.patch
 f:9666e77f0b3b5c124da942b1e07ce623:libpng/spkgbuild
@@ -232,7 +232,7 @@ f:8c76f224e1d6f1328dfa6b98acc1466f:systemd/systemd-user
 f:2a1a94224f7fd5d9559845c8cac63767:systemd/spkgbuild
 f:bc48349dc54db1f01e4b14801b962cd8:systemd/system-session
 f:3091cac8c71baf9c6127bab860818d37:systemd/install
-f:b4c7142746b3b09547694f4506af82cb:efibootmgr/spkgbuild
+f:109fc60e4227011d01e39510fbec915d:efibootmgr/spkgbuild
 f:9a5997c3452909b1769918c759eff8a2:glibc/glibc-2.30-fhs-1.patch
 f:0850e474ed781a01e28d4f2a3ed78765:glibc/spkgbuild
 f:8006ae5e09e6b1cde14863a68f052afa:glibc/install

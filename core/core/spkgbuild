@@ -5,9 +5,9 @@
 # depends		: gcc pkg-config ncurses libcap sed psmisc iana-etc bison flex grep bash libtool
 # depends		: gdbm gperf expat inetutils perl perl-xml-parser intltool autoconf automake kmod
 # depends		: gettext elfutils libffi openssl python3 ninja meson coreutils check diffutils
-# depends		: gawk findutils groff dosfstools libpng freetype efivar efibootmgr unifont grub
+# depends		: gawk findutils groff dosfstools libpng freetype efivar popt efibootmgr unifont grub
 # depends		: less gzip zstd iproute2 kbd libpipeline make patch man-db tar texinfo vim nano
-# depends		: systemd dbus procps-ng util-linux e2fsprogs popt pciutils sudo libarchive
+# depends		: systemd dbus procps-ng util-linux e2fsprogs pciutils sudo libarchive
 # depends		: libtasn1 p11-kit make-ca wget curl dhcpcd libnl libxml2 wpa_supplicant
 # depends		: linux-firmware cpio lz4 mkinitramfs git neofetch httpup scratchpkg scratchpkg-utils
 

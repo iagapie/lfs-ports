@@ -1,5 +1,6 @@
 # description	: -
 # maintainer	: iagapie, igoragapie at gmail.com
+# depends		: popt
 
 name=efibootmgr
 version=16
