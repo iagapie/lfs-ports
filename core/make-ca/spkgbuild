@@ -1,0 +1,27 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : p11-kit systemd
+
+name=make-ca
+version=1.5
+release=1
+source="https://github.com/djlucas/$name/releases/download/v$version/$name-$version.tar.xz
+    http://www.cacert.org/certs/root.crt
+    http://www.cacert.org/certs/class3.crt"
+
+build() {
+	cd $name-$version
+
+    make DESTDIR=$PKG install_bin
+    make DESTDIR=$PKG install_systemd
+    make DESTDIR=$PKG install_conf
+
+    install -vdm755 $PKG/etc/ssl/local
+
+    openssl x509 -in $SRC/root.crt -text -fingerprint -setalias "CAcert Class 1 root" \
+        -addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        > $PKG/etc/ssl/local/CAcert_Class_1_root.pem
+
+    openssl x509 -in $SRC/class3.crt -text -fingerprint -setalias "CAcert Class 3 root" \
+        -addtrust serverAuth -addtrust emailProtection -addtrust codeSigning \
+        > $PKG/etc/ssl/local/CAcert_Class_3_root.pem
+}

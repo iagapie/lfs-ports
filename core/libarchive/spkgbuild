@@ -1,0 +1,14 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=libarchive
+version=3.4.1
+release=1
+source="https://github.com/$name/$name/releases/download/v$version/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+    make
+    make DESTDIR=$PKG install
+}

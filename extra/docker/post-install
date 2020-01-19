@@ -1,6 +1,0 @@
-#!/bin/sh
-
-getent group docker >/dev/null || groupadd docker
-
-systemctl enable docker
-systemctl daemon-reload

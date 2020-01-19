@@ -1,0 +1,10 @@
+#
+# /etc/scratchpkg.repo : scratchpkg repo file
+#
+# format:
+#    <repo directory> <repo url for sync>
+#
+
+/usr/ports/core      https://raw.githubusercontent.com/iagapie/lfs-ports/master/core
+/usr/ports/extra     https://raw.githubusercontent.com/iagapie/lfs-ports/master/extra
+/usr/ports/xorg      https://raw.githubusercontent.com/iagapie/lfs-ports/master/xorg

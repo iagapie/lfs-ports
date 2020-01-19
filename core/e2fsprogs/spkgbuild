@@ -1,0 +1,27 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=e2fsprogs
+version=1.45.5
+release=1
+source="https://downloads.sourceforge.net/project/$name/$name/v$version/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	mkdir -v build
+	cd       build
+
+	../configure --prefix=/usr           \
+             --bindir=/bin           \
+             --with-root-prefix=""   \
+             --enable-elf-shlibs     \
+             --disable-libblkid      \
+             --disable-libuuid       \
+             --disable-uuidd         \
+             --disable-fsck
+	make
+	make DESTDIR=$PKG install
+	make DESTDIR=$PKG install-libs
+
+	chmod -v u+w $PKG/usr/lib/{libcom_err,libe2p,libext2fs,libss}.a
+}

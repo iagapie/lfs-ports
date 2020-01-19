@@ -1,0 +1,19 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : tar httpup
+
+name=scratchpkg
+version=20200117
+release=1
+backup="etc/scratchpkg.conf
+	etc/scratchpkg.repo
+	etc/revdep.conf"
+_commit=b5733b2f8ff7c6d21eef07234c75b5303fbe8b01
+source="$name-$_commit.tar.gz::https://github.com/venomlinux/scratchpkg/archive/$_commit.tar.gz
+		repo"
+
+build() {
+	cd $name-$_commit
+
+	DESTDIR=$PKG ./INSTALL.sh
+	install -m644 $SRC/repo $PKG/etc/scratchpkg.repo
+}

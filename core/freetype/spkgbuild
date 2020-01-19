@@ -1,0 +1,19 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libpng
+
+name=freetype
+version=2.10.1
+release=1
+source="https://downloads.sourceforge.net/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	sed -ri "s:.*(AUX_MODULES.*valid):\1:" modules.cfg
+    sed -r "s:.*(#.*SUBPIXEL_RENDERING) .*:\1:" \
+        -i include/freetype/config/ftoption.h
+
+    ./configure --prefix=/usr --enable-freetype-config --disable-static
+    make
+    make DESTDIR=$PKG install
+}

@@ -1,0 +1,14 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=less
+version=551
+release=1
+source="http://www.greenwoodsoftware.com/less/less-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc
+	make
+	make DESTDIR=$PKG install
+}

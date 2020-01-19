@@ -1,0 +1,14 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : curl
+
+name=httpup
+version=0.5.0
+release=1
+source="https://crux.nu/files/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	make
+    make DESTDIR=$PKG install
+}

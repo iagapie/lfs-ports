@@ -1,7 +1,5 @@
 # LFS Ports
 
 * `core`: ports for core system
-* `extra`
-* `xorg`
-* `gnome`
-* `kde`
+* `extra`: all other ports
+* `xorg`: ports for xorg

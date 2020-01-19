@@ -1,0 +1,14 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=diffutils
+version=3.7
+release=1
+source="http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

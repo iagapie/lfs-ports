@@ -1,0 +1,14 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=mkinitramfs
+version=1
+release=1
+source="mkinitramfs
+		init.in"
+
+build() {
+	mkdir -p $PKG/sbin $PKG/usr/share/mkinitramfs
+
+	install -m 0755 $SRC/mkinitramfs $PKG/sbin/mkinitramfs
+	cp $SRC/init.in $PKG/usr/share/mkinitramfs/init.in
+}

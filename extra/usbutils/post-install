@@ -1,3 +1,0 @@
-#!/bin/sh
-
-systemctl enable update-usbids.timer

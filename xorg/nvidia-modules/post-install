@@ -1,5 +1,0 @@
-#!/bin/sh
-
-kernver=$(uname -r)
-
-depmod $kernver

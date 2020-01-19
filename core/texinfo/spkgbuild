@@ -1,0 +1,15 @@
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=texinfo
+version=6.7
+release=1
+source="http://ftp.gnu.org/gnu/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+	make TEXMF=/usr/share/texmf DESTDIR=$PKG install-tex
+}

@@ -2,39 +2,45 @@
 #
 # USE AT YOUR OWN RISK
 #
-# This script creates a direcotry and Pkgfile in directory with
+# This script creates a direcotry and spkgbuild in directory with
 # all necessary header information fields and an empty build() function.
 
 if [ -z "$1" ]; then
-    echo "Port directory is empty!"
+    echo "ERROR: Port's name is empty!"
     exit 1
 fi
 
-if [ -f "$1/Pkgfile" ]; then
-    echo "Port exists!"
-    exit 1
+if [ -d $1 ]; then
+	echo "ERROR: Directory '$1' already exist!"
+	exit 1
 fi
 
 name="$(basename $1)"
 mkdir -p "$1"
 
-cat <<EOF > $1/Pkgfile
-# Description:
-# URL:
-# Maintainer:
-# Depends on:
+cat <<EOF > $1/spkgbuild
+# description	: 
+# homepage	    : 
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : 
 
 name=$name
 version=
 release=1
-source=()
+options=""
+noextract=""
+backup=""
+source=""
 
 build() {
 	cd \$name-\$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=\$PKG install
 }
 EOF
 
-#echo "$name" >> "${1%$name}list"
 echo "Port '$name' successfully created."
 
 exit 0
