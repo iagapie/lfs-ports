@@ -7,6 +7,7 @@ version=244
 release=1
 source="https://github.com/$name/$name/archive/v$version/$name-$version.tar.gz
 		http://anduin.linuxfromscratch.org/LFS/$name-man-pages-$version.tar.xz
+		systemd-244-seccomp_and_cpuaffinity_fix-1.patch
 		systemd-user
 		system-session"
 
@@ -15,8 +16,10 @@ build() {
 
 	mv ../build ./
 
+	patch -Np1 -i ../systemd-244-seccomp_and_cpuaffinity_fix-1.patch
+
 	sed '177,$ d' -i src/resolve/meson.build
-	sed -i 's/GROUP="render", //' rules/50-udev-default.rules.in
+	sed -i 's/GROUP="render", //' rules.d/50-udev-default.rules.in
 
 	mkdir -p build
     cd       build

@@ -229,7 +229,8 @@ f:635b0c76adc050199535c2492894edad:zlib/spkgbuild
 f:4cdf17bde535f507faec036c0cc705d8:bc/spkgbuild
 f:662d68546553da1f2fab0459c20ed166:psmisc/spkgbuild
 f:8c76f224e1d6f1328dfa6b98acc1466f:systemd/systemd-user
-f:2a1a94224f7fd5d9559845c8cac63767:systemd/spkgbuild
+f:fe619d54a9a93410cedec3f3f9afd1c1:systemd/systemd-244-seccomp_and_cpuaffinity_fix-1.patch
+f:34300ad9f6c3611fb269748560aa3366:systemd/spkgbuild
 f:bc48349dc54db1f01e4b14801b962cd8:systemd/system-session
 f:3091cac8c71baf9c6127bab860818d37:systemd/install
 f:109fc60e4227011d01e39510fbec915d:efibootmgr/spkgbuild
