@@ -1,0 +1,11 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : 
+
+name=xorg-drivers-base
+version=1.0
+release=1
+
+build() {
+	mkdir -pv $PKG/etc
+}

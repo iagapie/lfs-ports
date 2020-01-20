@@ -19,7 +19,7 @@ name="$(basename $1)"
 mkdir -p "$1"
 
 cat <<EOF > $1/spkgbuild
-# description	: 
+# description	: $name
 # homepage	    : 
 # maintainer	: iagapie, igoragapie at gmail.com
 # depends	    : 

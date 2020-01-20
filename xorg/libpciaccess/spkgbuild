@@ -1,0 +1,16 @@
+# description	: libpciaccess
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : util-macros
+
+name=libpciaccess
+version=0.16
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libpciaccess-$version.tar.bz2"
+
+build() {
+	cd libpciaccess-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}

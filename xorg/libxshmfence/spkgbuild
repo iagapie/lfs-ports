@@ -1,0 +1,16 @@
+# description	: libxshmfence
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : util-macros xorgproto
+
+name=libxshmfence
+version=1.3
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libxshmfence-$version.tar.bz2"
+
+build() {
+	cd libxshmfence-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}
