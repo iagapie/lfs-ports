@@ -1,0 +1,16 @@
+# description	: xkbcomp
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxkbfile util-macros
+
+name=xkbcomp
+version=1.4.2
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xkbcomp-$version.tar.bz2"
+
+build() {
+	cd xkbcomp-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

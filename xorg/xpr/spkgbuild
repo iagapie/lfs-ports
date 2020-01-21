@@ -1,0 +1,16 @@
+# description	: xpr
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 libxmu bash util-macros
+
+name=xpr
+version=1.0.5
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xpr-$version.tar.bz2"
+
+build() {
+	cd xpr-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

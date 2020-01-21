@@ -1,0 +1,16 @@
+# description	: xwud
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 util-macros
+
+name=xwud
+version=1.0.5
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xwud-$version.tar.bz2"
+
+build() {
+	cd xwud-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,16 @@
+# description	: x11perf
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 libxext libxft libxmu libxrender util-macros
+
+name=x11perf
+version=1.6.1
+release=1
+source="ftp://ftp.x.org/pub/individual/app/x11perf-$version.tar.bz2"
+
+build() {
+	cd x11perf-$version    
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

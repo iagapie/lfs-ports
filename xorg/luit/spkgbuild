@@ -1,0 +1,18 @@
+# description	: luit
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libfontenc util-macros
+
+name=luit
+version=1.1.1
+release=1
+source="ftp://ftp.x.org/pub/individual/app/luit-$version.tar.bz2"
+
+build() {
+	cd luit-$version
+
+    sed -i -e "/D_XOPEN/s/5/6/" configure
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

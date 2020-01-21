@@ -1,9 +1,9 @@
 # description	: -
 # maintainer	: iagapie, igoragapie at gmail.com
-# depends	    : mesa iceauth luit mkfontscale sessreg setxkbmap smproxy x11perf xauth
-# depends		: xbacklight xcmsdb xcursorgen xdpyinfo xdriinfo xev xgamma xhost xinput
-# depends		: xkbcomp xkbevd xkbutils xkill xlsatoms xlsclients xmessage xmodmap xpr
-# depends		: xprop xrandr xrdb xrefresh xset xsetroot xvinfo xwd xwininfo xwud
+# depends	    : mesa iceauth luit mkfontdir mkfontscale sessreg setxkbmap smproxy x11perf
+# depends		: xauth xbacklight xcmsdb xcursorgen xdpyinfo xdriinfo xev xgamma xhost
+# depends		: xinput xkbcomp xkbevd xkbutils xkill xlsatoms xlsclients xmessage xmodmap
+# depends		: xpr xprop xrandr xrdb xrefresh xset xsetroot xvinfo xwd xwininfo xwud
 
 name=xorg-applications
 version=1.0

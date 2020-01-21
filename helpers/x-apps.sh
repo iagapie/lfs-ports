@@ -14,10 +14,14 @@ for p in $(grep -v '^#' $CURDIR/md5/x-app.md5 | awk '{print $2}'); do
     mkdir -p $XDIR/$nl
 
     xc=""
+    xp=""
 
     case $p in
        luit-[0-9]* )
             xc='sed -i -e "/D_XOPEN/s/5/6/" configure'
+        ;;
+        xrandr-*)
+            xp='rm -f $PKG/usr/bin/xkeystone'
         ;;
     esac
 
@@ -33,12 +37,14 @@ source="ftp://ftp.x.org/pub/individual/app/$n-\$version.$ar"
 
 build() {
 	cd $n-\$version
+
     $xc
+    
     ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
     make
 	make DESTDIR=\$PKG install
 
-    rm -r \$PKG/usr/share/doc
+    $xp
 }
 EOF
 done
