@@ -1,6 +1,7 @@
 # description	: -
 # maintainer	: iagapie, igoragapie at gmail.com
-# depends	    : 
+# depends	    : libevdev xf86-input-evdev libinput xf86-input-libinput xf86-input-synaptics
+# depends		: xf86-video-fbdev xf86-video-intel libva intel-vaapi-driver libvdpau
 
 name=xorg-drivers-base
 version=1.0
