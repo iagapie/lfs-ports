@@ -30,7 +30,8 @@ build() {
     make
 	make DESTDIR=\$PKG install
 
-    rm -r \$PKG/usr/share/doc
+    find $PKG -name 'fonts.scale' -delete	
+	find $PKG -name 'fonts.dir' -delete
 }
 EOF
 done
