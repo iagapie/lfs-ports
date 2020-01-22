@@ -1,0 +1,22 @@
+# description	: fontconfig
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : freetype
+
+name=fontconfig
+version=2.13.1
+release=1
+source="https://www.freedesktop.org/software/fontconfig/release/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	# make sure the system regenerates src/fcobjshash.h
+	rm -f src/fcobjshash.h
+
+	./configure --prefix=/usr        \
+	            --sysconfdir=/etc    \
+	            --localstatedir=/var \
+	            --disable-docs
+	make
+	make DESTDIR=$PKG install
+}

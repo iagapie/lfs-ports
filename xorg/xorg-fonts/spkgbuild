@@ -3,7 +3,7 @@
 # depends	    : font-util encodings font-alias font-adobe-utopia-type1 font-bh-ttf
 # depends		: font-bh-type1 font-ibm-type1 font-misc-ethiopic font-xfree86-type1
 # depends		: font-adobe-100dpi font-adobe-75dpi font-daewoo-misc font-isas-misc
-# depends		: font-jis-misc
+# depends		: font-jis-misc dejavu-fonts
 
 name=xorg-fonts
 version=1.0
