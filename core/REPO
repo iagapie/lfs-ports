@@ -86,6 +86,7 @@ d:psmisc
 d:libnl
 d:sed
 d:bzip2
+d:gitflow
 d:gzip
 d:gawk
 d:python3
@@ -235,7 +236,7 @@ f:8006ae5e09e6b1cde14863a68f052afa:glibc/install
 f:ef5bd348a5c46b49af650bc771f41603:intltool/spkgbuild
 f:f96d33e0567ba0533fbfdfc12f4615b9:lz4/spkgbuild
 f:635b0c76adc050199535c2492894edad:zlib/spkgbuild
-f:0c466831fbf5208fa87b88c31cb3be9c:core/spkgbuild
+f:3ab5e66c13962a656beb6419b1143b5c:core/spkgbuild
 f:7036805f0a640bca65a1fe9d99606cf3:tar/spkgbuild
 f:dcdfdd02cf9d3e474bf11649cd5b38ec:libxml2/spkgbuild
 f:11b250dde216b9706c41afbc7e173169:wget/spkgbuild
@@ -243,6 +244,7 @@ f:662d68546553da1f2fab0459c20ed166:psmisc/spkgbuild
 f:3318320e3cf319872636e0ed67554361:libnl/spkgbuild
 f:b58a1eb4889eabb717d80bac2ef7ce58:sed/spkgbuild
 f:38c7e2c8da8e04a996758eaa583a1eb7:bzip2/spkgbuild
+f:e4accc7838dfda2a9028959f250a7e23:gitflow/spkgbuild
 f:9a8e7f26ab4f57d8a23f213c281e5b09:gzip/spkgbuild
 f:1498622275bff9f1760348e8bff7d0aa:gawk/spkgbuild
 f:5a616016543d5eb7818b7868c5f8def4:python3/spkgbuild

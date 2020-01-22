@@ -7,9 +7,9 @@
 # depends		: gettext elfutils libffi openssl python3 ninja meson coreutils check diffutils
 # depends		: gawk findutils groff dosfstools libpng freetype efivar popt efibootmgr unifont grub
 # depends		: less gzip zstd iproute2 kbd libpipeline make patch man-db tar texinfo vim nano
-# depends		: systemd dbus procps-ng util-linux e2fsprogs pciutils sudo libarchive
-# depends		: libtasn1 p11-kit make-ca wget curl dhcpcd libnl libxml2 wpa_supplicant
-# depends		: linux-firmware cpio lz4 mkinitramfs git neofetch httpup scratchpkg scratchpkg-utils
+# depends		: systemd dbus procps-ng util-linux e2fsprogs pciutils sudo libarchive libtasn1
+# depends		: p11-kit make-ca wget curl dhcpcd libnl libxml2 wpa_supplicant linux-firmware
+# depends		: cpio lz4 mkinitramfs git gitflow neofetch httpup scratchpkg scratchpkg-utils
 
 name=core
 version=1.0

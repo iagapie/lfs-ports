@@ -1,0 +1,14 @@
+# description	: gitflow
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : git
+
+name=gitflow
+version=0.4.1
+release=1
+source="https://github.com/nvie/gitflow/archive/$version.tar.gz"
+
+build() {
+	cd $name-$version
+	
+	make prefix=$PKG/usr/local install
+}
