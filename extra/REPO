@@ -13,6 +13,7 @@ d:libtirpc
 d:mtdev
 d:fontconfig
 d:libxslt
+d:sgml-common
 d:python2
 d:docbook-xsl
 d:python3-pygments
@@ -43,6 +44,9 @@ f:e08cff58c9900b74159e74f3ca0474a6:libtirpc/spkgbuild
 f:64ad7d4540f21eea9e7b9652c82a3f2a:mtdev/spkgbuild
 f:b3ffe7378c7bf18a6dc1c74c3a74db7a:fontconfig/spkgbuild
 f:3d67d705fdc880312784e158741c6587:libxslt/spkgbuild
+f:645f3c898abd270a9143036824ae121a:sgml-common/sgml-common-manpage-1.patch
+f:ead8c2ddeadb98efb94ee2b249993628:sgml-common/spkgbuild
+f:16f882db8340430205e776fc6602cdfd:sgml-common/install
 f:6c057552e0b4d1c92cabdeac4b9b2b12:python2/spkgbuild
 f:93238308160f4b0325cc6257e16d0fe2:python2/pyconfig.h
 f:8457bd6ee6b06fbc6dc540e1b096f766:docbook-xsl/docbook-xsl-stack_fix-1.patch
