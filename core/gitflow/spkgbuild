@@ -5,13 +5,9 @@
 name=gitflow
 version=0.4.1
 release=1
-source="https://github.com/nvie/gitflow/archive/$version.tar.gz"
+source="https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh"
 
 build() {
-	cd $name-$version
-	
-	git submodule init
-	git submodule update
-	
-	make prefix=$PKG/usr/local install
+	chmod +x $SRC/gitflow-installer.sh
+	INSTALL_PREFIX=$PKG/usr/bin $SRC/gitflow-installer.sh
 }
