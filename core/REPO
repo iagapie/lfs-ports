@@ -244,7 +244,7 @@ f:662d68546553da1f2fab0459c20ed166:psmisc/spkgbuild
 f:3318320e3cf319872636e0ed67554361:libnl/spkgbuild
 f:b58a1eb4889eabb717d80bac2ef7ce58:sed/spkgbuild
 f:38c7e2c8da8e04a996758eaa583a1eb7:bzip2/spkgbuild
-f:e4accc7838dfda2a9028959f250a7e23:gitflow/spkgbuild
+f:70647ff50a92ea591a90c0698744a346:gitflow/spkgbuild
 f:9a8e7f26ab4f57d8a23f213c281e5b09:gzip/spkgbuild
 f:1498622275bff9f1760348e8bff7d0aa:gawk/spkgbuild
 f:5a616016543d5eb7818b7868c5f8def4:python3/spkgbuild
