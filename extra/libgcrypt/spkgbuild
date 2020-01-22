@@ -1,0 +1,18 @@
+# description	: libgcrypt
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libgpg-error
+
+name=libgcrypt
+version=1.8.5
+release=1
+source="ftp://ftp.gnupg.org/gcrypt/$name/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/info
+}
