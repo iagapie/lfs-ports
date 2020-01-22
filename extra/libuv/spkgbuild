@@ -8,7 +8,7 @@ release=1
 source="https://dist.libuv.org/dist/v$version/libuv-v$version.tar.gz"
 
 build() {
-	cd $name-$version
+	cd $name-v$version
 
 	sh autogen.sh
 	./configure --prefix=/usr --disable-static
