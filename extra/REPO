@@ -1,7 +1,10 @@
 d:python3-cairo
 d:python2-cairo
 d:python3-markupsafe
+d:bdftopcf
 d:python2-libxml2
+d:cairo
+d:libglvnd
 d:libdrm
 d:fontconfig
 d:python2
@@ -10,10 +13,14 @@ d:wayland-protocols
 d:llvm
 d:python3-mako
 d:wayland
+d:cmake
 f:ee8e6f9e029ba38b2b095fa6fc1e966f:python3-cairo/spkgbuild
 f:fa865ab9826a359574ea36d74f799526:python2-cairo/spkgbuild
 f:3b14b3aafd459fbf4a281403de0f3ee3:python3-markupsafe/spkgbuild
+f:b6bd756464bbfc5474fb7d2383124264:bdftopcf/spkgbuild
 f:cd77c05f823b8cf700a41d84d80db5ee:python2-libxml2/spkgbuild
+f:02a56b8c68639dee17bdff9210bf361e:cairo/spkgbuild
+f:1bbb32282f2497241a800a46c2ae22c4:libglvnd/spkgbuild
 f:43f5351601bb9b4c93f43ac6c7f597b3:libdrm/spkgbuild
 f:b3ffe7378c7bf18a6dc1c74c3a74db7a:fontconfig/spkgbuild
 f:6c057552e0b4d1c92cabdeac4b9b2b12:python2/spkgbuild
@@ -24,3 +31,4 @@ f:378a2cdcf9748c608676c4a68bbc1c19:llvm/spkgbuild
 f:f42261db7a2dc7495ba3c9e2c8b62394:llvm/llvm-config.h
 f:1dcb359b4f65c748338a573d6713e576:python3-mako/spkgbuild
 f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
+f:46651a9a8b9b72731e506746b151f536:cmake/spkgbuild
