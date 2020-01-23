@@ -5,6 +5,7 @@ d:python3-markupsafe
 d:bdftopcf
 d:python2-libxml2
 d:glib
+d:phonon-backend-gstreamer
 d:cairo
 d:libglvnd
 d:libdrm
@@ -24,6 +25,8 @@ d:valgrind
 d:llvm
 d:docbook-xml
 d:python3-mako
+d:extra-cmake-modules
+d:phonon
 d:nettle
 d:wayland
 d:libgpg-error
@@ -36,6 +39,7 @@ f:3b14b3aafd459fbf4a281403de0f3ee3:python3-markupsafe/spkgbuild
 f:b6bd756464bbfc5474fb7d2383124264:bdftopcf/spkgbuild
 f:cd77c05f823b8cf700a41d84d80db5ee:python2-libxml2/spkgbuild
 f:95db0085ead233bf6c705fd4109fccde:glib/spkgbuild
+f:ec34269b83d99e9972a967ecdd8ef921:phonon-backend-gstreamer/spkgbuild
 f:02a56b8c68639dee17bdff9210bf361e:cairo/spkgbuild
 f:1bbb32282f2497241a800a46c2ae22c4:libglvnd/spkgbuild
 f:43f5351601bb9b4c93f43ac6c7f597b3:libdrm/spkgbuild
@@ -62,6 +66,8 @@ f:f42261db7a2dc7495ba3c9e2c8b62394:llvm/llvm-config.h
 f:2df772686dd6d6c72fae72eebbd1133b:docbook-xml/spkgbuild
 f:fb29c0ba6a48928b61dbc615239df1bb:docbook-xml/install
 f:1dcb359b4f65c748338a573d6713e576:python3-mako/spkgbuild
+f:a1d441e35b34e4e59a9c623e3c2e767a:extra-cmake-modules/spkgbuild
+f:0342aa1496e59b913978488eb835d290:phonon/spkgbuild
 f:0343f86f34402e147f8ad05cf2cc0142:nettle/spkgbuild
 f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
 f:0ef91c028f5297fd9682c51b7a0d7e8a:libgpg-error/spkgbuild
