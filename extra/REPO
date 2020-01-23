@@ -57,7 +57,7 @@ f:e9172f893388456da61d218b73bc175d:wayland-protocols/spkgbuild
 f:53802b57f7821d5573e12eacc266ac3c:libgcrypt/spkgbuild
 f:640f5e5ec963ef2d1ebfd499cc17f922:pcre/spkgbuild
 f:87965abd150d7840ee921422a03c2275:valgrind/spkgbuild
-f:e05f78e5dc9d1d10e21046d584ba2f51:llvm/spkgbuild
+f:06203e68aff5802511075db164850435:llvm/spkgbuild
 f:f42261db7a2dc7495ba3c9e2c8b62394:llvm/llvm-config.h
 f:2df772686dd6d6c72fae72eebbd1133b:docbook-xml/spkgbuild
 f:fb29c0ba6a48928b61dbc615239df1bb:docbook-xml/install
