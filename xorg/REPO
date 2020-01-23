@@ -128,7 +128,7 @@ f:4354f57c9fa807bfaeda616aac90663b:xorg-drivers-base/spkgbuild
 f:66e59bf297965a5300f655a3812cc078:intel-vaapi-driver/spkgbuild
 f:04dfe46866c15dc011762479736793cb:libxmu/spkgbuild
 f:d71970562a298a4e74dc972c54a9aa18:xf86-input-libinput/spkgbuild
-f:f6c4ad1cb782e39f4ff4fbf3dbeed997:xorg/spkgbuild
+f:d90d23b6bbc46f7b45d92a3a4a4c669f:xorg/spkgbuild
 f:ecdc3411bb20e2291d294733f518b3ea:xcursor-themes/spkgbuild
 f:c26ab93733976997e662d9a9491b9292:xset/spkgbuild
 f:7b6350fdba102d5012a118a2a944d026:xkbevd/spkgbuild
