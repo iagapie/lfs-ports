@@ -16,7 +16,7 @@ build() {
 	export CC=gcc
 	export CXX=g++
 
-	mv ../clang-$version.src tools/clang
+	mv ../cfe-$version.src tools/clang
 	mv ../compiler-rt-$version.src projects/compiler-rt
 
 	mkdir -v build
