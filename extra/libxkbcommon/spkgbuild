@@ -5,7 +5,7 @@
 name=libxkbcommon
 version=0.10.0
 release=1
-source=(https://xkbcommon.org/download/$name-$version.tar.xz)
+source="https://xkbcommon.org/download/$name-$version.tar.xz"
 
 build() {
 	cd $name-$version

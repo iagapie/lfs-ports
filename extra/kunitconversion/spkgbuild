@@ -5,7 +5,7 @@
 name=kunitconversion
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/kunitconversion-$version.tar.xz)
+source="http://download.kde.org/stable/frameworks/5.64/kunitconversion-$version.tar.xz"
 
 build() {
 	cd kunitconversion-$version

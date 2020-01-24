@@ -5,7 +5,7 @@
 name=plasma-vault
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/plasma-vault-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/plasma-vault-$version.tar.xz"
 
 build() {
 	cd plasma-vault-$version

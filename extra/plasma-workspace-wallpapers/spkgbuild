@@ -5,7 +5,7 @@
 name=plasma-workspace-wallpapers
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/plasma-workspace-wallpapers-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/plasma-workspace-wallpapers-$version.tar.xz"
 
 build() {
 	cd plasma-workspace-wallpapers-$version

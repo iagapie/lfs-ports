@@ -5,7 +5,7 @@
 name=xdg-desktop-portal-kde
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/xdg-desktop-portal-kde-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/xdg-desktop-portal-kde-$version.tar.xz"
 
 build() {
 	cd xdg-desktop-portal-kde-$version

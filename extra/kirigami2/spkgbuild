@@ -5,7 +5,7 @@
 name=kirigami2
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/kirigami2-$version.tar.xz)
+source="http://download.kde.org/stable/frameworks/5.64/kirigami2-$version.tar.xz"
 
 build() {
 	cd kirigami2-$version

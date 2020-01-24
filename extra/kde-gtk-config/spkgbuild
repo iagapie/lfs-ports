@@ -5,7 +5,7 @@
 name=kde-gtk-config
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/kde-gtk-config-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/kde-gtk-config-$version.tar.xz"
 
 build() {
 	cd kde-gtk-config-$version

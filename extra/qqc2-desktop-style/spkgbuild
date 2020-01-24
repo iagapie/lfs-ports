@@ -5,7 +5,7 @@
 name=qqc2-desktop-style
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/qqc2-desktop-style-$version.tar.xz)
+source="http://download.kde.org/stable/frameworks/5.64/qqc2-desktop-style-$version.tar.xz"
 
 build() {
 	cd qqc2-desktop-style-$version

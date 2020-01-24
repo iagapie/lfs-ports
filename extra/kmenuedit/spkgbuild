@@ -5,7 +5,7 @@
 name=kmenuedit
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/kmenuedit-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/kmenuedit-$version.tar.xz"
 
 build() {
 	cd kmenuedit-$version

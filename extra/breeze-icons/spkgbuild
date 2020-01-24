@@ -5,7 +5,7 @@
 name=breeze-icons
 version=5.64.0
 release=1
-source=(http://download.kde.org/stable/frameworks/5.64/breeze-icons-$version.tar.xz)
+source="http://download.kde.org/stable/frameworks/5.64/breeze-icons-$version.tar.xz"
 
 build() {
 	cd breeze-icons-$version

@@ -5,8 +5,8 @@
 name=docbook-utils
 version=0.6.14
 release=1
-source=(ftp://sourceware.org/pub/docbook-tools/new-trials/SOURCES/docbook-utils-$version.tar.gz
-	docbook-utils-$version-grep_fix-1.patch)
+source="ftp://sourceware.org/pub/docbook-tools/new-trials/SOURCES/docbook-utils-$version.tar.gz
+		docbook-utils-$version-grep_fix-1.patch"
 
 build() {
 	cd $name-$version

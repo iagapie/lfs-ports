@@ -5,7 +5,7 @@
 name=drkonqi
 version=5.17.3
 release=1
-source=(http://download.kde.org/stable/plasma/5.17.3/drkonqi-$version.tar.xz)
+source="http://download.kde.org/stable/plasma/5.17.3/drkonqi-$version.tar.xz"
 
 build() {
 	cd drkonqi-$version
