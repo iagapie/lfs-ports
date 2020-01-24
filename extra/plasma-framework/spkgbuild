@@ -1,0 +1,19 @@
+# description	: plasma-framework
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri kirigami2
+
+name=plasma-framework
+version=5.64.0
+release=1
+source=(http://download.kde.org/stable/frameworks/5.64/plasma-framework-$version.tar.xz)
+
+build() {
+	cd plasma-framework-$version
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -Wno-dev ..
+    make
+	make DESTDIR=$PKG install
+}

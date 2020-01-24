@@ -1,0 +1,11 @@
+# description	: kde
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : extra-cmake-modules phonon-backend-gstreamer polkit-qt libdbusmenu-qt kf5-frameworks plasma google-chrome
+
+name=kde
+version=1.0
+release=1
+
+build() {
+	mkdir -pv $PKG/etc
+}

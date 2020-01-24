@@ -1,0 +1,19 @@
+# description	: kmediaplayer
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : boost extra-cmake-modules docbook-xml docbook-xsl giflib libepoxy libgcrypt libjpeg-turbo libpng libxslt lmdb phonon shared-mime-info uri
+
+name=kmediaplayer
+version=5.64.0
+release=1
+source=(https://download.kde.org/stable/frameworks/${version::4}/portingAids/$name-$version.tar.xz)
+
+build() {
+	cd kmediaplayer-$version
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -Wno-dev ..
+    make
+	make DESTDIR=$PKG install
+}
