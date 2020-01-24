@@ -1,0 +1,19 @@
+# description	: libmbim
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libgudev
+
+name=libmbim
+version=1.22.0
+release=1
+source="https://www.freedesktop.org/software/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--libexecdir=/usr/lib/$name \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}
