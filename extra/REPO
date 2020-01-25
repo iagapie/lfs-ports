@@ -332,7 +332,7 @@ f:49222b1f9efff57272437ba6c61526d0:kdecoration/spkgbuild
 f:5987216d26648c1b5df65f9586831d16:kross/spkgbuild
 f:cd77c05f823b8cf700a41d84d80db5ee:python2-libxml2/spkgbuild
 f:95db0085ead233bf6c705fd4109fccde:glib/spkgbuild
-f:ec34269b83d99e9972a967ecdd8ef921:phonon-backend-gstreamer/spkgbuild
+f:63037b980a8f465f62a48528042eaf30:phonon-backend-gstreamer/spkgbuild
 f:439a33a6bdf21a64907907940c007167:sdl2/spkgbuild
 f:10650311a8caea6945d5bb05464b22db:gconf/spkgbuild
 f:640ac798ae9f8f70f0ea63267a269a04:karchive/spkgbuild
