@@ -329,7 +329,7 @@ f:2f9f62200337594bc8564a67178229e0:gtk2/spkgbuild
 f:532cbb2374f2a462e515f3b97c8d4ee8:gtk2/install
 f:3b14b3aafd459fbf4a281403de0f3ee3:python3-markupsafe/spkgbuild
 f:70bde4f8e8d085f01c5782e442e97c55:slang/spkgbuild
-f:aa49ed004c4c269e1003e83f6752911c:graphviz/spkgbuild
+f:a266181f6d0377d78cef22563ab51a7a:graphviz/spkgbuild
 f:cf11cda711346edbda321727b8930f3b:gst-plugins-base/spkgbuild
 f:364c223d75f5dc510ebd6fedb0b16131:khotkeys/spkgbuild
 f:3dc28a3638183b642d753b72665943e4:gst-libav/spkgbuild
