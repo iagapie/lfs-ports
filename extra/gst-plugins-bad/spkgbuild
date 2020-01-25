@@ -1,0 +1,22 @@
+# description	: gst-plugins-bad
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : gst-plugins-base libdvdread libdvdnav llvm soundtouch
+
+name=gst-plugins-bad
+version=1.16.2
+release=1
+source="https://gstreamer.freedesktop.org/src/gst-plugins-bad/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr     \
+	            --disable-wayland \
+	            --disable-opencv  \
+		    --disable-nls     \
+		    --with-package-name="GStreamer Bad Plugins $version BLFS"
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/gtk-doc
+}

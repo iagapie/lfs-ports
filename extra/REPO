@@ -28,6 +28,7 @@ d:slang
 d:graphviz
 d:gst-plugins-base
 d:khotkeys
+d:gst-libav
 d:kf5-frameworks
 d:bdftopcf
 d:kcoreaddons
@@ -182,6 +183,7 @@ d:kfilemetadata
 d:krunner
 d:ark
 d:plasma-framework
+d:gst-plugins-good
 d:libmtp
 d:libsass
 d:plasma-integration
@@ -248,6 +250,7 @@ d:kwallet
 d:autoconf2.13
 d:libgpg-error
 d:cups
+d:gst-plugins-bad
 d:libqmi
 d:kdelibs4support
 d:breeze-gtk
@@ -281,6 +284,7 @@ d:kapidox
 d:libpwquality
 d:cmake
 d:plasma-workspace-wallpapers
+d:gst-plugins-ugly
 d:modemmanager-qt
 d:kidletime
 d:breeze-grub
@@ -324,6 +328,7 @@ f:70bde4f8e8d085f01c5782e442e97c55:slang/spkgbuild
 f:aa49ed004c4c269e1003e83f6752911c:graphviz/spkgbuild
 f:cf11cda711346edbda321727b8930f3b:gst-plugins-base/spkgbuild
 f:364c223d75f5dc510ebd6fedb0b16131:khotkeys/spkgbuild
+f:3dc28a3638183b642d753b72665943e4:gst-libav/spkgbuild
 f:85bec2b7ffa7b3209b43d790238197f2:kf5-frameworks/spkgbuild
 f:b6bd756464bbfc5474fb7d2383124264:bdftopcf/spkgbuild
 f:e164329fe4ac1e7fec60a8d962254b3c:kcoreaddons/spkgbuild
@@ -332,7 +337,7 @@ f:49222b1f9efff57272437ba6c61526d0:kdecoration/spkgbuild
 f:5987216d26648c1b5df65f9586831d16:kross/spkgbuild
 f:cd77c05f823b8cf700a41d84d80db5ee:python2-libxml2/spkgbuild
 f:95db0085ead233bf6c705fd4109fccde:glib/spkgbuild
-f:63037b980a8f465f62a48528042eaf30:phonon-backend-gstreamer/spkgbuild
+f:db5d6b99ce4e5ba65d9e3b025a10e9b3:phonon-backend-gstreamer/spkgbuild
 f:439a33a6bdf21a64907907940c007167:sdl2/spkgbuild
 f:10650311a8caea6945d5bb05464b22db:gconf/spkgbuild
 f:640ac798ae9f8f70f0ea63267a269a04:karchive/spkgbuild
@@ -493,6 +498,7 @@ f:10e1da97f03949740c995d6e5ae504e3:kfilemetadata/spkgbuild
 f:a3947d525f8ef636e128d4aa3c51a01f:krunner/spkgbuild
 f:c78f5259609997dd9b450ee54b1e4fa1:ark/spkgbuild
 f:4596c320606a7f2f62dcce7378abb580:plasma-framework/spkgbuild
+f:eb9f3f61667ebdb27f689dd042b4cf8e:gst-plugins-good/spkgbuild
 f:48c430be9a43b89c46e5ee4d1271f282:libmtp/spkgbuild
 f:8f5e0d58f530fd795e59e2a3d4f9dc88:libsass/spkgbuild
 f:f1b1391ad0fbaae11e7e27d28d705ca8:plasma-integration/spkgbuild
@@ -567,6 +573,7 @@ f:9ceaee69e62767770eb473d5242db70d:autoconf2.13/autoconf-2.13-consolidated_fixes
 f:0ef91c028f5297fd9682c51b7a0d7e8a:libgpg-error/spkgbuild
 f:d96ba8cf995beb0241eab67764946ad4:cups/spkgbuild
 f:9599eb7ae1de949e4b27cb95aa44042f:cups/install
+f:39dc484c6a8952cac243610aace6d258:gst-plugins-bad/spkgbuild
 f:94a8edd8bdb3e7215cf8f821a493a2d1:libqmi/spkgbuild
 f:08d4537ce6233eb9a8001d0db2a940b7:kdelibs4support/spkgbuild
 f:28231581ce2cc0b80f6717f9f840ba8a:breeze-gtk/spkgbuild
@@ -602,6 +609,7 @@ f:5a7ce9346ae07f7a1ec0803e916444cc:kapidox/spkgbuild
 f:2c611ce4ba49b9e3685063bdabfc8607:libpwquality/spkgbuild
 f:46651a9a8b9b72731e506746b151f536:cmake/spkgbuild
 f:b2d00291df96d89a44a903355f83cd9e:plasma-workspace-wallpapers/spkgbuild
+f:d9489ec32aad09fef95a9ac09e51858f:gst-plugins-ugly/spkgbuild
 f:f7de6a8bd7985727077e1d6540212614:modemmanager-qt/spkgbuild
 f:82c6eb360a7833761aab1c27f099ba4b:kidletime/spkgbuild
 f:54b207be62cef3b50b7679775e43809e:breeze-grub/spkgbuild
