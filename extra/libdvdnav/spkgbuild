@@ -1,0 +1,18 @@
+# description	: libdvdnav
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libdvdread
+
+name=libdvdnav
+version=6.0.1
+release=1
+source="https://get.videolan.org/libdvdnav/$version/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+	
+	rm -r $PKG/usr/share
+}

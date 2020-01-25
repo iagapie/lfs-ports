@@ -30,6 +30,8 @@ d:gst-plugins-base
 d:khotkeys
 d:gst-libav
 d:kf5-frameworks
+d:liba52
+d:libdvdnav
 d:bdftopcf
 d:kcoreaddons
 d:kwindowsystem
@@ -166,6 +168,7 @@ d:libgcrypt
 d:networkmanager
 d:kservice
 d:json-glib
+d:soundtouch
 d:kdeplasma-addons
 d:libgusb
 d:kscreen
@@ -227,6 +230,7 @@ d:kunitconversion
 d:libvorbis
 d:breeze-icons
 d:dolphin
+d:libdvdread
 d:adwaita-icon-theme
 d:ffmpeg
 d:discover
@@ -330,6 +334,8 @@ f:cf11cda711346edbda321727b8930f3b:gst-plugins-base/spkgbuild
 f:364c223d75f5dc510ebd6fedb0b16131:khotkeys/spkgbuild
 f:3dc28a3638183b642d753b72665943e4:gst-libav/spkgbuild
 f:85bec2b7ffa7b3209b43d790238197f2:kf5-frameworks/spkgbuild
+f:754f4babcf3ee82d3d076eecab18f4b4:liba52/spkgbuild
+f:07b1aba422e329737a7c5da6e4d8736c:libdvdnav/spkgbuild
 f:b6bd756464bbfc5474fb7d2383124264:bdftopcf/spkgbuild
 f:e164329fe4ac1e7fec60a8d962254b3c:kcoreaddons/spkgbuild
 f:7ea841cdfa7ad9f7745ec54ee0800848:kwindowsystem/spkgbuild
@@ -481,6 +487,7 @@ f:758563ca0da1bdd0fcbb3b6c57d29ddc:networkmanager/spkgbuild
 f:8413b41cad9baa8bafb2c80ea4765dd8:networkmanager/install
 f:0c8a972dc5153ab018a4d8f08739d25b:kservice/spkgbuild
 f:201994e723762dd731b726afb38ef67c:json-glib/spkgbuild
+f:bf4ff0e5b4aeef5ff9d320eff6d6e6e8:soundtouch/spkgbuild
 f:077aedfbf18139778d98eb4323b028e7:kdeplasma-addons/spkgbuild
 f:98df41e356e30760bfaf8afb3cd1e431:libgusb/spkgbuild
 f:84e5b4b5c843067bfabac18388840757:kscreen/spkgbuild
@@ -547,6 +554,7 @@ f:bf15bc9b54ccf33749858a31cdf4a61d:kunitconversion/spkgbuild
 f:93a12f14d0a64f0519b8eda570cb6b2e:libvorbis/spkgbuild
 f:acec4b80710999f25b8a21231175c18b:breeze-icons/spkgbuild
 f:4a2ee47e46d4355a819a9cfe97998654:dolphin/spkgbuild
+f:1930052c3510fbf38508cf6db04487d4:libdvdread/spkgbuild
 f:2815ede19aa8f5b464c49f3b6a811edd:adwaita-icon-theme/spkgbuild
 f:00bc26b10f5d34ac35acc917c64e1698:ffmpeg/spkgbuild
 f:51da7cfa05683320cb7aae912e596e0d:discover/spkgbuild
