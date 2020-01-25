@@ -310,7 +310,7 @@ f:6ea1c4ee70d0c95ffdf6cdce722722f7:plasma-sdk/spkgbuild
 f:81a08bf68093656454b1b8db29efb214:iso-codes/spkgbuild
 f:deb3c7262764df88399970c493579030:pixman/spkgbuild
 f:fa865ab9826a359574ea36d74f799526:python2-cairo/spkgbuild
-f:efe7fa1bb0a7f9f212b8b611bb30f7e2:shared-mime-info/spkgbuild
+f:e114f6d696d5532c9795fa7a22c7639b:shared-mime-info/spkgbuild
 f:f9e330bd42d962efc99b1bfecd41ce49:shared-mime-info/install
 f:c072e2d8074d5b2adde92b62f71dd150:kauth/spkgbuild
 f:1c0f5df044d9aff30ff3fd7bdf034a2f:exiv2/spkgbuild
