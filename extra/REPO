@@ -547,7 +547,7 @@ f:51da7cfa05683320cb7aae912e596e0d:discover/spkgbuild
 f:43f330851e185383cc184d08fb54d37d:plasma-browser-integration/spkgbuild
 f:204ea4c19d736bde3551cf424a00f02e:libtheora/spkgbuild
 f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
-f:f6cfd220486b4723aa73d27a2b4c6660:gnutls/spkgbuild
+f:a233aa74e3610790839ec05e30ec5044:gnutls/spkgbuild
 f:33ad0674aea5daddf740c5e0f548ea27:kactivities-stats/spkgbuild
 f:eb24293ad6ab96c183041dd70184c179:grantlee/spkgbuild
 f:b4c9afe8ccb500de074b946a55b09858:kitemviews/spkgbuild
