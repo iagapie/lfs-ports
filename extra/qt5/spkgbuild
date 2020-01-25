@@ -7,15 +7,15 @@
 # depends		: python3 gst-plugins-base cups
 
 name=qt5
-version=5.14.0
+version=5.13.2
 release=1
-source="https://download.qt.io/archive/qt/${version%.*}/$version/single/qt-everywhere-src-$version.tar.xz
-		qt-5.14.0-qtwayland_cursor_fix-1.patch"
+source="https://download.qt.io/archive/qt/${version%.*}/$version/single/qt-everywhere-src-$version.tar.xz"
+#		qt-5.14.0-qtwayland_cursor_fix-1.patch"
 
 build() {
 	cd qt-everywhere-src-$version
 
-	patch -Np1 -i $SRC/qt-5.14.0-qtwayland_cursor_fix-1.patch
+#	patch -Np1 -i $SRC/qt-5.14.0-qtwayland_cursor_fix-1.patch
 
 	# This also sets default {C,CXX,LD}FLAGS for projects built using qmake
 	sed -i -e "s|^\(QMAKE_CFLAGS_RELEASE.*\)|\1 ${CFLAGS}|" \

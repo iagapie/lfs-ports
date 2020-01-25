@@ -5,13 +5,13 @@
 name=kitemviews
 version=5.64.0
 release=1
-source="http://download.kde.org/stable/frameworks/5.64/kitemviews-$version.tar.xz
-        kitemviews-5.64.0-qt-5.14.0.patch"
+source="http://download.kde.org/stable/frameworks/5.64/kitemviews-$version.tar.xz"
+#        kitemviews-5.64.0-qt-5.14.0.patch"
 
 build() {
 	cd kitemviews-$version
 
-    patch -Np1 -i $SRC/kitemviews-5.64.0-qt-5.14.0.patch
+#    patch -Np1 -i $SRC/kitemviews-5.64.0-qt-5.14.0.patch
 
     mkdir build
     cd    build
