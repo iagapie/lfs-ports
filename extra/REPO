@@ -78,6 +78,7 @@ d:kwidgetsaddons
 d:plasma-pa
 d:kimageformats
 d:libuv
+d:glib-networking
 d:powerdevil
 d:libgudev
 d:kemoticons
@@ -102,6 +103,7 @@ d:pipewire
 d:libtirpc
 d:kdeclarative
 d:mtdev
+d:xapian-core
 d:consolekit2
 d:fontconfig
 d:which
@@ -137,6 +139,7 @@ d:breeze-plymouth
 d:prison
 d:python2
 d:docbook-xsl
+d:libsndfile
 d:kde-cli-tools
 d:kdnssd
 d:openjade
@@ -169,6 +172,7 @@ d:nasm
 d:pcre
 d:attica
 d:libmng
+d:poppler-glib
 d:kinfocenter
 d:valgrind
 d:kirigami2
@@ -176,8 +180,11 @@ d:kfilemetadata
 d:krunner
 d:ark
 d:plasma-framework
+d:libmtp
+d:libsass
 d:plasma-integration
 d:kcodecs
+d:libpsl
 d:llvm
 d:okular
 d:docbook-xml
@@ -224,6 +231,7 @@ d:libtheora
 d:wayland
 d:gnutls
 d:kactivities-stats
+d:grantlee
 d:kitemviews
 d:plasma
 d:libdbusmenu-qt
@@ -231,9 +239,11 @@ d:alsa-lib
 d:kxmlgui
 d:khelpcenter
 d:kjs
+d:zip
 d:xdg-desktop-portal-kde
 d:opus
 d:kwallet
+d:autoconf2.13
 d:libgpg-error
 d:cups
 d:libqmi
@@ -366,6 +376,7 @@ f:020b8cba3788fee50e8f67d8c1fc29c2:kwidgetsaddons/spkgbuild
 f:3013ab7b8a8a1d65db9e2e2ab97792c3:plasma-pa/spkgbuild
 f:1ae7de77d6225bbe8e2706c40dd1d746:kimageformats/spkgbuild
 f:4e41320e4e2a8c1548406de63001daf6:libuv/spkgbuild
+f:572b4c59fea6e00502ad052f11c3c413:glib-networking/spkgbuild
 f:1feb519478c22f92a76d7215170c81c8:powerdevil/spkgbuild
 f:3862c10f9e7c02267ad5dc5483aab893:libgudev/spkgbuild
 f:bda1c823ee6a96e514b2fa04171ee270:kemoticons/spkgbuild
@@ -390,6 +401,7 @@ f:4d37f7daed89b8ceab7d0135eef5c01b:pipewire/spkgbuild
 f:e08cff58c9900b74159e74f3ca0474a6:libtirpc/spkgbuild
 f:eb0ef84f504aa46089e0c5678d0d0bd7:kdeclarative/spkgbuild
 f:64ad7d4540f21eea9e7b9652c82a3f2a:mtdev/spkgbuild
+f:93643a8b59143a955708a109df86660d:xapian-core/spkgbuild
 f:a4e826bef5a2c577326ef4cf849b6601:consolekit2/spkgbuild
 f:d75ed3438dab01552304c06fd9a967b1:consolekit2/pam-foreground-compat.ck
 f:b3ffe7378c7bf18a6dc1c74c3a74db7a:fontconfig/spkgbuild
@@ -432,6 +444,7 @@ f:93238308160f4b0325cc6257e16d0fe2:python2/pyconfig.h
 f:8457bd6ee6b06fbc6dc540e1b096f766:docbook-xsl/docbook-xsl-stack_fix-1.patch
 f:87d1b10d9c734ba1e5520e804e2f0c42:docbook-xsl/spkgbuild
 f:a21cfc436582d0a773651d08448535b5:docbook-xsl/install
+f:cd95b910b35b43a5c31f52adabe1572e:libsndfile/spkgbuild
 f:0c6c7a6d9c107d7340e7044b49d3c701:kde-cli-tools/spkgbuild
 f:fb37b21016e0e08a1360170f68c48052:kdnssd/spkgbuild
 f:77096b93852a397bbde63e5cb7319825:openjade/spkgbuild
@@ -468,6 +481,7 @@ f:4c4180acb39b6a9cb8784a4c8e3c27f9:nasm/spkgbuild
 f:640f5e5ec963ef2d1ebfd499cc17f922:pcre/spkgbuild
 f:9d5d8f6c8564fc1ecc44a0028756bf3d:attica/spkgbuild
 f:e7cebedab10c801e932aa8facbefa9a9:libmng/spkgbuild
+f:b80e44146c8bd897018f597ac0f5e19a:poppler-glib/spkgbuild
 f:7dafec63414dd5b958a65ade28a2d073:kinfocenter/spkgbuild
 f:87965abd150d7840ee921422a03c2275:valgrind/spkgbuild
 f:f015215be39e91b81fa39c2dded2653c:kirigami2/spkgbuild
@@ -475,8 +489,11 @@ f:10e1da97f03949740c995d6e5ae504e3:kfilemetadata/spkgbuild
 f:a3947d525f8ef636e128d4aa3c51a01f:krunner/spkgbuild
 f:c78f5259609997dd9b450ee54b1e4fa1:ark/spkgbuild
 f:4596c320606a7f2f62dcce7378abb580:plasma-framework/spkgbuild
+f:48c430be9a43b89c46e5ee4d1271f282:libmtp/spkgbuild
+f:8f5e0d58f530fd795e59e2a3d4f9dc88:libsass/spkgbuild
 f:f1b1391ad0fbaae11e7e27d28d705ca8:plasma-integration/spkgbuild
 f:aa26f82736671fbdeba52b4f998fcf6c:kcodecs/spkgbuild
+f:c5691226259c78b44ddbc48110b722ba:libpsl/spkgbuild
 f:378a2cdcf9748c608676c4a68bbc1c19:llvm/spkgbuild
 f:f42261db7a2dc7495ba3c9e2c8b62394:llvm/llvm-config.h
 f:b759fcc82b10c1c1c7b61e9baadc66c1:okular/spkgbuild
@@ -528,6 +545,7 @@ f:204ea4c19d736bde3551cf424a00f02e:libtheora/spkgbuild
 f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
 f:f6cfd220486b4723aa73d27a2b4c6660:gnutls/spkgbuild
 f:33ad0674aea5daddf740c5e0f548ea27:kactivities-stats/spkgbuild
+f:eb24293ad6ab96c183041dd70184c179:grantlee/spkgbuild
 f:b4c9afe8ccb500de074b946a55b09858:kitemviews/spkgbuild
 f:fa9ab4ce58db352fc9477e5cb8dacdc0:plasma/spkgbuild
 f:b3f5b25b9e342426968b28c59414f025:plasma/README.md
@@ -536,9 +554,12 @@ f:68ddccce0a5406a22bde6d4b5839f870:alsa-lib/spkgbuild
 f:672bd599a0d0db3ea7a86576f8ca9576:kxmlgui/spkgbuild
 f:2e9689f5460435d2d887ebc0751eecc1:khelpcenter/spkgbuild
 f:1993eb1fd1d0553f8cc2661374e51821:kjs/spkgbuild
+f:2ba02a78a28ac0d1bf3e8ea22df14c85:zip/spkgbuild
 f:50301e9938f78af3f826279b2f229a16:xdg-desktop-portal-kde/spkgbuild
 f:43db5e2bb311ea429b731ec5e7f7db74:opus/spkgbuild
 f:e67721334a4834b2c831601bf23940cb:kwallet/spkgbuild
+f:d37f72c5dd68c9bb5df10b5af089d5c3:autoconf2.13/spkgbuild
+f:9ceaee69e62767770eb473d5242db70d:autoconf2.13/autoconf-2.13-consolidated_fixes-1.patch
 f:0ef91c028f5297fd9682c51b7a0d7e8a:libgpg-error/spkgbuild
 f:d96ba8cf995beb0241eab67764946ad4:cups/spkgbuild
 f:9599eb7ae1de949e4b27cb95aa44042f:cups/install

@@ -1,0 +1,16 @@
+# description	: xapian-core
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=xapian-core
+version=1.4.14
+release=1
+source="https://oligarchy.co.uk/xapian/$version/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+	rm -r $PKG/usr/share/doc
+}

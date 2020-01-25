@@ -1,0 +1,16 @@
+# description	: libsass
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=libsass
+version=3.6.3
+release=1
+source="https://github.com/sass/$name/archive/$version/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	autoreconf -vfi
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}
