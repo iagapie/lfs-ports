@@ -5,10 +5,13 @@
 name=kitemviews
 version=5.64.0
 release=1
-source="http://download.kde.org/stable/frameworks/5.64/kitemviews-$version.tar.xz"
+source="http://download.kde.org/stable/frameworks/5.64/kitemviews-$version.tar.xz
+        70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch"
 
 build() {
 	cd kitemviews-$version
+
+    patch -Np1 -i $SRC/70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch
 
     mkdir build
     cd    build
@@ -16,4 +19,6 @@ build() {
     cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_PREFIX_PATH=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -Wno-dev ..
     make
 	make DESTDIR=$PKG install
+
+    rm -r $PKG/usr/share/locale
 }

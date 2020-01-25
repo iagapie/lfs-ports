@@ -544,7 +544,7 @@ f:e613a7f1c157233c86cf474dd07718e6:libvpx/spkgbuild
 f:0342aa1496e59b913978488eb835d290:phonon/spkgbuild
 f:bc36caaf771b1dde23da5d6c74324640:harfbuzz/spkgbuild
 f:a0d2e721a2a5e0c7f1cef066c5eafe8a:ktextwidgets/spkgbuild
-f:b79d98b1235afcede28e9a4775703b9c:qt5/spkgbuild
+f:043245b7ca4c5534db7a0660a47fe0b3:qt5/spkgbuild
 f:b7127bfacdd730c60a9938034bd2f30f:qt5/qt-5.14.0-qtwayland_cursor_fix-1.patch
 f:58da83aeaf3f86eca506da710ecfe40f:kcalendarcore/spkgbuild
 f:0343f86f34402e147f8ad05cf2cc0142:nettle/spkgbuild
@@ -564,7 +564,8 @@ f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
 f:a233aa74e3610790839ec05e30ec5044:gnutls/spkgbuild
 f:33ad0674aea5daddf740c5e0f548ea27:kactivities-stats/spkgbuild
 f:eb24293ad6ab96c183041dd70184c179:grantlee/spkgbuild
-f:b4c9afe8ccb500de074b946a55b09858:kitemviews/spkgbuild
+f:5a35d9639bc0f9f9e2ac109539b2a9a4:kitemviews/70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch
+f:d8a6f7e7ef322aa7229af9f572035897:kitemviews/spkgbuild
 f:fa9ab4ce58db352fc9477e5cb8dacdc0:plasma/spkgbuild
 f:b3f5b25b9e342426968b28c59414f025:plasma/README.md
 f:4a4d4bb515c4f191386a543323fbab6f:libdbusmenu-qt/spkgbuild

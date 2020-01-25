@@ -1,0 +1,59 @@
+From fe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1 Mon Sep 17 00:00:00 2001
+From: Andreas Sturmlechner <asturm@gentoo.org>
+Date: Mon, 23 Dec 2019 12:12:28 +0100
+Subject: kde-frameworks/kitemviews: Fix 5.64.0 build with Qt 5.14.0
+
+Upstream commit 69b9ac0575d905ded79ed013c6e2374d9ebeb841
+
+Reported-by: Scott Alfter <scott@alfter.us>
+Closes: https://bugs.gentoo.org/703586
+Package-Manager: Portage-2.3.82, Repoman-2.3.20
+Signed-off-by: Andreas Sturmlechner <asturm@gentoo.org>
+---
+ .../files/kitemviews-5.64.0-qt-5.14.0.patch        | 23 ++++++++++++++++++++++
+ kde-frameworks/kitemviews/kitemviews-5.64.0.ebuild |  2 ++
+ 2 files changed, 25 insertions(+)
+ create mode 100644 kde-frameworks/kitemviews/files/kitemviews-5.64.0-qt-5.14.0.patch
+
+diff --git a/kde-frameworks/kitemviews/files/kitemviews-5.64.0-qt-5.14.0.patch b/kde-frameworks/kitemviews/files/kitemviews-5.64.0-qt-5.14.0.patch
+new file mode 100644
+index 00000000000..a714554ac00
+--- /dev/null
++++ b/kde-frameworks/kitemviews/files/kitemviews-5.64.0-qt-5.14.0.patch
+@@ -0,0 +1,23 @@
++From 69b9ac0575d905ded79ed013c6e2374d9ebeb841 Mon Sep 17 00:00:00 2001
++From: Roman Gilg <subdiff@gmail.com>
++Date: Fri, 22 Nov 2019 17:48:20 +0100
++Subject: Add missing include for Qt 5.14 build
++
++---
++ src/kwidgetitemdelegatepool_p.h | 1 +
++ 1 file changed, 1 insertion(+)
++
++diff --git a/src/kwidgetitemdelegatepool_p.h b/src/kwidgetitemdelegatepool_p.h
++index 206ee0e..9d0147b 100644
++--- a/src/kwidgetitemdelegatepool_p.h
+++++ b/src/kwidgetitemdelegatepool_p.h
++@@ -24,6 +24,7 @@
++ 
++ #include <QHash>
++ #include <QList>
+++#include <QPersistentModelIndex>
++ 
++ class QWidget;
++ class QStyleOptionViewItem;
++-- 
++cgit v1.1
+diff --git a/kde-frameworks/kitemviews/kitemviews-5.64.0.ebuild b/kde-frameworks/kitemviews/kitemviews-5.64.0.ebuild
+index 748451a9b43..61cdfe5533f 100644
+--- a/kde-frameworks/kitemviews/kitemviews-5.64.0.ebuild
++++ b/kde-frameworks/kitemviews/kitemviews-5.64.0.ebuild
+@@ -22,3 +22,5 @@ DEPEND="
+ 	>=dev-qt/qtwidgets-${QTMIN}:5
+ "
+ RDEPEND="${DEPEND}"
++
++PATCHES=( "${FILESDIR}/${P}-qt-5.14.0.patch" )
+-- 
+cgit v1.2.1
+
