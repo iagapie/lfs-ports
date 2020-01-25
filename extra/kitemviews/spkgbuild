@@ -6,12 +6,12 @@ name=kitemviews
 version=5.64.0
 release=1
 source="http://download.kde.org/stable/frameworks/5.64/kitemviews-$version.tar.xz
-        70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch"
+        kitemviews-5.64.0-qt-5.14.0.patch"
 
 build() {
 	cd kitemviews-$version
 
-    patch -Np1 -i $SRC/70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch
+    patch -Np1 -i $SRC/kitemviews-5.64.0-qt-5.14.0.patch
 
     mkdir build
     cd    build

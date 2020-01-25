@@ -564,8 +564,8 @@ f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
 f:a233aa74e3610790839ec05e30ec5044:gnutls/spkgbuild
 f:33ad0674aea5daddf740c5e0f548ea27:kactivities-stats/spkgbuild
 f:eb24293ad6ab96c183041dd70184c179:grantlee/spkgbuild
-f:5a35d9639bc0f9f9e2ac109539b2a9a4:kitemviews/70c9ad892fde1a6889a5dc3f741e5448540ac2effe41c1c20b0d864a6399ac72bc3aa6dabac6b9e1.patch
-f:d8a6f7e7ef322aa7229af9f572035897:kitemviews/spkgbuild
+f:0c77843873f3138f3ccb49b566b1b496:kitemviews/kitemviews-5.64.0-qt-5.14.0.patch
+f:7c10a7fa28a71c404fe35634ebe9a42a:kitemviews/spkgbuild
 f:fa9ab4ce58db352fc9477e5cb8dacdc0:plasma/spkgbuild
 f:b3f5b25b9e342426968b28c59414f025:plasma/README.md
 f:4a4d4bb515c4f191386a543323fbab6f:libdbusmenu-qt/spkgbuild
