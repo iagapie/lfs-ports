@@ -1,0 +1,16 @@
+# description	: libidn2
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libunistring
+
+name=libidn2
+version=2.3.0
+release=1
+source="ftp://ftp.gnu.org/gnu/libidn/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

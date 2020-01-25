@@ -122,6 +122,7 @@ d:libkdcraw
 d:kdesu
 d:libksysguard
 d:plasma-nm
+d:flac
 d:libxslt
 d:lmdb
 d:kjsembed
@@ -149,6 +150,7 @@ d:pulseaudio
 d:knotifyconfig
 d:kde-gtk-config
 d:at-spi2-atk
+d:libidn2
 d:python3-pygments
 d:plymouth-kcm
 d:python3-gobject3
@@ -421,6 +423,7 @@ f:721058e0893481c1b655b13e6bd3838a:libkdcraw/spkgbuild
 f:5ac05e7f50367cb3ee54f3202893fb18:kdesu/spkgbuild
 f:de76c3fb648fc569b266fd3289ca127b:libksysguard/spkgbuild
 f:e7393a85831103edd2c6cc932263d80c:plasma-nm/spkgbuild
+f:01f8fe89a36d710b1d3e157942ca907f:flac/spkgbuild
 f:3d67d705fdc880312784e158741c6587:libxslt/spkgbuild
 f:110399bb30e39a80307be207dec86d62:lmdb/spkgbuild
 f:ddb424670fd8a4cec1b94b0047ca1b02:kjsembed/spkgbuild
@@ -456,6 +459,7 @@ f:307981017c37ecd1329a5e176a4eef06:pulseaudio/spkgbuild
 f:ab5b5287ff5c2dd9ef3e1aa7b6738f81:knotifyconfig/spkgbuild
 f:3fe590888656b83193eea769fdbe05b6:kde-gtk-config/spkgbuild
 f:3dd853a28b7d4d11c51da0360b5325f5:at-spi2-atk/spkgbuild
+f:cb9154ce957af47d6fe158c4a9aa48c7:libidn2/spkgbuild
 f:74b6a86a10fac7c88e08b1dc36d61e9e:python3-pygments/spkgbuild
 f:39e4cb639091bb9549e870838ce55988:plymouth-kcm/spkgbuild
 f:b2105f390290a22af1caeaad28bb3679:python3-gobject3/spkgbuild
@@ -504,7 +508,7 @@ f:99fa93d5e7fb5d622cef0f9621f3ffa3:google-chrome/google-chrome-stable.sh
 f:42a94f705117fa96c5b47e26f93019bf:kgamma5/spkgbuild
 f:fc417a7eb39b1555fea226165241a6df:threadweaver/spkgbuild
 f:0e3a78daa88db84d8a2c1b984c11fa64:x265/spkgbuild
-f:2463dafd155c0d201613fc6fc200694e:kde/spkgbuild
+f:49aa3b4475ec88f9082ba28c4a67cf68:kde/spkgbuild
 f:376fd4b9b366d2aaecfaf2079185c08d:libraw/spkgbuild
 f:1dcb359b4f65c748338a573d6713e576:python3-mako/spkgbuild
 f:53aa8d32b06e573eda37284de16501e6:ktexteditor/spkgbuild
