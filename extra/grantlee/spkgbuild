@@ -9,8 +9,6 @@ source="http://downloads.grantlee.org/$name-$version.tar.gz"
 
 build() {
 	cd $name-$version
-
-	patch -Np1 -i $SRC/grantlee-$version-upstream_fixes-2.patch
 	
 	mkdir build
 	cd    build
