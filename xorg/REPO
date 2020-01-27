@@ -191,7 +191,7 @@ f:3cba367142eeda2b2996ed270401c89c:font-xfree86-type1/spkgbuild
 f:9a031a41600b27c2f54f95c0df6dfdcf:libxcb/spkgbuild
 f:a26c7608e3ff075dec624f02565cc7a4:libxau/spkgbuild
 f:b424ea9f26ad111a9f0da83ddd088fee:libxdamage/spkgbuild
-f:2df80864b0a563e1a9f8be57fe139129:nvidia-modules/spkgbuild
+f:15547b112eed29295a0bd86a574045df:nvidia-modules/spkgbuild
 f:5750dcd52492ef28f99e49a462859fd0:nvidia-modules/install
 f:e283aa23e5b1da5a9ab5133ee1f52b66:libxt/spkgbuild
 f:8a9d86aa4a5bc075ecafefbeb7428f77:font-daewoo-misc/spkgbuild
@@ -234,7 +234,7 @@ f:0002877a5354ed6246f9a1d178fe5c64:libxxf86vm/spkgbuild
 f:09e9bfa1564b4e2976ec8106922e091d:libxscrnsaver/spkgbuild
 f:21b31fdc6cacd5bb24aed82c06f37913:xterm/xterm_remove_list
 f:9bb8248ca30d22a933d99e4639cb1dd0:xterm/spkgbuild
-f:9adfa2f3514369eff8b8441c763fbfd1:nvidia/spkgbuild
+f:ce56337edb329f7238af74a891f4486c:nvidia/spkgbuild
 f:e5dfa2f0a411ed33827021f32bc35e46:nvidia/nvidia-drm-outputclass.conf
 f:c5f53b6502a1cfdb68862e1df62931ee:xorg-applications/spkgbuild
 f:4b7c03ee881edde51345627a8f6da15f:xkbutils/spkgbuild
