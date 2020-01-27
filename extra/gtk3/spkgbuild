@@ -1,6 +1,6 @@
 # description	: gtk3
 # maintainer	: iagapie, igoragapie at gmail.com
-# depends	    : at-spi2-atk colord cups docbook-utils gtk-doc json-glib
+# depends	    : at-spi2-atk colord cups gtk-doc json-glib
 
 name=gtk3
 version=3.24.13

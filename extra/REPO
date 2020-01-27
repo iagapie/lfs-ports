@@ -405,7 +405,7 @@ f:f5fcf9b30798009edae31fb385becfab:google-chrome/spkgbuild
 f:22e2034961ef085b69c8e991da2cbdbb:prison/spkgbuild
 f:33ad0674aea5daddf740c5e0f548ea27:kactivities-stats/spkgbuild
 f:6f77fdc7c8d73829dd361a746d51571b:kdoctools/spkgbuild
-f:7ef59fadd4199c078b1006b9753a080c:gtk3/spkgbuild
+f:06f1e16e467a2b27fcfabecac42a20bc:gtk3/spkgbuild
 f:2d6155cc2d65cf7e9fab079fad61cc63:gtk3/install
 f:cf01ca20a8a31d1891d8b26499c17653:libndp/spkgbuild
 f:e7393a85831103edd2c6cc932263d80c:plasma-nm/spkgbuild
