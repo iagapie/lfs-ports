@@ -19,7 +19,7 @@ build() {
 
 	ln -sfv ../../sbin/xtables-legacy-multi $PKG/usr/bin/iptables-xml
 
-	for file in ip4tc ip6tc ipq iptc xtables
+	for file in ip4tc ip6tc ipq xtables
 	do
 	  mv -v $PKG/usr/lib/lib${file}.so.* $PKG/lib
 	  ln -sfv ../../lib/$(readlink $PKG/usr/lib/lib${file}.so) $PKG/usr/lib/lib${file}.so
