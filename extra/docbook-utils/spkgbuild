@@ -11,7 +11,7 @@ source="ftp://sourceware.org/pub/docbook-tools/new-trials/SOURCES/docbook-utils-
 build() {
 	cd $name-$version
 
-	patch -Np1 -i ../docbook-utils-$version-grep_fix-1.patch
+	patch -Np1 -i $SRC/docbook-utils-$version-grep_fix-1.patch
 	sed -i 's:/html::' doc/HTML/Makefile.in
 
 	./configure --prefix=/usr --mandir=/usr/share/man
