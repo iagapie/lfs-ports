@@ -110,8 +110,8 @@ f:279ba16b7282e5770e8cfd9f9d37a76f:grep/spkgbuild
 f:d5ee1c2d5f58717e3a161820b580952b:shadow/passwd
 f:94d9e3d38a55cff9322fe42bdb5f9c6a:shadow/su
 f:5dc1ce15e61535adb1f9b1e5d69edf24:shadow/login
-f:54cea9324bffb9a4d71ddf5d6e60173c:shadow/spkgbuild
-f:c1206ee0904d3c886f3cf15a8a9b04f8:shadow/install
+f:563aa3056d1765c12df1d7982046bf8a:shadow/spkgbuild
+f:afdf7322e30fd3a0ed8cebcc3480319d:shadow/install
 f:82038ac7601477a041e083bc94061f5a:shadow/chage
 f:92662355675f8710a888ce079ae62cdd:vim/spkgbuild
 f:62c9f84dfd6df5d771b1d139ce65d916:less/spkgbuild
