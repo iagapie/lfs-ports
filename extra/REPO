@@ -561,7 +561,7 @@ f:5000abcb3e64b35ea93fe694ed9cb77c:wayland/spkgbuild
 f:c94ba6d094a0980f6936df2a6237efe4:libjpeg-turbo/spkgbuild
 f:53802b57f7821d5573e12eacc266ac3c:libgcrypt/spkgbuild
 f:bd0f196941c809c84fbfd964f9d6a9a7:solid/spkgbuild
-f:151e8532166a899017101206371a8728:plasma-workspace/spkgbuild
+f:cc2ce5ed18f409c4582adfbcd282ea0d:plasma-workspace/spkgbuild
 f:2e2d2594ea223fb0caf67506afb50785:kitemviews/spkgbuild
 f:0c77843873f3138f3ccb49b566b1b496:kitemviews/kitemviews-5.64.0-qt-5.14.0.patch
 f:42a94f705117fa96c5b47e26f93019bf:kgamma5/spkgbuild
