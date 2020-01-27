@@ -449,7 +449,7 @@ f:eb813ca977b7839a50c546bf7f59f4d6:libmbim/spkgbuild
 f:6ec6f278ea28606bc0dd7f5008613e05:khtml/spkgbuild
 f:bf5c4396f50efa1cd962ebd1a4138956:ksysguard/spkgbuild
 f:6a290f0f1a6cd4170d3077715237a37f:python-gobject3-common/spkgbuild
-f:969ba2fdf8a0516eee7a6de37b1b8954:docbook-utils/spkgbuild
+f:309b2324418d804027deae16eb897d6a:docbook-utils/spkgbuild
 f:9acefe856adfb13f0efabb68c8c6c745:docbook-utils/docbook-utils-0.6.14-grep_fix-1.patch
 f:d348151efda2ea7cfc856df9edd2922d:icu/spkgbuild
 f:2ac0ca8720d8471e6cc15b3026113650:alsa-plugins/spkgbuild
