@@ -353,7 +353,7 @@ f:a812b2a336e1e6752aaaf9bffe091925:libsoup/spkgbuild
 f:b15d4ead6705468f45cb68b27e56ff15:which/spkgbuild
 f:10650311a8caea6945d5bb05464b22db:gconf/spkgbuild
 f:46651a9a8b9b72731e506746b151f536:cmake/spkgbuild
-f:eb24293ad6ab96c183041dd70184c179:grantlee/spkgbuild
+f:6ee5d3bc1ba3a2bdbfe334117aa5aa62:grantlee/spkgbuild
 f:6fb3d1b2714976d7e087a79f470d058c:baloo/spkgbuild
 f:077aedfbf18139778d98eb4323b028e7:kdeplasma-addons/spkgbuild
 f:378a2cdcf9748c608676c4a68bbc1c19:llvm/spkgbuild
