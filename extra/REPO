@@ -344,7 +344,7 @@ f:e9f57dcdb7116e14ed3cbfd29125e66a:gsettings-desktop-schemas/spkgbuild
 f:7c81fe5f832644fc7549df2bc118d082:kcmutils/spkgbuild
 f:026fe7383e8670d928e1d454630cd3ec:docbook-dsssl/spkgbuild
 f:bb5b37a7164b9379e9ecb46e32f95d08:docbook-dsssl/install
-f:758563ca0da1bdd0fcbb3b6c57d29ddc:networkmanager/spkgbuild
+f:9ee290bc0b2ff21df1228c30f99f6c71:networkmanager/spkgbuild
 f:8413b41cad9baa8bafb2c80ea4765dd8:networkmanager/install
 f:c8bd984f42f4ca287fd7d48e3e743b2a:knotifications/spkgbuild
 f:2df772686dd6d6c72fae72eebbd1133b:docbook-xml/spkgbuild
