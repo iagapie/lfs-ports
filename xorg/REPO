@@ -59,6 +59,7 @@ d:font-alias
 d:xbitmaps
 d:xsetroot
 d:libsm
+d:xf86-video-vesa
 d:libva
 d:font-adobe-100dpi
 d:xinit
@@ -182,6 +183,7 @@ f:3cfec5c97e28dfd30f11453acef9b873:font-alias/spkgbuild
 f:eae9806a11b4bbfe3aaa7f053cf3f6cc:xbitmaps/spkgbuild
 f:52d6988bbf5f177100ddc2429803844a:xsetroot/spkgbuild
 f:da1ec7b6a57959c744b2af73f5c23cac:libsm/spkgbuild
+f:552d9192774942a67afeaaa030e06ba3:xf86-video-vesa/spkgbuild
 f:ac86a195b624735a90ddf8f02c2a5212:libva/spkgbuild
 f:35ed224bc01d69547415ad9f0d27bcb6:font-adobe-100dpi/spkgbuild
 f:e2172016e8cd2edb2ab4135e365647ae:xinit/spkgbuild
