@@ -144,7 +144,7 @@ f:e3882d67c75a89f88fe6df9ef93861f3:filesystem/hosts
 f:2ed0cf9d92e8a8fa49a41918b8a0207f:filesystem/shells
 f:bea100ab7007699569cb3d10a3111f68:filesystem/readline.sh
 f:3e47d3ddb26a72616c5889a4f266cadf:filesystem/resolv.conf
-f:b62806bf11788ed2db39ff05d2b7b31e:filesystem/spkgbuild
+f:ff70669c62d77cce3ce7536ba5f68e8f:filesystem/spkgbuild
 f:f1dd87922e8fddfe73ef20ae76c2f777:filesystem/umask.sh
 f:f70bbec388eac3b99a99718b96b6d4c6:filesystem/bash_logout.skel
 f:b5e4b922294585e597aba21a4c3307ff:filesystem/dircolors.sh

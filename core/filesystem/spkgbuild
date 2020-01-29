@@ -44,8 +44,6 @@ build() {
 	mkdir -pv $PKG/usr/{libexec,ports}
 	mkdir -pv $PKG/usr/{,local/}share/man/man{1..8}
 	mkdir -pv $PKG/usr/lib/pkgconfig
-	mkdir -pv $PKG/sources
-	mkdir -pv $PKG/packages
 
 	case $(uname -m) in
 		x86_64) mkdir -pv $PKG/lib64 ;;
