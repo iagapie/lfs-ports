@@ -424,7 +424,7 @@ f:0c6c7a6d9c107d7340e7044b49d3c701:kde-cli-tools/spkgbuild
 f:87d1b10d9c734ba1e5520e804e2f0c42:docbook-xsl/spkgbuild
 f:a21cfc436582d0a773651d08448535b5:docbook-xsl/install
 f:8457bd6ee6b06fbc6dc540e1b096f766:docbook-xsl/docbook-xsl-stack_fix-1.patch
-f:1764c36eec26389e31dbe49bd04bd50b:colord/spkgbuild
+f:b31bf83c7825b3f7f2db269f8dd5a3ce:colord/spkgbuild
 f:692a8fd485d09516db0071f9182c8a28:colord/install
 f:fa865ab9826a359574ea36d74f799526:python2-cairo/spkgbuild
 f:61f469d1a9edfad7ade1369a7b9d8c5e:yasm/spkgbuild
@@ -496,7 +496,7 @@ f:85bec2b7ffa7b3209b43d790238197f2:kf5-frameworks/spkgbuild
 f:191c4349489cf697dd7ab6f67cd53149:kcompletion/spkgbuild
 f:e7cebedab10c801e932aa8facbefa9a9:libmng/spkgbuild
 f:bf4ff0e5b4aeef5ff9d320eff6d6e6e8:soundtouch/spkgbuild
-f:621edd970b6e3dc9daddf8a5cd27e0de:qt5/spkgbuild
+f:32cac0c17495d8838c102e9a380809bd:qt5/spkgbuild
 f:b7127bfacdd730c60a9938034bd2f30f:qt5/qt-5.14.0-qtwayland_cursor_fix-1.patch
 f:384cdbccb87c23c4de80e0b9052c36f7:pcre2/spkgbuild
 f:e164329fe4ac1e7fec60a8d962254b3c:kcoreaddons/spkgbuild

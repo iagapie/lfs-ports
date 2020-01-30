@@ -132,7 +132,7 @@ f:affc784a1b36717b81bcaaa933710edb:iana-etc/spkgbuild
 f:947ad13e7135ae8b4e08fd8d8a4ed0a3:dhcpcd/spkgbuild
 f:aa3b01968fe25e4b942a7ad3e3d47c51:filesystem/bashrc
 f:401c94ea557603429dd0d64ecfe0c48f:filesystem/bash_completion.sh
-f:79bd26920f089fde5de9722cf3757680:filesystem/fstab
+f:5e650bccc107eb47936b012278b1897d:filesystem/fstab
 f:ca2b6f93f0f43a1c42cf6c7fd2c50f76:filesystem/passwd
 f:7aefcb94648444c706bae911025f5c3d:filesystem/lsb-release
 f:888d240b0929dbfee439b315312cfa12:filesystem/os-release

@@ -4,7 +4,7 @@
 
 name=colord
 version=1.4.4
-release=1
+release=2
 source="https://www.freedesktop.org/software/colord/releases/$name-$version.tar.xz"
 
 build() {
@@ -19,7 +19,7 @@ build() {
 	      --localstatedir=/var \
 	      -Ddaemon_user=colord \
 	      -Dvapi=true \
-	      -Dsystemd=false \
+	      -Dsystemd=true \
 	      -Dlibcolordcompat=true \
 	      -Dargyllcms_sensor=false \
 	      -Dbash_completion=false \
