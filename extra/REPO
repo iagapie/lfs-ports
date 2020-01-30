@@ -161,6 +161,7 @@ d:at-spi2-atk
 d:libidn2
 d:python3-pygments
 d:plymouth-kcm
+d:accounts-service
 d:python3-gobject3
 d:ksshaskpass
 d:wayland-protocols
@@ -495,6 +496,8 @@ f:3dd853a28b7d4d11c51da0360b5325f5:at-spi2-atk/spkgbuild
 f:cb9154ce957af47d6fe158c4a9aa48c7:libidn2/spkgbuild
 f:74b6a86a10fac7c88e08b1dc36d61e9e:python3-pygments/spkgbuild
 f:39e4cb639091bb9549e870838ce55988:plymouth-kcm/spkgbuild
+f:92ef657107e62b0ca35b030e22ae8dce:accounts-service/spkgbuild
+f:57cd5eb57ed195475fe69d4992d6b5b6:accounts-service/install
 f:b2105f390290a22af1caeaad28bb3679:python3-gobject3/spkgbuild
 f:e8f49e48e4fd11d1f6234adc69c37817:ksshaskpass/spkgbuild
 f:e9172f893388456da61d218b73bc175d:wayland-protocols/spkgbuild
