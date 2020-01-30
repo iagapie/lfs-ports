@@ -441,9 +441,13 @@ f:cc2ce5ed18f409c4582adfbcd282ea0d:plasma-workspace/spkgbuild
 f:4d7a5784efe27567f4cc2fe80814745a:python3-setuptools/spkgbuild
 f:bcac7731e39de5ada7663e05f44ee217:bluez-qt/spkgbuild
 f:86dc9a0b67d6cfa0458adf0b45c27cbc:kwallet-pam/spkgbuild
-f:e0b6ccd04799481e826e2522e562158b:lightdm/spkgbuild
+f:03d0be0e5e9caa98da191eb13388fb81:lightdm/lightdm.pam
+f:d3ec08140f9d2d9504a1fe125341c75d:lightdm/lightdm.rules
+f:28eaaf3b5f3eaa868890313053dcfc24:lightdm/spkgbuild
+f:90fac2ffccef6dc04e8674b381b6683d:lightdm/lightdm-autologin.pam
 f:0f8803730b6711410f7a48213979a9c9:lightdm/mkdirs
 f:9560655d1de50ad562626afa3849eaa2:lightdm/install
+f:88af16603a8cc25fce0856a6fbd8ad3d:lightdm/Xsession
 f:3c62990eb1bded07e218046386d867ae:frameworkintegration/spkgbuild
 f:dd9c479d8e5a6a5d0a0b3cb1539959cb:plasma-desktop/spkgbuild
 f:36434f501c428ae8ea80d9a7647f82c2:kpeople/spkgbuild
