@@ -31,6 +31,7 @@ build() {
 
 	rm -rf $PKG/etc/init $PKG/usr/share/gtk-doc
 
+	cp tests/src/lightdm-session $PKG/usr/bin
 	sed -i '1 s/sh/bash --login/' $PKG/usr/bin/lightdm-session
 	rm -rf $PKG/etc/init
 
