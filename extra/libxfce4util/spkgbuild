@@ -1,0 +1,18 @@
+# description	: libxfce4util
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : glib gobject-introspection
+
+name=libxfce4util
+version=4.14.0
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version:0:4}/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/{locale,gtk-doc}
+}
