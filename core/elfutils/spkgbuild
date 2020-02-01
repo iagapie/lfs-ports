@@ -1,0 +1,20 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=elfutils
+version=0.178
+release=1
+source="https://sourceware.org/ftp/$name/$version/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-debuginfod
+    make
+    make -C libelf DESTDIR=$PKG install
+    
+    mkdir -p $PKG/usr/lib/pkgconfig
+    install -vm644 config/libelf.pc $PKG/usr/lib/pkgconfig
+	
+	rm $PKG/usr/lib/libelf.a
+}

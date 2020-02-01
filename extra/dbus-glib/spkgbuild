@@ -1,0 +1,21 @@
+# description	: dbus-glib
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : dbus glib
+
+name=dbus-glib
+version=0.110
+release=1
+source="http://dbus.freedesktop.org/releases/$name/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --libexecdir=/usr/lib/$name \
+	            --sysconfdir=/etc \
+	            --disable-static
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/gtk-doc
+}

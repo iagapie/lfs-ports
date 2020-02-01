@@ -1,0 +1,24 @@
+# description	: glib
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : pcre docbook-xsl meson libxslt gettext
+
+name=glib
+version=2.62.3
+release=1
+source="https://ftp.gnome.org/pub/gnome/sources/$name/${version::4}/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	mkdir build-glib
+	cd    build-glib
+	
+	meson --prefix=/usr   \
+	      -Dman=true      \
+	      -Dselinux=disabled \
+	      ..
+	ninja
+	DESTDIR=$PKG ninja install
+
+	rm -r $PKG/usr/share/locale
+}

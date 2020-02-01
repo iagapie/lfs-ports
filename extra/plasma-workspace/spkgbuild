@@ -1,0 +1,33 @@
+# description	: plasma-workspace
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : kdesu gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland
+# depends       : networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor kjsembed
+# depends       : knotifyconfig libxdamage libksysguard ktexteditor qt5 xrdb xsetroot xmessage
+# depends       : xprop kwin kdelibs4support kxmlrpcclient kidletime kxmlgui phonon-backend-gstreamer
+# depends       : extra-cmake-modules kdoctools baloo krunner kxmlrpcclient networkmanager-qt
+# depends       : kdesignerplugin libkscreen kscreenlocker
+
+name=plasma-workspace
+version=5.17.3
+release=1
+source="http://download.kde.org/stable/plasma/5.17.3/plasma-workspace-$version.tar.xz"
+
+build() {
+	cd plasma-workspace-$version
+
+    sed -i '/set.HAVE_X11/a set(X11_FOUND 1)' CMakeLists.txt
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr \
+            -DCMAKE_INSTALL_LIBEXECDIR=lib \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_TESTING=OFF \
+            -Wno-dev ..
+    make
+	make DESTDIR=$PKG install
+
+    rm -r $PKG/usr/share/doc
+    rm -r $PKG/usr/share/locale
+}

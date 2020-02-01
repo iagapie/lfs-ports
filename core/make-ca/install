@@ -1,0 +1,12 @@
+
+case $1 in
+    post-install)
+        if [ -x /usr/sbin/make-ca ]; then
+            /usr/sbin/make-ca -g
+
+            systemctl enable update-pki.timer
+
+            /usr/sbin/make-ca -r -f
+        fi
+        ;;
+esac

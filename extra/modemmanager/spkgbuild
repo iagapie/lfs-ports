@@ -1,0 +1,23 @@
+# description	: modemmanager
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libgudev libmbim libqmi
+
+name=modemmanager
+version=1.12.4
+release=1
+source="https://www.freedesktop.org/software/ModemManager/ModemManager-$version.tar.xz"
+
+build() {
+	cd ModemManager-$version
+
+	./configure --prefix=/usr        \
+			--sysconfdir=/etc    \
+			--localstatedir=/var \
+			--enable-more-warnings=no \
+			--with-systemd-journal        \
+            --with-systemd-suspend-resume \
+	        --disable-static \
+		    --disable-nls
+	make
+	make DESTDIR=$PKG install
+}

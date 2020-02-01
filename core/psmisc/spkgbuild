@@ -1,0 +1,22 @@
+# description	: -
+# description	: 
+# homepage	    : 
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : 
+
+name=psmisc
+version=23.2
+release=1
+source="https://sourceforge.net/projects/$name/files/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/bin
+    mv -v $PKG/usr/bin/fuser   $PKG/bin
+    mv -v $PKG/usr/bin/killall $PKG/bin
+}

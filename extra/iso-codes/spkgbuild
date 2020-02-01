@@ -1,0 +1,18 @@
+# description	: iso-codes
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : python3
+
+name=iso-codes
+version=4.4
+release=1
+source="https://salsa.debian.org/iso-codes-team/iso-codes/-/archive/iso-codes-$version/iso-codes-iso-codes-$version.tar.gz"
+
+build() {
+	cd $name-$name-$version
+
+	./configure --prefix=/usr
+	make
+	make pkgconfigdir=/usr/lib/pkgconfig DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/locale
+}

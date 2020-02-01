@@ -1,0 +1,21 @@
+# description	: pipewire
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : meson alsa-lib gstreamer ffmpeg
+
+name=pipewire
+version=0.2.7
+release=1
+source="https://github.com/PipeWire/pipewire/archive/$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd build
+
+	meson --prefix=/usr \
+	      -Dsystemd=false \
+	      -Ddocs=false
+	ninja
+	DESTDIR=$PKG ninja install
+}

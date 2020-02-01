@@ -1,0 +1,19 @@
+# description	: font-adobe-75dpi
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : encodings font-alias fontconfig bdftopcf
+
+name=font-adobe-75dpi
+version=1.0.3
+release=1
+source="https://www.x.org/archive/individual/font/font-adobe-75dpi-$version.tar.bz2"
+
+build() {
+	cd font-adobe-75dpi-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+
+    find  -name 'fonts.scale' -delete	
+	find  -name 'fonts.dir' -delete
+}

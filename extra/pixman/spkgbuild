@@ -1,0 +1,15 @@
+# description	: pixman
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=pixman
+version=0.38.4
+release=1
+source="https://cairographics.org/releases/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

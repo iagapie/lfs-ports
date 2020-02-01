@@ -1,0 +1,15 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : scratchpkg
+
+name=scratchpkg-utils
+version=20200115
+release=1
+_commit=73a1d2fc7b28cd3f2845f42400e5b5dc8aee24ca
+source="$name-$_commit.tar.gz::https://github.com/venomlinux/$name/archive/$_commit.tar.gz"
+
+build() {
+	cd $name-$_commit
+	
+	DESTDIR=$PKG ./INSTALL.sh
+}

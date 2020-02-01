@@ -1,0 +1,19 @@
+# description	: xfconf
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : dbus-glib libxfce4util
+
+name=xfconf
+version=4.14.1
+release=1
+source="http://archive.xfce.org/src/xfce/$name/${version%.*}/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/locale \
+	      $PKG/usr/share/gtk-doc
+}

@@ -1,0 +1,19 @@
+# description	: plymouth-kcm
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : gconf gtk2 gtk3 kf5-frameworks libpwquality libxkbcommon mesa wayland networkmanager pipewire pulseaudio qca sassc taglib xcb-util-cursor
+
+name=plymouth-kcm
+version=5.17.3
+release=1
+source="http://download.kde.org/stable/plasma/5.17.3/plymouth-kcm-$version.tar.xz"
+
+build() {
+	cd plymouth-kcm-$version
+
+    mkdir build
+    cd    build
+
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF -Wno-dev ..
+    make
+	make DESTDIR=$PKG install
+}

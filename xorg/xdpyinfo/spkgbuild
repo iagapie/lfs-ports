@@ -1,0 +1,16 @@
+# description	: xdpyinfo
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libdmx libx11 libxcomposite libxext libxinerama libxrender libxtst libxxf86dga libxxf86vm util-macros
+
+name=xdpyinfo
+version=1.3.2
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xdpyinfo-$version.tar.bz2"
+
+build() {
+	cd xdpyinfo-$version    
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

@@ -1,0 +1,30 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : python3
+
+name=ninja
+version=1.9.0
+release=1
+source="https://github.com/ninja-build/$name/archive/v$version/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	export NINJAJOBS=$(nproc)
+
+    sed -i '/int Guess/a \
+        int   j = 0;\
+        char* jobs = getenv( "NINJAJOBS" );\
+        if ( jobs != NULL ) j = atoi( jobs );\
+        if ( j > 0 ) return j;\
+    ' src/ninja.cc
+
+    python3 configure.py --bootstrap
+
+	mkdir -p $PKG/usr/bin
+	mkdir -p $PKG/usr/share/{bash-completion/completions/ninja,zsh/site-functions/_ninja}
+
+    install -vm755 ninja $PKG/usr/bin/
+    install -vDm644 misc/bash-completion $PKG/usr/share/bash-completion/completions/ninja
+    install -vDm644 misc/zsh-completion $PKG/usr/share/zsh/site-functions/_ninja
+}

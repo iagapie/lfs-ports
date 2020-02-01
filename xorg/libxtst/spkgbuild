@@ -1,0 +1,18 @@
+# description	: libxtst
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : xorgproto libxext libxfixes libxi util-macros
+
+name=libxtst
+version=1.2.3
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libXtst-$version.tar.bz2"
+
+build() {
+	cd libXtst-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+
+    rm -r $PKG/usr/share/doc
+}

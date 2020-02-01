@@ -1,0 +1,18 @@
+# description	: libdrm
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : cairo docbook-xml libxslt valgrind
+
+name=libdrm
+version=2.4.100
+release=1
+source="https://dri.freedesktop.org/$name/$name-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd build
+	meson --prefix=/usr -Dudev=true
+	ninja
+	DESTDIR=$PKG ninja install
+}

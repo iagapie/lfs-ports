@@ -1,0 +1,25 @@
+# description	: libinput
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libevdev mtdev meson
+
+name=libinput
+version=1.15.0
+release=1
+source="https://www.freedesktop.org/software/libinput/libinput-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	mkdir build
+	cd build
+
+  	meson --prefix /usr \
+	      --libexecdir=/usr/lib \
+	      -Dudev-dir=/lib/udev \
+	      -Ddebug-gui=false \
+	      -Dtests=false \
+	      -Ddocumentation=false \
+	      -Dlibwacom=false
+	ninja
+	DESTDIR=$PKG ninja install
+}

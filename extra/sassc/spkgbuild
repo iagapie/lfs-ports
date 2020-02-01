@@ -1,0 +1,17 @@
+# description	: sassc
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libsass
+
+name=sassc
+version=3.6.1
+release=1
+source="https://github.com/sass/$name/archive/$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	autoreconf -vfi
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

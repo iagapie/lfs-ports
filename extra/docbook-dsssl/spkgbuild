@@ -1,0 +1,18 @@
+# description	: docbook-dsssl
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : sgml-common openjade
+
+name=docbook-dsssl
+version=1.79
+release=1
+source="ftp://ftp.mirrorservice.org/sites/distfiles.gentoo.org/distfiles/docbook-dsssl-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	mkdir -p $PKG/usr/bin
+
+	install -v -m755 bin/collateindex.pl $PKG/usr/bin
+	install -v -d -m755 $PKG/usr/share/sgml/docbook/dsssl-stylesheets-$version
+	cp -v -R * $PKG/usr/share/sgml/docbook/dsssl-stylesheets-$version
+}

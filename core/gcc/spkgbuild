@@ -1,0 +1,47 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=gcc
+version=9.2.0
+release=1
+source="https://ftp.gnu.org/gnu/$name/$name-$version/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	case $(uname -m) in
+        x86_64)
+            sed -e '/m64=/s/lib64/lib/' \
+                -i.orig gcc/config/i386/t-linux64
+        ;;
+    esac
+
+    mkdir -v build
+    cd       build
+
+    SED=sed                               \
+    ../configure --prefix=/usr            \
+                --enable-languages=c,c++ \
+                --disable-multilib       \
+                --disable-bootstrap      \
+                --with-system-zlib
+    
+    make
+    make DESTDIR=$PKG install
+    
+    rm -rf $PKG/usr/lib/gcc/$(gcc -dumpmachine)/$version/include-fixed/bits/
+
+    chown -v -R root:root \
+        $PKG/usr/lib/gcc/*linux-gnu/$version/include{,-fixed}
+
+	mkdir $PKG/lib
+    ln -sv ../usr/bin/cpp $PKG/lib
+    ln -sv gcc $PKG/usr/bin/cc
+
+    install -v -dm755 $PKG/usr/lib/bfd-plugins
+    ln -sfv ../../libexec/gcc/$(gcc -dumpmachine)/$version/liblto_plugin.so \
+            $PKG/usr/lib/bfd-plugins/
+
+    mkdir -pv $PKG/usr/share/gdb/auto-load/usr/lib
+    mv -v $PKG/usr/lib/*gdb.py $PKG/usr/share/gdb/auto-load/usr/lib
+}

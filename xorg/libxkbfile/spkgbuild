@@ -1,0 +1,16 @@
+# description	: libxkbfile
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 util-macros
+
+name=libxkbfile
+version=1.1.0
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libxkbfile-$version.tar.bz2"
+
+build() {
+	cd libxkbfile-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}

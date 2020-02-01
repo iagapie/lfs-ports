@@ -1,0 +1,23 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=python3
+version=3.8.1
+release=1
+source="https://www.python.org/ftp/python/$version/Python-$version.tar.xz"
+
+build() {
+	cd Python-$version
+
+	./configure --prefix=/usr       \
+            --enable-shared     \
+            --with-system-expat \
+            --with-system-ffi   \
+            --with-ensurepip=yes
+	make
+	make DESTDIR=$PKG install
+	chmod -v 755 $PKG/usr/lib/libpython3.8.so
+	chmod -v 755 $PKG/usr/lib/libpython3.so
+
+	ln -sfv pip3.8 $PKG/usr/bin/pip3
+}

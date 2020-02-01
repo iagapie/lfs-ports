@@ -1,0 +1,16 @@
+# description	: opus
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=opus
+version=1.3.1
+release=1
+source="https://archive.mozilla.org/pub/$name/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr    \
+	            --disable-static
+	make
+	make DESTDIR=$PKG install
+}

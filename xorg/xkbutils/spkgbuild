@@ -1,0 +1,16 @@
+# description	: xkbutils
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 libxaw libxt xorgproto util-macros
+
+name=xkbutils
+version=1.0.4
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xkbutils-$version.tar.bz2"
+
+build() {
+	cd xkbutils-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

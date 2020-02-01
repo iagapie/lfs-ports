@@ -1,4 +1,3 @@
-
 /* pyconfig.h stub */
 
 #ifndef __STUB__PYCONFIG_H__

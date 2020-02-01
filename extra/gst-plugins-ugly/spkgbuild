@@ -1,0 +1,20 @@
+# description	: gst-plugins-ugly
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : gst-plugins-base lame liba52 libdvdread x264
+
+name=gst-plugins-ugly
+version=1.16.2
+release=1
+source="https://gstreamer.freedesktop.org/src/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --disable-nls \
+		    --with-package-name="GStreamer Ugly Plugins $version BLFS"
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/gtk-doc
+}

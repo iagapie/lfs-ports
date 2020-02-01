@@ -1,0 +1,13 @@
+# description	: gitflow
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : git
+
+name=gitflow
+version=0.4.1
+release=1
+source="https://raw.github.com/nvie/gitflow/develop/contrib/gitflow-installer.sh"
+
+build() {
+	chmod +x $SRC/gitflow-installer.sh
+	INSTALL_PREFIX=$PKG/usr/bin $SRC/gitflow-installer.sh
+}

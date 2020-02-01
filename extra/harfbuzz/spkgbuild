@@ -1,0 +1,22 @@
+# description	: harfbuzz
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : glib freetype graphite2
+
+name=harfbuzz
+version=2.6.4
+release=1
+source="https://www.freedesktop.org/software/$name/release/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--with-gobject \
+		--with-graphite2 \
+		--with-icu=no
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/gtk-doc
+}

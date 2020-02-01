@@ -1,0 +1,6 @@
+
+case $1 in
+	pre-install) 
+		systemctl enable upower
+		;;
+esac

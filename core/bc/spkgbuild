@@ -1,0 +1,15 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=bc
+version=2.4.0
+release=1
+source="https://github.com/gavinhoward/bc/archive/$version/bc-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	PREFIX=/usr CC=gcc CFLAGS="-std=c99" ./configure.sh -G -O3
+    make
+    make DESTDIR=$PKG install
+}

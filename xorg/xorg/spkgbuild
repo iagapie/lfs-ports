@@ -1,0 +1,14 @@
+# description	: Meta port for Xorg
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends		: core
+# depends	    : util-macros xorgproto libxau libxdmcp xcb-proto libxcb xorg-libraries xcb-util xcb-util-image
+# depends		: xcb-util-keysyms xcb-util-renderutil xcb-util-wm xcb-util-cursor mesa xbitmaps xorg-applications
+# depends		: xcursor-themes xorg-fonts xkeyboard-config xorg-server xorg-drivers-base twm xterm xclock xinit
+
+name=xorg
+version=7.0
+release=1
+
+build() {
+	mkdir -pv $PKG/etc
+}

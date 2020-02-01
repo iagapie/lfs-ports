@@ -1,0 +1,20 @@
+# description	: docbook3
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : sgml-common unzip
+
+name=docbook3
+version=3.1
+release=1
+source="http://www.docbook.org/sgml/$version/docbk31.zip"
+
+build() {
+	sed -i -e '/ISO 8879/d' \
+       -e 's|DTDDECL "-//OASIS//DTD DocBook V$version//EN"|SGMLDECL|g' \
+       docbook.cat
+	
+	mkdir -p $PKG/usr/share/sgml/docbook/sgml-dtd-$version
+	install -v -d -m755 /usr/share/sgml/docbook/sgml-dtd-$version
+	chown -R root:root .
+	install -v docbook.cat $PKG/usr/share/sgml/docbook/sgml-dtd-$version/catalog
+	cp -v -af *.dtd *.mod *.dcl $PKG/usr/share/sgml/docbook/sgml-dtd-$version
+}

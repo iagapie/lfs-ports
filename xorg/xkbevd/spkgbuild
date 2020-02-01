@@ -1,0 +1,16 @@
+# description	: xkbevd
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxkbfile util-macros
+
+name=xkbevd
+version=1.1.4
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xkbevd-$version.tar.bz2"
+
+build() {
+	cd xkbevd-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,29 @@
+# description	: xf86-video-intel
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : xcb-util xorg-server
+
+name=xf86-video-intel
+version=20190723
+release=1
+source="http://anduin.linuxfromscratch.org/BLFS/xf86-video-intel/xf86-video-intel-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./autogen.sh \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--libexecdir=/usr/lib/$name \
+		--localstatedir=/var \
+		--disable-static \
+		--enable-kms-only \
+		--enable-uxa
+	make
+	make DESTDIR=$PKG install
+
+	mkdir -p $PKG/usr/share/man/man1
+	mv -v $PKG/usr/share/man/man4/intel-virtual-output.4 \
+	      $PKG/usr/share/man/man1/intel-virtual-output.1
+
+	sed -i '/\.TH/s/4/1/' $PKG/usr/share/man/man1/intel-virtual-output.1
+}

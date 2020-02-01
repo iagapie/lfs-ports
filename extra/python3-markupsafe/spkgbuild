@@ -1,0 +1,15 @@
+# description	: python3-markupsafe
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : python3
+
+name=python3-markupsafe
+version=1.1.1
+release=1
+source="https://files.pythonhosted.org/packages/source/M/MarkupSafe/MarkupSafe-$version.tar.gz"
+
+build() {
+	cd MarkupSafe-$version
+
+	python3 setup.py build
+	python3 setup.py install --root=$PKG --optimize=1
+}

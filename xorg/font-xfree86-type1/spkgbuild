@@ -1,0 +1,19 @@
+# description	: font-xfree86-type1
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : encodings font-alias fontconfig
+
+name=font-xfree86-type1
+version=1.0.4
+release=1
+source="https://www.x.org/pub/individual/font/font-xfree86-type1-$version.tar.bz2"
+
+build() {
+	cd font-xfree86-type1-$version
+
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+
+    find  -name 'fonts.scale' -delete	
+	find  -name 'fonts.dir' -delete
+}

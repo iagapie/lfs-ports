@@ -1,0 +1,6 @@
+
+case $1 in
+    post-install)
+        systemctl enable update-pciids.timer
+        ;;
+esac

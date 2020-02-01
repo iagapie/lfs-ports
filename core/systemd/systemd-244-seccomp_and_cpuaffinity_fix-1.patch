@@ -1,0 +1,161 @@
+Submitted By:            Douglas R. Reno <renodr at linuxfromscratch dot org>
+Date:                    2020-01-06
+Initial Package Version: 244
+Origin:                  Self
+Description:             Fixes problems with seccomp on i686/x86_64/s390/s390x.
+                         With Linux-5.4+ and libseccomp-2.4.2+, some incompatible
+                         changes to the shmat() were made that forced them to
+                         go through ipc() multiplexed instead. As a result, 
+                         systemd's seccomp usage fails anytime a shmat()
+                         call is made, and may result in a SIGABRT of PID1. In
+                         addition, the CPU Affinity CGroup was changed as part of
+                         Linux 5.4+ and the test is removed as part of this patch.
+                         Since these changes primarily affect libseccomp, which is
+                         only part of BLFS, this patch is not applicable to the
+                         LFS book.
+
+diff -Naurp systemd-244.orig/src/shared/seccomp-util.c systemd-244/src/shared/seccomp-util.c
+--- systemd-244.orig/src/shared/seccomp-util.c	2019-11-29 10:32:36.000000000 -0600
++++ systemd-244/src/shared/seccomp-util.c	2020-01-06 16:17:48.659871511 -0600
+@@ -1584,6 +1584,7 @@ assert_cc(SCMP_SYS(shmdt) > 0);
+ int seccomp_memory_deny_write_execute(void) {
+         uint32_t arch;
+         int r;
++        int loaded = 0;
+ 
+         SECCOMP_FOREACH_LOCAL_ARCH(arch) {
+                 _cleanup_(seccomp_releasep) scmp_filter_ctx seccomp = NULL;
+@@ -1593,22 +1594,25 @@ int seccomp_memory_deny_write_execute(vo
+ 
+                 switch (arch) {
+ 
++                   /* Note: On some architectures, shmat() isn't available.
++                    * As a result, the call is multiplexed through ipc().
++                    * We ignore that here, which means there is still a way to
++                    * get writable/executable memory if an IPC key is mapped
++                    * like this.*/
+                 case SCMP_ARCH_X86:
+                 case SCMP_ARCH_S390:
+                         filter_syscall = SCMP_SYS(mmap2);
+                         block_syscall = SCMP_SYS(mmap);
+-                        shmat_syscall = SCMP_SYS(shmat);
++                        /* shmat multiplexed, see above */
+                         break;
+ 
+                 case SCMP_ARCH_PPC:
+                 case SCMP_ARCH_PPC64:
+                 case SCMP_ARCH_PPC64LE:
++                case SCMP_ARCH_S390X:
+                         filter_syscall = SCMP_SYS(mmap);
+ 
+-                        /* Note that shmat() isn't available, and the call is multiplexed through ipc().
+-                         * We ignore that here, which means there's still a way to get writable/executable
+-                         * memory, if an IPC key is mapped like this. That's a pity, but no total loss. */
+-
++                        /* shmat multiplexed, see above */
+                         break;
+ 
+                 case SCMP_ARCH_ARM:
+@@ -1619,8 +1623,7 @@ int seccomp_memory_deny_write_execute(vo
+                 case SCMP_ARCH_X86_64:
+                 case SCMP_ARCH_X32:
+                 case SCMP_ARCH_AARCH64:
+-                case SCMP_ARCH_S390X:
+-                        filter_syscall = SCMP_SYS(mmap); /* amd64, x32, s390x, and arm64 have only mmap */
++                        filter_syscall = SCMP_SYS(mmap); /* amd64, x32, and arm64 have only mmap */
+                         shmat_syscall = SCMP_SYS(shmat);
+                         break;
+ 
+@@ -1666,7 +1669,7 @@ int seccomp_memory_deny_write_execute(vo
+ #endif
+ 
+                 if (shmat_syscall > 0) {
+-                        r = add_seccomp_syscall_filter(seccomp, arch, SCMP_SYS(shmat),
++                        r = add_seccomp_syscall_filter(seccomp, arch, shmat_syscall,
+                                                        1,
+                                                        SCMP_A2(SCMP_CMP_MASKED_EQ, SHM_EXEC, SHM_EXEC));
+                         if (r < 0)
+@@ -1678,9 +1681,13 @@ int seccomp_memory_deny_write_execute(vo
+                         return r;
+                 if (r < 0)
+                         log_debug_errno(r, "Failed to install MemoryDenyWriteExecute= rule for architecture %s, skipping: %m", seccomp_arch_to_string(arch));
++                loaded++;
+         }
+ 
+-        return 0;
++        if (loaded == 0)
++           log_debug_errno(r, "Failed to install any seccomp rules for MemoryDenyWriteExecute=");
++        
++        return loaded;
+ }
+ 
+ int seccomp_restrict_archs(Set *archs) {
+diff -Naurp systemd-244.orig/src/test/test-execute.c systemd-244/src/test/test-execute.c
+--- systemd-244.orig/src/test/test-execute.c	2019-11-29 10:32:36.000000000 -0600
++++ systemd-244/src/test/test-execute.c	2020-01-06 16:12:58.523934923 -0600
+@@ -228,10 +228,11 @@ static void test_exec_bindpaths(Manager
+         (void) rm_rf("/tmp/test-exec-bindreadonlypaths", REMOVE_ROOT|REMOVE_PHYSICAL);
+ }
+ 
++/*
+ static void test_exec_cpuaffinity(Manager *m) {
+         _cleanup_(cpu_set_reset) CPUSet c = {};
+ 
+-        assert_se(cpu_set_realloc(&c, 8192) >= 0); /* just allocate the maximum possible size */
++        assert_se(cpu_set_realloc(&c, 8192) >= 0); 
+         assert_se(sched_getaffinity(0, c.allocated, c.set) >= 0);
+ 
+         if (!CPU_ISSET_S(0, c.allocated, c.set)) {
+@@ -250,6 +251,7 @@ static void test_exec_cpuaffinity(Manage
+ 
+         test(__func__, m, "exec-cpuaffinity3.service", 0, CLD_EXITED);
+ }
++*/
+ 
+ static void test_exec_workingdirectory(Manager *m) {
+         assert_se(mkdir_p("/tmp/test-exec_workingdirectory", 0755) >= 0);
+@@ -809,7 +811,7 @@ int main(int argc, char *argv[]) {
+                 entry(test_exec_bindpaths),
+                 entry(test_exec_capabilityboundingset),
+                 entry(test_exec_condition),
+-                entry(test_exec_cpuaffinity),
++/*                entry(test_exec_cpuaffinity), */
+                 entry(test_exec_environment),
+                 entry(test_exec_environmentfile),
+                 entry(test_exec_group),
+diff -Naurp systemd-244.orig/src/test/test-seccomp.c systemd-244/src/test/test-seccomp.c
+--- systemd-244.orig/src/test/test-seccomp.c	2019-11-29 10:32:36.000000000 -0600
++++ systemd-244/src/test/test-seccomp.c	2020-01-06 16:21:31.361304527 -0600
+@@ -535,11 +535,13 @@ static void test_memory_deny_write_execu
+ #if defined(__x86_64__) || defined(__i386__) || defined(__powerpc64__) || defined(__arm__) || defined(__aarch64__)
+                 assert_se(p == MAP_FAILED);
+                 assert_se(errno == EPERM);
+-#else /* unknown architectures */
+-                assert_se(p != MAP_FAILED);
+-                assert_se(munmap(p, page_size()) >= 0);
+ #endif
+ 
++                /* Depending on the kernel, libseccomp, and glibc versions in use,
++                 * other architectures might fail. Let's not assert success. */
++                if (p != MAP_FAILED)
++                   assert_se(munmap(p, page_size()) == 0);
++
+                 p = mmap(NULL, page_size(), PROT_WRITE|PROT_READ, MAP_PRIVATE|MAP_ANONYMOUS, -1,0);
+                 assert_se(p != MAP_FAILED);
+                 assert_se(munmap(p, page_size()) >= 0);
+diff -Naurp systemd-244.orig/test/meson.build systemd-244/test/meson.build
+--- systemd-244.orig/test/meson.build	2019-11-29 10:32:36.000000000 -0600
++++ systemd-244/test/meson.build	2020-01-06 16:13:17.360850685 -0600
+@@ -58,9 +58,9 @@ test_data_files = '''
+         test-execute/exec-capabilityboundingset-simple.service
+         test-execute/exec-condition-failed.service
+         test-execute/exec-condition-skip.service
+-        test-execute/exec-cpuaffinity1.service
+-        test-execute/exec-cpuaffinity2.service
+-        test-execute/exec-cpuaffinity3.service
++#        test-execute/exec-cpuaffinity1.service
++#        test-execute/exec-cpuaffinity2.service
++#        test-execute/exec-cpuaffinity3.service
+         test-execute/exec-dynamicuser-fixeduser-adm.service
+         test-execute/exec-dynamicuser-fixeduser-games.service
+         test-execute/exec-dynamicuser-fixeduser-one-supplementarygroup.service

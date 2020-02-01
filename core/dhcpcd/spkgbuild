@@ -1,0 +1,22 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : systemd
+
+name=dhcpcd
+version=8.1.5
+release=1
+_blfs_units_version=20191026
+source="https://roy.marples.name/downloads/dhcpcd/dhcpcd-$version.tar.xz
+        http://www.linuxfromscratch.org/blfs/downloads/systemd/blfs-systemd-units-$_blfs_units_version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --libexecdir=/lib/dhcpcd \
+            --dbdir=/var/lib/dhcpcd
+    make
+    make DESTDIR=$PKG install
+
+    cd ../blfs-systemd-units-$_blfs_units_version
+    make DESTDIR=$PKG install-dhcpcd
+}

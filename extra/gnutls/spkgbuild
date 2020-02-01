@@ -1,0 +1,21 @@
+# description	: gnutls
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : nettle make-ca libtasn1 p11-kit libunistring
+
+name=gnutls
+version=3.6.11.1
+release=1
+source="https://www.gnupg.org/ftp/gcrypt/gnutls/v3.6/$name-${version}.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --with-default-trust-store-pkcs11="pkcs11:" \
+		    --disable-guile \
+		    --disable-nls
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/{doc,info}
+}

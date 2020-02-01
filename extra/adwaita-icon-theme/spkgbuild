@@ -1,0 +1,15 @@
+# description	: adwaita-icon-theme
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=adwaita-icon-theme
+version=3.34.3
+release=1
+source="https://ftp.gnome.org/pub/gnome/sources/$name/${version::4}/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

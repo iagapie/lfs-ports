@@ -1,0 +1,9 @@
+case $1 in
+	post-install|post-upgrade)
+        [ ! -f /etc/login.access ] || mv -v /etc/login.access{,.NOUSE}
+        [ ! -f /etc/limits ] || mv -v /etc/limits{,.NOUSE}
+
+		if [ -x /sbin/pwconv -a -x /sbin/grpconv ]; then
+			pwconv && grpconv
+		fi ;;
+esac

@@ -1,0 +1,16 @@
+# description	: speexdsp
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=speexdsp
+version=1.2.0
+release=1
+source="https://downloads.xiph.org/releases/speex/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+	rm -r $PKG/usr/share
+}
