@@ -1,0 +1,18 @@
+# description	: soundtouch
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=soundtouch
+version=2.1.2
+release=1
+source="https://gitlab.com/soundtouch/soundtouch/-/archive/$version/soundtouch-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./bootstrap
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+	
+	rm -r $PKG/usr/share/doc
+}

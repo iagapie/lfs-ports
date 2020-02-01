@@ -8,7 +8,5 @@ UUID=<zzz>      /boot/efi                   vfat        umask=0077          0   
 # efivarfs        /sys/firmware/efi/efivars   efivarfs    defaults            0       1
 devpts          /dev/pts                    devpts      gid=5,mode=620      0       0
 tmpfs           /run                        tmpfs       defaults            0       0
-/sources        /var/lib/pkg/src            none        defaults,bind       0       0
-/packages       /var/lib/pkg/pkg            none        defaults,bind       0       0
 
 # End /etc/fstab

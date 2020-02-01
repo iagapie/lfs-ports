@@ -1,0 +1,16 @@
+# description	: xmessage
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxaw util-macros
+
+name=xmessage
+version=1.0.5
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xmessage-$version.tar.bz2"
+
+build() {
+	cd xmessage-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

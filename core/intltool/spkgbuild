@@ -1,0 +1,16 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=intltool
+version=0.51.0
+release=1
+source="https://launchpad.net/$name/trunk/$version/+download/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	sed -i 's:\\${:\\$\{:' intltool-update.in
+    ./configure --prefix=/usr
+    make
+    make DESTDIR=$PKG install
+}

@@ -1,0 +1,16 @@
+# description	: xsetroot
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libx11 libxcursor libxmu xbitmaps util-macros
+
+name=xsetroot
+version=1.1.2
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xsetroot-$version.tar.bz2"
+
+build() {
+	cd xsetroot-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install
+}

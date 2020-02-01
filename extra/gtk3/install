@@ -1,0 +1,8 @@
+
+case $1 in
+	post-install)
+        gtk-query-immodules-3.0 --update-cache
+        glib-compile-schemas /usr/share/glib-2.0/schemas
+        ;;
+	post-remove) rm -f /usr/lib/gtk-3.0/3.0.0/immodules.cache ;;
+esac

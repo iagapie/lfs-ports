@@ -1,0 +1,16 @@
+# description	: xset
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxmu util-macros
+
+name=xset
+version=1.2.4
+release=1
+source="ftp://ftp.x.org/pub/individual/app/xset-$version.tar.bz2"
+
+build() {
+	cd xset-$version
+    
+    ./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+    make
+	make DESTDIR=$PKG install    
+}

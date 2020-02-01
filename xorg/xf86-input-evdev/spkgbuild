@@ -1,0 +1,20 @@
+# description	: xf86-input-evdev
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libevdev mtdev xorg-server xorgproto
+
+name=xf86-input-evdev
+version=2.10.6
+release=1
+source="http://ftp.x.org/pub/individual/driver/xf86-input-evdev-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure \
+		--prefix=/usr \
+		--sysconfdir=/etc \
+		--localstatedir=/var \
+		--disable-static
+	make
+	make DESTDIR=$PKG install
+}

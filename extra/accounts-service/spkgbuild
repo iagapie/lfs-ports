@@ -1,0 +1,30 @@
+# description	: accounts-service
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libgcrypt polkit gobject-introspection systemd
+
+name=accounts-service
+version=0.6.55
+release=1
+source=" https://www.freedesktop.org/software/accountsservice/accountsservice-$version.tar.xz"
+
+build() {
+	cd accountsservice-$version
+
+	mkdir build
+	cd build
+
+	meson --prefix=/usr           \
+				-Dadmin_group=adm \
+				-Dsystemd=true    \
+				..
+	ninja
+	DESTDIR=$PKG ninja install
+
+	mkdir -pv $PKG/etc/polkit-1/rules.d
+
+	cat > $PKG/etc/polkit-1/rules.d/40-adm.rules << "EOF"
+polkit.addAdminRule(function(action, subject) {
+   return ["unix-group:adm"];
+   });
+EOF
+}

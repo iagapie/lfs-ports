@@ -1,0 +1,24 @@
+# description	: cmake
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : curl libarchive libuv
+
+name=cmake
+version=3.16.2
+release=1
+source="https://www.cmake.org/files/v${version%.*}/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	sed -i '/"lib64"/s/64//' Modules/GNUInstallDirs.cmake
+
+  	./bootstrap --prefix=/usr       \
+	            --system-libs       \
+	            --mandir=/share/man \
+	            --no-system-jsoncpp \
+            	--no-system-librhash
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/doc
+}

@@ -1,0 +1,16 @@
+# description	: lcms2
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    :
+
+name=lcms2
+version=2.9
+release=1
+source="https://downloads.sourceforge.net/lcms/$name-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr --disable-static
+	make
+	make DESTDIR=$PKG install
+}

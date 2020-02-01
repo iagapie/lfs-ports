@@ -1,0 +1,16 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : perl
+
+name=perl-xml-parser
+version=2.46
+release=1
+source="https://cpan.metacpan.org/authors/id/T/TO/TODDR/XML-Parser-$version.tar.gz"
+
+build() {
+	cd XML-Parser-$version
+
+	perl Makefile.PL
+    make
+    make DESTDIR=$PKG install
+}

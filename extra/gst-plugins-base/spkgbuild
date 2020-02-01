@@ -1,0 +1,22 @@
+# description	: gst-plugins-base
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : alsa-lib gstreamer libtheora libvorbis libogg gobject-introspection iso-codes
+
+name=gst-plugins-base
+version=1.16.2
+release=1
+source="http://gstreamer.freedesktop.org/src/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr \
+		    --with-package-name="GStreamer Base Plugins $version" \
+			--with-package-origin=http://www.linuxfromscratch.org/blfs/view/svn/ \
+		    --disable-nls \
+		    --disable-examples
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/gtk-doc
+}

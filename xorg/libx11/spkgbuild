@@ -1,0 +1,18 @@
+# description	: libx11
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : xorgproto libxcb util-macros xtrans
+
+name=libx11
+version=1.6.9
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libX11-$version.tar.bz2"
+
+build() {
+	cd libX11-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+
+	rm -r $PKG/usr/share/doc
+}

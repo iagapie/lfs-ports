@@ -1,0 +1,16 @@
+# description	: libxv
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxext xorgproto pkg-config
+
+name=libxv
+version=1.0.11
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libXv-$version.tar.bz2"
+
+build() {
+	cd libXv-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}

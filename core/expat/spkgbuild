@@ -1,0 +1,17 @@
+# description	: -
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=expat
+version=2.2.9
+release=1
+source="https://prdownloads.sourceforge.net/$name/$name-$version.tar.xz"
+
+build() {
+	cd $name-$version
+
+	sed -i 's|usr/bin/env |bin/|' run.sh.in
+	./configure --prefix=/usr    \
+            --disable-static
+	make
+	make DESTDIR=$PKG install
+}

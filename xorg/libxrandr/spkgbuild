@@ -1,0 +1,16 @@
+# description	: libxrandr
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : libxext libxrender xorgproto util-macros
+
+name=libxrandr
+version=1.5.2
+release=1
+source="ftp://ftp.x.org/pub/individual/lib/libXrandr-$version.tar.bz2"
+
+build() {
+	cd libXrandr-$version
+
+	./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --disable-static
+	make
+	make DESTDIR=$PKG install
+}

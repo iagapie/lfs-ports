@@ -1,0 +1,4 @@
+
+case $1 in
+	post-install) update-mime-database /usr/share/mime ;;
+esac

@@ -1,0 +1,15 @@
+# description	: valgrind
+# maintainer	: iagapie, igoragapie at gmail.com
+
+name=valgrind
+version=3.15.0
+release=1
+source="ftp://sourceware.org/pub/valgrind/valgrind-$version.tar.bz2"
+
+build() {
+	cd $name-$version
+
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

@@ -1,0 +1,17 @@
+# description	: graphviz
+# maintainer	: iagapie, igoragapie at gmail.com
+# depends	    : pango cairo fontconfig gtk2 poppler-glib
+
+name=graphviz
+version=2.42.3
+release=1
+source="https://www2.graphviz.org/Packages/stable/portable_source/graphviz-$version.tar.gz"
+
+build() {
+	cd $name-$version
+
+	export LIBPOSTFIX=/
+	./configure --prefix=/usr
+	make
+	make DESTDIR=$PKG install
+}

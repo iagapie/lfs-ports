@@ -1,5 +1,0 @@
-#!/bin/sh
-
-if [ -f /usr/lib/gtk-2.0/2.24.32/immodules.cache ]; then
-    rm -f /usr/lib/gtk-2.0/2.24.32/immodules.cache
-fi
