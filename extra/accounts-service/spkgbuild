@@ -1,5 +1,4 @@
 # description	: accounts-service
-# homepage	    : 
 # maintainer	: iagapie, igoragapie at gmail.com
 # depends	    : libgcrypt polkit gobject-introspection systemd
 
